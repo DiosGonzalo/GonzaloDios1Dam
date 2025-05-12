@@ -67,6 +67,7 @@ public class ExpedicionServicio extends ServiciosBase<Expedicion,Long,Expedicion
 	   return repositorio.findAll().stream().filter(expedicion -> expedicion.getNombre().toLowerCase().contains(nombre)).toList();
    }
    
- 
+ public List<Expedicion> ordenarCategoria(int categoria){
+	return  repositorio.findAll().stream().filter(expedicion -> expedicion.getCategoria() == categoria).toList(); }
      
 }

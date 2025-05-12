@@ -2,13 +2,10 @@ package com.salesianostriana.dam.DiosFiestasGonzaloDemo.controladores;
 
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -58,43 +55,18 @@ public class ExpedicionController {
    }
    
    @GetMapping("/expedicion/editar/{id}")
-   public String cargarExpedicionParaEditar(@PathVariable Long id, Model model) {
-       Optional<Expedicion> expedicionOpt = Optional.ofNullable(servicio.findById(id));
-       
-       if (expedicionOpt.isPresent()) {
-           model.addAttribute("expedicion", expedicionOpt.get());
-           return "editarExpedicion"; // Nombre de tu vista de edición
-       } else {
-           // Expedición no encontrada
-           model.addAttribute("error", "Expedición no encontrada con ID: " + id);
-           return "redirect:/expediciones?error=expedicion_no_encontrada";
-       }
+   @ResponseBody
+   public Expedicion cargarExpedicionParaEditar(@PathVariable Long id) {
+	   Optional 
+       return servicio.findById(id);
+       //En el editar añadir un optional
+	   //buscar el parametro error de thymeleaf para mas puntos agregar algun try catch
    }
 
    @PostMapping("/expedicion/editar")
-   public String procesarEdicion(@Validated @ModelAttribute("expedicion") Expedicion expedicion, BindingResult result, Model model) {
-       
-       // Validación de errores
-       if (result.hasErrors()) {
-           model.addAttribute("error", "Por favor, corrige los errores en el formulario");
-           return "editarExpedicion"; // Volver a la vista de edición con errores
-       }
-       
-       try {
-           // Verificar si la expedición existe antes de editar
-           Optional<Expedicion> existente = Optional.ofNullable(servicio.findById(expedicion.getId()));
-           
-           if (existente.isPresent()) {
-               servicio.edit(expedicion);
-               return "redirect:/expediciones?success=expedicion_actualizada";
-           } else {
-               model.addAttribute("error", "No se puede editar - Expedición no encontrada");
-               return "redirect:/expediciones?error=expedicion_no_encontrada";
-           }
-       } catch (Exception e) {
-           model.addAttribute("error", "Error al actualizar la expedición: " + e.getMessage());
-           return "editarExpedicion"; // Volver a la vista de edición con error
-       }
+   public String procesarEdicion(@ModelAttribute("expedicion") Expedicion expedicion) {
+       servicio.edit(expedicion);
+       return "redirect:/expediciones";
    }
    
    @PostMapping("/expedicion/buscar")
@@ -109,6 +81,12 @@ public class ExpedicionController {
        servicio.deleteById(id);
        return "redirect:/expediciones";
    }
-
+   
+   @PostMapping("/expedicio/mayorPrecio")
+   public String ordenarPrecioMayor(Model model, int categoria) {
+	 model.addAttribute("expediciones",servicio.ordenarCategoria(categoria));
+	 return "expediciones";
+   }
+   
 
 }
