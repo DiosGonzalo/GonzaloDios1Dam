@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.salesianostriana.dam.DiosFiestasGonzaloDemo.modelos.Expedicion;
 import com.salesianostriana.dam.DiosFiestasGonzaloDemo.servicios.ExpedicionServicio;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 @Controller
 public class ExpedicionController {
@@ -57,7 +59,7 @@ public class ExpedicionController {
    @GetMapping("/expedicion/editar/{id}")
    @ResponseBody
    public Expedicion cargarExpedicionParaEditar(@PathVariable Long id) {
-	   Optional 
+	   //Optional 
        return servicio.findById(id);
        //En el editar añadir un optional
 	   //buscar el parametro error de thymeleaf para mas puntos agregar algun try catch
@@ -87,6 +89,22 @@ public class ExpedicionController {
 	 model.addAttribute("expediciones",servicio.ordenarCategoria(categoria));
 	 return "expediciones";
    }
+
+   @GetMapping("/expediciones/filtrar")
+public String muestraExpediciones(
+    @RequestParam(value = "categoria", required = false) Integer categoria,
+    Model model) {
+    
+    List<Expedicion> expediciones = categoria != null 
+        ? servicio.ordenarCategoria(categoria) 
+        : servicio.findAll();
+    
+    model.addAttribute("expediciones", servicio.ordenarCategoria(categoria));
+    model.addAttribute("categoriaFiltro", categoria);
+    return "expediciones";
+}
+ 
+   
    
 
 }

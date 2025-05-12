@@ -43,7 +43,7 @@ public class ExpedicionServicio extends ServiciosBase<Expedicion,Long,Expedicion
                "Aneto", 
                799.99, 
                15, 
-               2, 
+               1, 
                LocalDate.now().plusMonths(3).plusDays(10), 
                LocalDate.now().plusMonths(2),
                "https://imagenes.heraldo.es/files/image_1920_1080/uploads/imagenes/2018/01/22/_90043copia_009b536e.jpg");
@@ -52,14 +52,34 @@ public class ExpedicionServicio extends ServiciosBase<Expedicion,Long,Expedicion
                "MatterHorn", 
                1499.99, 
                10, 
-               3, 
+               2, 
                LocalDate.now().plusMonths(4).plusDays(165), 
                LocalDate.now().plusMonths(3),
                "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTlUfej-F4eYr-z7wUIZPfqm6vdL4s4zpeoag&s");
+               
+            Expedicion a5= new Expedicion(
+               "K2", 
+               20099.99, 
+               5, 
+               3, 
+               LocalDate.now().plusMonths(14).plusDays(125), 
+               LocalDate.now().plusMonths(2),
+               "https://static.nationalgeographic.es/files/styles/image_3200/public/24221.600x450.jpg?w=1900&h=1425");
+
+            Expedicion a6 = new Expedicion(
+               "Everest", 
+               50099.99, 
+               8, 
+               3, 
+               LocalDate.now().plusMonths(6).plusDays(65), 
+               LocalDate.now().plusMonths(2),
+               "https://static.nationalgeographic.es/files/styles/image_3200/public/everest-book-talk-climbers.jpg?w=1600");
            save(a1);
            save(a2);
            save(a3);
            save(a4);
+           save(a5);
+           save(a6);
    }
     
    
@@ -67,7 +87,31 @@ public class ExpedicionServicio extends ServiciosBase<Expedicion,Long,Expedicion
 	   return repositorio.findAll().stream().filter(expedicion -> expedicion.getNombre().toLowerCase().contains(nombre)).toList();
    }
    
- public List<Expedicion> ordenarCategoria(int categoria){
-	return  repositorio.findAll().stream().filter(expedicion -> expedicion.getCategoria() == categoria).toList(); }
-     
+ public List<Expedicion> filtrarCategoria(int categoria){
+    if(categoria == 4){
+        return repositorio.findAll();
+    }else{
+	return  repositorio.findAll().stream().filter(expedicion -> expedicion.getCategoria() == categoria).toList(); 
+        }
+    }   
+public List<Expedicion> ordenarFechaMayor(){
+     List<Expedicion> expediciones = repositorio.findAll();
+     expediciones.sort((e1,e2) -> e1.getFechaExpedicion().compareTo(e2.getFechaExpedicion()));
+     return expediciones;
+}
+public List<Expedicion> ordenarFechaMenor(){
+     List<Expedicion> expediciones = repositorio.findAll();
+     expediciones.sort((e1,e2) -> -e1.getFechaExpedicion().compareTo(e2.getFechaExpedicion()));
+     return expediciones;
+}
+public List<Expedicion> ordenarPrecioMayor(){
+     List<Expedicion> expediciones = repositorio.findAll();
+     expediciones.sort((e1,e2) -> Double.compare(e1.getPrecio(), e2.getPrecio()));
+     return expediciones;
+}
+public List<Expedicion> ordenarFecha(){
+     List<Expedicion> expediciones = repositorio.findAll();
+     expediciones.sort((e1,e2) -> Double.compare(e1.getPrecio(),e2.getPrecio()));
+     return expediciones;
+}
 }
