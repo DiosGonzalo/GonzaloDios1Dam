@@ -1,0 +1,223 @@
+2025-05-14 12:11:53.840474+02:00 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "DELETE FROM usuario_expedicion WHERE usuario_id IN (SELECT id FROM usuario WHERE [*][ID > 10\000d\000a])"; se esperaba "INTERSECTS (, NOT, EXISTS, UNIQUE, INTERSECTS"
+Syntax error in SQL statement "DELETE FROM usuario_expedicion WHERE usuario_id IN (SELECT id FROM usuario WHERE [*][ID > 10\000d\000a])"; expected "INTERSECTS (, NOT, EXISTS, UNIQUE, INTERSECTS"; SQL statement:
+DELETE FROM usuario_expedicion WHERE usuario_id IN (SELECT id FROM usuario WHERE [ID > 10
+]) [42001-232]
+2025-05-14 12:34:28.026039+02:00 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "DELETE\000d\000aFROM USUARIO_EXPEDICION\000d\000aWHERE ID =[*]= 9552"; se esperaba "ALL (, ANY (, SOME ("
+Syntax error in SQL statement "DELETE\000d\000aFROM USUARIO_EXPEDICION\000d\000aWHERE ID =[*]= 9552"; expected "ALL (, ANY (, SOME ("; SQL statement:
+DELETE
+FROM USUARIO_EXPEDICION
+WHERE ID == 9552 [42001-232]
+2025-05-14 12:34:33.818807+02:00 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "DELETE\000d\000aFROM USUARIO_EXPEDICION\000d\000aWHERE ID =[*]= 9552"; se esperaba "ALL (, ANY (, SOME ("
+Syntax error in SQL statement "DELETE\000d\000aFROM USUARIO_EXPEDICION\000d\000aWHERE ID =[*]= 9552"; expected "ALL (, ANY (, SOME ("; SQL statement:
+DELETE
+FROM USUARIO_EXPEDICION
+WHERE ID == 9552 [42001-232]
+2025-05-14 12:34:35.130691+02:00 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "DELETE\000d\000aFROM USUARIO_EXPEDICION\000d\000aWHERE ID =[*]= 9552"; se esperaba "ALL (, ANY (, SOME ("
+Syntax error in SQL statement "DELETE\000d\000aFROM USUARIO_EXPEDICION\000d\000aWHERE ID =[*]= 9552"; expected "ALL (, ANY (, SOME ("; SQL statement:
+DELETE
+FROM USUARIO_EXPEDICION
+WHERE ID == 9552 [42001-232]
+2025-05-14 12:34:35.616220+02:00 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "DELETE\000d\000aFROM USUARIO_EXPEDICION\000d\000aWHERE ID =[*]= 9552"; se esperaba "ALL (, ANY (, SOME ("
+Syntax error in SQL statement "DELETE\000d\000aFROM USUARIO_EXPEDICION\000d\000aWHERE ID =[*]= 9552"; expected "ALL (, ANY (, SOME ("; SQL statement:
+DELETE
+FROM USUARIO_EXPEDICION
+WHERE ID == 9552 [42001-232]
+2025-05-14 12:34:35.776150+02:00 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "DELETE\000d\000aFROM USUARIO_EXPEDICION\000d\000aWHERE ID =[*]= 9552"; se esperaba "ALL (, ANY (, SOME ("
+Syntax error in SQL statement "DELETE\000d\000aFROM USUARIO_EXPEDICION\000d\000aWHERE ID =[*]= 9552"; expected "ALL (, ANY (, SOME ("; SQL statement:
+DELETE
+FROM USUARIO_EXPEDICION
+WHERE ID == 9552 [42001-232]
+2025-05-14 12:34:35.903985+02:00 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "DELETE\000d\000aFROM USUARIO_EXPEDICION\000d\000aWHERE ID =[*]= 9552"; se esperaba "ALL (, ANY (, SOME ("
+Syntax error in SQL statement "DELETE\000d\000aFROM USUARIO_EXPEDICION\000d\000aWHERE ID =[*]= 9552"; expected "ALL (, ANY (, SOME ("; SQL statement:
+DELETE
+FROM USUARIO_EXPEDICION
+WHERE ID == 9552 [42001-232]
+2025-05-14 12:34:36.118594+02:00 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "DELETE\000d\000aFROM USUARIO_EXPEDICION\000d\000aWHERE ID =[*]= 9552"; se esperaba "ALL (, ANY (, SOME ("
+Syntax error in SQL statement "DELETE\000d\000aFROM USUARIO_EXPEDICION\000d\000aWHERE ID =[*]= 9552"; expected "ALL (, ANY (, SOME ("; SQL statement:
+DELETE
+FROM USUARIO_EXPEDICION
+WHERE ID == 9552 [42001-232]
+2025-05-14 12:34:36.608082+02:00 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "DELETE\000d\000aFROM USUARIO_EXPEDICION\000d\000aWHERE ID =[*]= 9552"; se esperaba "ALL (, ANY (, SOME ("
+Syntax error in SQL statement "DELETE\000d\000aFROM USUARIO_EXPEDICION\000d\000aWHERE ID =[*]= 9552"; expected "ALL (, ANY (, SOME ("; SQL statement:
+DELETE
+FROM USUARIO_EXPEDICION
+WHERE ID == 9552 [42001-232]
+2025-05-14 12:34:36.952623+02:00 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "DELETE\000d\000aFROM USUARIO_EXPEDICION\000d\000aWHERE ID =[*]= 9552"; se esperaba "ALL (, ANY (, SOME ("
+Syntax error in SQL statement "DELETE\000d\000aFROM USUARIO_EXPEDICION\000d\000aWHERE ID =[*]= 9552"; expected "ALL (, ANY (, SOME ("; SQL statement:
+DELETE
+FROM USUARIO_EXPEDICION
+WHERE ID == 9552 [42001-232]
+2025-05-14 12:34:37.152069+02:00 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "DELETE\000d\000aFROM USUARIO_EXPEDICION\000d\000aWHERE ID =[*]= 9552"; se esperaba "ALL (, ANY (, SOME ("
+Syntax error in SQL statement "DELETE\000d\000aFROM USUARIO_EXPEDICION\000d\000aWHERE ID =[*]= 9552"; expected "ALL (, ANY (, SOME ("; SQL statement:
+DELETE
+FROM USUARIO_EXPEDICION
+WHERE ID == 9552 [42001-232]
+2025-05-14 12:34:37.319440+02:00 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "DELETE\000d\000aFROM USUARIO_EXPEDICION\000d\000aWHERE ID =[*]= 9552"; se esperaba "ALL (, ANY (, SOME ("
+Syntax error in SQL statement "DELETE\000d\000aFROM USUARIO_EXPEDICION\000d\000aWHERE ID =[*]= 9552"; expected "ALL (, ANY (, SOME ("; SQL statement:
+DELETE
+FROM USUARIO_EXPEDICION
+WHERE ID == 9552 [42001-232]
+2025-05-14 12:34:37.487375+02:00 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "DELETE\000d\000aFROM USUARIO_EXPEDICION\000d\000aWHERE ID =[*]= 9552"; se esperaba "ALL (, ANY (, SOME ("
+Syntax error in SQL statement "DELETE\000d\000aFROM USUARIO_EXPEDICION\000d\000aWHERE ID =[*]= 9552"; expected "ALL (, ANY (, SOME ("; SQL statement:
+DELETE
+FROM USUARIO_EXPEDICION
+WHERE ID == 9552 [42001-232]
+2025-05-14 12:34:37.664965+02:00 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "DELETE\000d\000aFROM USUARIO_EXPEDICION\000d\000aWHERE ID =[*]= 9552"; se esperaba "ALL (, ANY (, SOME ("
+Syntax error in SQL statement "DELETE\000d\000aFROM USUARIO_EXPEDICION\000d\000aWHERE ID =[*]= 9552"; expected "ALL (, ANY (, SOME ("; SQL statement:
+DELETE
+FROM USUARIO_EXPEDICION
+WHERE ID == 9552 [42001-232]
+2025-05-14 12:34:37.871572+02:00 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "DELETE\000d\000aFROM USUARIO_EXPEDICION\000d\000aWHERE ID =[*]= 9552"; se esperaba "ALL (, ANY (, SOME ("
+Syntax error in SQL statement "DELETE\000d\000aFROM USUARIO_EXPEDICION\000d\000aWHERE ID =[*]= 9552"; expected "ALL (, ANY (, SOME ("; SQL statement:
+DELETE
+FROM USUARIO_EXPEDICION
+WHERE ID == 9552 [42001-232]
+2025-05-14 12:34:44.505853+02:00 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Columna "ID" no encontrada
+Column "ID" not found; SQL statement:
+DELETE
+FROM USUARIO_EXPEDICION
+WHERE ID = 9552 [42122-232]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:514)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.expression.ExpressionColumn.getColumnException(ExpressionColumn.java:244)
+	at org.h2.expression.ExpressionColumn.optimizeOther(ExpressionColumn.java:226)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:213)
+	at org.h2.expression.condition.Comparison.optimize(Comparison.java:147)
+	at org.h2.expression.Expression.optimizeCondition(Expression.java:148)
+	at org.h2.command.dml.Delete.doPrepare(Delete.java:110)
+	at org.h2.command.dml.DataChangeStatement.prepare(DataChangeStatement.java:37)
+	at org.h2.command.Parser.prepareCommand(Parser.java:489)
+	at org.h2.engine.SessionLocal.prepareLocal(SessionLocal.java:645)
+	at org.h2.engine.SessionLocal.prepareCommand(SessionLocal.java:561)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1164)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:245)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:231)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1344)
+	at org.h2.server.web.WebApp.query(WebApp.java:1142)
+	at org.h2.server.web.WebApp.query(WebApp.java:1118)
+	at org.h2.server.web.WebApp.process(WebApp.java:244)
+	at org.h2.server.web.WebApp.processRequest(WebApp.java:176)
+	at org.h2.server.web.JakartaWebServlet.doGet(JakartaWebServlet.java:129)
+	at org.h2.server.web.JakartaWebServlet.doPost(JakartaWebServlet.java:166)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:116)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:398)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1740)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1189)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:658)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2025-05-14 12:34:48.281174+02:00 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Columna "ID" no encontrada
+Column "ID" not found; SQL statement:
+DELETE
+FROM USUARIO_EXPEDICION
+WHERE ID ILIKE 9552 [42122-232]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:514)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.expression.ExpressionColumn.getColumnException(ExpressionColumn.java:244)
+	at org.h2.expression.ExpressionColumn.optimizeOther(ExpressionColumn.java:226)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:213)
+	at org.h2.expression.condition.CompareLike.optimize(CompareLike.java:149)
+	at org.h2.expression.Expression.optimizeCondition(Expression.java:148)
+	at org.h2.command.dml.Delete.doPrepare(Delete.java:110)
+	at org.h2.command.dml.DataChangeStatement.prepare(DataChangeStatement.java:37)
+	at org.h2.command.Parser.prepareCommand(Parser.java:489)
+	at org.h2.engine.SessionLocal.prepareLocal(SessionLocal.java:645)
+	at org.h2.engine.SessionLocal.prepareCommand(SessionLocal.java:561)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1164)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:245)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:231)
+	at org.h2.server.web.WebApp.getResult(WebApp.java:1344)
+	at org.h2.server.web.WebApp.query(WebApp.java:1142)
+	at org.h2.server.web.WebApp.query(WebApp.java:1118)
+	at org.h2.server.web.WebApp.process(WebApp.java:244)
+	at org.h2.server.web.WebApp.processRequest(WebApp.java:176)
+	at org.h2.server.web.JakartaWebServlet.doGet(JakartaWebServlet.java:129)
+	at org.h2.server.web.JakartaWebServlet.doPost(JakartaWebServlet.java:166)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:116)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:398)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1740)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1189)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:658)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1583)
+2025-05-14 12:34:58.072827+02:00 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "[*]USUARIO_EXPEDICION"; se esperaba "UPDATE"
+Syntax error in SQL statement "[*]USUARIO_EXPEDICION"; expected "UPDATE"; SQL statement:
+USUARIO_EXPEDICION [42001-232]

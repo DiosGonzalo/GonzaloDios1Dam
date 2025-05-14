@@ -12,4 +12,6 @@ public class GonzaloDiosFiestasDemoApplication {
 
 }
 //añadir descuento si la fecha es proxima, añadir descuento si hay poca gente inscrita
+// si tiene mas de 2 expediciones un descuento en la tercera
+//si la expedicion vale mas de 10000 euros un descuento del 10%
 

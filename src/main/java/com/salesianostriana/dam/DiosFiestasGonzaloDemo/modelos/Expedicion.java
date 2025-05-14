@@ -1,28 +1,24 @@
 package com.salesianostriana.dam.DiosFiestasGonzaloDemo.modelos;
 
-import java.time.LocalDate;
-import java.util.List;
-
-import org.springframework.format.annotation.DateTimeFormat;
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data @NoArgsConstructor
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+@Data 
+@NoArgsConstructor
 @AllArgsConstructor
 @Entity
-
 public class Expedicion {
 
-	
-	@Id @GeneratedValue
+    @Id 
+    @GeneratedValue
     private Long id;
     
     private String nombre;
@@ -30,8 +26,9 @@ public class Expedicion {
     private int capacidad;
     private int categoria; 
     private String imagenUrl;
-    @OneToMany  //Lo primero es para con lo que se relaciona, lo segundo es para como se trae las cosas    
-    private List<Usuario> usuarios;
+    
+    @ManyToMany(mappedBy = "expediciones")
+    private List<Usuario> usuarios = new ArrayList<>();
     
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate fechaExpedicion;
@@ -49,15 +46,4 @@ public class Expedicion {
         this.fechaLimite = fechaLimite;
         this.imagenUrl = imagenUrl;
     }
-
-	public Expedicion(String string, double d, int i, String string2, LocalDate plusMonths, LocalDate plusMonths2,
-			String string3, int j) {
-	}
-
-	
-
-
-	
-	
-	
 }

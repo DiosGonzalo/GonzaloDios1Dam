@@ -1,6 +1,7 @@
 package com.salesianostriana.dam.DiosFiestasGonzaloDemo.servicios.base;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,7 +61,7 @@ public abstract class ServiciosBase<T, ID, R extends JpaRepository<T, ID>> {
 	 * @param id
 	 * @return
 	 */
-	public T findById(ID id) {
+	public T findById(Long id) {
 
 		// Devolvemos la entidad si la encuentra u otro si no lo encuentra,
 		// en este caso, hemos dicho que ese "otro" sea null
@@ -71,7 +72,7 @@ public abstract class ServiciosBase<T, ID, R extends JpaRepository<T, ID>> {
 		 * Optional.ofNullable(repositorio.findById(id).orElse(null)); }
 		 */
 
-		return repositorio.findById(id).orElse(null);
+		return repositorio.findById((ID) id).orElse(null);
 	}
 
 	/**
@@ -110,6 +111,14 @@ public abstract class ServiciosBase<T, ID, R extends JpaRepository<T, ID>> {
 	public void deleteById(ID id) {
 		repositorio.deleteById(id);
 	}
+
+	public List<T> findAllById(List<Long> ids) {
+		return ids.stream()
+				.map(this::findById)
+				.filter(e -> e != null)
+				.toList();
+	}
+
 
 	
 }

@@ -50,9 +50,7 @@ public class ExpedicionController {
     
    @GetMapping("/expediciones")
    public String muestraExpediciones(Model model) {
-	   System.out.println("asd");
 	   model.addAttribute("expediciones",servicio.findAll());
-	   System.out.println(servicio.findAll());
 	   return "expediciones";
    }
    
@@ -85,24 +83,49 @@ public class ExpedicionController {
    }
    
    @PostMapping("/expedicio/mayorPrecio")
-   public String ordenarPrecioMayor(Model model, int categoria) {
-	 model.addAttribute("expediciones",servicio.ordenarCategoria(categoria));
-	 return "expediciones";
+   public String ordenarPrecioMayor(Model model) {
+       model.addAttribute("expediciones",servicio.ordenarPrecioMayor());
+       return "expediciones";
    }
+	 
+   @PostMapping("/expedicion/menorPrecio")
+    public String ordenarPrecioMenor(Model model) {
+        model.addAttribute("expediciones", servicio.ordenarPrecioMenor());
+        return "expediciones";
+    }
+
+@PostMapping("/expedicion/fechaMayor")
+public String ordenarFechasMayor(Model model){
+    model.addAttribute("expediciones", servicio.ordenarFechaMayor());
+    return "expediciones";
+}
+@PostMapping("/expedicion/fechaMenor")
+public String ordenarFechaMenor(Model model){
+    model.addAttribute("expediciones", servicio.ordenarFechaMenor());   
+    return "expediciones";
+}
 
    @GetMapping("/expediciones/filtrar")
-public String muestraExpediciones(
-    @RequestParam(value = "categoria", required = false) Integer categoria,
-    Model model) {
+public String muestraExpediciones(@RequestParam(value = "categoria") Integer categoria, Model model) {
     
-    List<Expedicion> expediciones = categoria != null 
-        ? servicio.ordenarCategoria(categoria) 
-        : servicio.findAll();
+    List<Expedicion> expediciones = categoria != null ? servicio.filtrarCategoria(categoria) : servicio.findAll();
     
-    model.addAttribute("expediciones", servicio.ordenarCategoria(categoria));
+    model.addAttribute("expediciones", servicio.filtrarCategoria(categoria));
     model.addAttribute("categoriaFiltro", categoria);
     return "expediciones";
 }
+
+@GetMapping("/expedicion/{id}")
+public String verDetalleExpedicion(@PathVariable Long id, Model model) {
+    Expedicion expedicion = servicio.findById(id);
+    if (expedicion == null) {
+        return "redirect:/expediciones";
+    }
+    model.addAttribute("expedicion", expedicion);
+    model.addAttribute("usuarios", expedicion.getUsuarios());
+    return "detalleExpedicion";
+}
+
  
    
    
