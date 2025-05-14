@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.salesianostriana.dam.DiosFiestasGonzaloDemo.modelos.Expedicion;
 import com.salesianostriana.dam.DiosFiestasGonzaloDemo.servicios.ExpedicionServicio;
-import org.springframework.web.bind.annotation.RequestBody;
 
 
 @Controller
@@ -50,7 +49,7 @@ public class ExpedicionController {
     
    @GetMapping("/expediciones")
    public String muestraExpediciones(Model model) {
-	   model.addAttribute("expediciones",servicio.findAll());
+	   model.addAttribute("expediciones",servicio.descuentoFechaProxima());
 	   return "expediciones";
    }
    
@@ -84,7 +83,9 @@ public class ExpedicionController {
    
    @PostMapping("/expedicio/mayorPrecio")
    public String ordenarPrecioMayor(Model model) {
-       model.addAttribute("expediciones",servicio.ordenarPrecioMayor());
+    List<Expedicion> expediciones = servicio.findAll();
+    expediciones.sort((e1, e2) -> Double.compare(e2.getPrecio(), e1.getPrecio()));
+       model.addAttribute("expediciones",expediciones);
        return "expediciones";
    }
 	 
@@ -125,6 +126,16 @@ public String verDetalleExpedicion(@PathVariable Long id, Model model) {
     model.addAttribute("usuarios", expedicion.getUsuarios());
     return "detalleExpedicion";
 }
+
+@GetMapping("/sobre-nosotros")
+    public String sobreNosotros(){
+        return "sobreNosotros";
+    }
+
+@GetMapping("/carrusel")
+    public String carrusel(){
+        return "carrusel";
+    }
 
  
    

@@ -31,13 +31,13 @@ public class ExpedicionServicio extends ServiciosBase<Expedicion,Long,Expedicion
     }   
 public List<Expedicion> ordenarPrecioMayor() {
     List<Expedicion> expediciones = repositorio.findAll();
-    expediciones.sort((e1, e2) -> Double.compare(e2.getPrecio(), e1.getPrecio())); // Orden descendente
+    expediciones.sort((e1, e2) -> Double.compare(e2.getPrecio(), e1.getPrecio())); 
     return expediciones;
 }
 
 public List<Expedicion> ordenarPrecioMenor() {
     List<Expedicion> expediciones = repositorio.findAll();
-    expediciones.sort((e1, e2) -> Double.compare(e1.getPrecio(), e2.getPrecio())); // Orden ascendente
+    expediciones.sort((e1, e2) -> Double.compare(e1.getPrecio(), e2.getPrecio())); 
     return expediciones;
 }
 
@@ -52,4 +52,29 @@ public List<Expedicion> ordenarFechaMenor() {
     expediciones.sort((e1, e2) -> -e1.getFechaExpedicion().compareTo(e2.getFechaExpedicion()));
     return expediciones;
 }
+//Logica de negocio
+
+public List<Expedicion> descuentoFechaProxima(){
+    List<Expedicion> expediciones = repositorio.findAll();
+    expediciones.stream().filter(exp -> exp.getFechaExpedicion().isBefore(LocalDate.now().plusMonths(5))).toList();
+    expediciones.forEach(exp -> exp.setPrecio(exp.getPrecio()-(exp.getPrecio()*10)/100));
+    return expediciones;
+
+}
+
+public List<Expedicion> descuentoMuchoPrecio(){
+    List<Expedicion> expediciones = repositorio.findAll();
+    expediciones.stream().filter(exp -> exp.getPrecio() > 10000).toList();
+    expediciones.forEach(exp -> exp.setPrecio(exp.getPrecio()-(exp.getPrecio()*15)/100));
+    return expediciones;
+
+}
+
+public List<Expedicion> descuentoCantidadUsuarios(){
+    List<Expedicion> expediciones = repositorio.findAll();
+    expediciones.stream().filter(exp -> exp.getUsuarios().size()-exp.getCapacidad() < exp.getCapacidad()-(exp.getCapacidad()/2)).toList();
+    expediciones.forEach(exp -> exp.setPrecio(exp.getPrecio()-(exp.getPrecio()*35)/100));
+    return expediciones;
+}
+
 }

@@ -7,13 +7,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
     <style>
-        :root {
-            --primary-color: #3a86ff;
-            --secondary-color: #8338ec;
-            --dark-color: #1a1a2e;
-            --light-color: #f8f9fa;
-        }
-       
         .expedition-header {
             background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
                         var(--header-image);
@@ -58,7 +51,7 @@
        
         .detail-icon {
             font-size: 1.5rem;
-            color: var(--primary-color);
+            color: #3a86ff;
             margin-right: 1rem;
         }
        
@@ -87,6 +80,10 @@
                     <li class="nav-item">
                         <a class="nav-link active" th:href="@{/expediciones}"><i class="bi bi-map me-1"></i> Expediciones</a>
                     </li>
+                  
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/carrusel}"><i class="bi bi-images me-1"></i> Galería</a>
+                    </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="adminDropdown" role="button"
                             data-bs-toggle="dropdown">
@@ -96,13 +93,13 @@
                             <li><a class="dropdown-item" th:href="@{/nueva}"><i class="bi bi-plus-circle"></i> Añadir Expedición</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" th:href="@{/usuarios}"><i class="bi bi-people"></i> Lista usuarios</a></li>
+                            <li><a class="dropdown-item" th:href="@{/usuario/nuevo}"><i class="bi bi-person-plus"></i> Añadir Usuario</a></li>
                         </ul>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
-
 
     <div class="expedition-header" th:style="'--header-image: url(' + ${expedicion.imagenUrl} + ')'">
         <div class="container text-center">
@@ -125,7 +122,6 @@
             </div>
         </div>
     </div>
-
 
     <main class="container mt-4">
         <div class="row">
@@ -206,13 +202,13 @@
                         <i class="bi bi-people fs-1 text-muted mb-3"></i>
                         <p class="text-muted mb-4">No hay participantes inscritos todavía</p>
                         <a th:href="@{/usuarios}" class="btn btn-primary">
+                            <i class="bi bi-person-plus me-1"></i> Añadir Participante
                         </a>
                     </div>
                 </div>
             </div>
         </div>
     </main>
-
 
     <!-- Modal de edición -->
     <div class="modal fade" th:id="'editModal'+${expedicion.id}" tabindex="-1" aria-hidden="true">
@@ -281,13 +277,35 @@
         </div>
     </div>
 
-
     <footer class="bg-dark text-white py-4 mt-5">
-        <div class="container text-center">
-            <p class="mb-0">&copy; 2023 Easy Summits. Todos los derechos reservados.</p>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h5 class="fs-4 mb-3">
+                        <i class="bi bi-compass me-2"></i>Easy Summits
+                    </h5>
+                    <p class="mb-0">Guiando tus sueños a las cumbres más altas.</p>
+                </div>
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h5 class="fs-4 mb-3">Contacto</h5>
+                    <p><i class="bi bi-envelope me-2"></i> info@easysummits.com</p>
+                    <p><i class="bi bi-phone me-2"></i> +34 123 456 789</p>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="fs-4 mb-3">Síguenos</h5>
+                    <div class="d-flex gap-3 fs-3">
+                        <a href="#" class="text-white"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="text-white"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="text-white"><i class="bi bi-twitter-x"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="text-center">
+                <p class="mb-0">&copy; 2023 Easy Summits. Todos los derechos reservados.</p>
+            </div>
         </div>
     </footer>
-
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
