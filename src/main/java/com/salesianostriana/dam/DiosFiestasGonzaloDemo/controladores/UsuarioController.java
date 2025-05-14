@@ -39,7 +39,10 @@ public class UsuarioController {
 
     @PostMapping("/usuario/nuevo/submit")
     public String guardarUsuario( @ModelAttribute Usuario usuario,  @RequestParam("expedicionesSeleccionadas") List<Long> expedicionesIds) {
-
+       if(expedicionesIds != null && !expedicionesIds.isEmpty()){
+            List<Expedicion> expediciones = expedicionServicio.findAllById(expedicionesIds);
+            usuario.setExpediciones(expediciones);
+        }
         usuarioServicio.save(usuario);
         return "redirect:/usuarios";
     }
