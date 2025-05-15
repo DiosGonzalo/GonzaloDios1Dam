@@ -16,15 +16,15 @@ import org.springframework.format.annotation.DateTimeFormat;
 @AllArgsConstructor
 @Entity
 public class Expedicion {
-
     @Id 
     @GeneratedValue
     private Long id;
     
     private String nombre;
-    private double precio;
+    private Double precio;
+    private Double precioOriginal;
     private int capacidad;
-    private int categoria; 
+    private int categoria;
     private String imagenUrl;
     
     @ManyToMany(mappedBy = "expediciones")
@@ -36,10 +36,23 @@ public class Expedicion {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate fechaLimite;
 
+    @Transient
+    private String motivoDescuento;
+
+    public boolean tieneDescuento() {
+        return precioOriginal != null && precio < precioOriginal;
+    }
+
+    public int getPorcentajeDescuento() {
+        if (!tieneDescuento()) return 0;
+        return (int) Math.round((1 - (precio / precioOriginal)) * 100);
+    }
+
     public Expedicion(String nombre, double precio, int capacidad, int categoria, 
                      LocalDate fechaExpedicion, LocalDate fechaLimite, String imagenUrl) {
         this.nombre = nombre;
         this.precio = precio;
+        this.precioOriginal = precio;
         this.capacidad = capacidad;
         this.categoria = categoria;
         this.fechaExpedicion = fechaExpedicion;

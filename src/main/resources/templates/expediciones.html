@@ -84,6 +84,26 @@
             background-color: #2a75e6;
             color: white;
         }
+        
+        body {
+            padding-top: 56px;
+        }
+        
+        .card-body {
+            padding: 1.25rem;
+        }
+        
+        .btn-sm {
+            padding: 0.25rem 0.5rem;
+            font-size: 0.75rem;
+        }
+        
+        .discount-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 0.8rem;
+        }
     </style>
 </head>
 <body>
@@ -103,7 +123,6 @@
                     <li class="nav-item">
                         <a class="nav-link active" th:href="@{/expediciones}"><i class="bi bi-map me-1"></i> Expediciones</a>
                     </li>
-                   
                     <li class="nav-item">
                         <a class="nav-link" th:href="@{/carrusel}"><i class="bi bi-images me-1"></i> Galería</a>
                     </li>
@@ -124,7 +143,7 @@
         </div>
     </nav>
 
-    <main class="container mt-5 pt-5">
+    <main class="container mt-5 pt-3">
         <div class="text-center mb-5">
             <h1 class="section-title">
                 <i class="bi bi-map me-2"></i>Nuestras Expediciones
@@ -137,7 +156,7 @@
                 <div class="col-md-4">
                     <form th:action="@{/expedicion/buscar}" method="post" class="input-group">
                         <span class="input-group-text bg-white"><i class="bi bi-search"></i></span>
-                        <input type="text" class="form-control" name="nombre" placeholder="Buscar...">
+                        <input type="text" class="form-control" name="nombre" placeholder="Buscar..." th:value="${nombreBusqueda}">
                     </form>
                 </div>
                 
@@ -145,7 +164,7 @@
                     <form th:action="@{/expediciones/filtrar}" method="get" class="input-group">
                         <span class="input-group-text bg-white"><i class="bi bi-filter"></i></span>
                         <select class="form-select" name="categoria" onchange="this.form.submit()">
-                            <option value="4" th:selected="${categoriaFiltro == 4}">Todas las categorías</option>
+                            <option value="4" th:selected="${categoriaFiltro == null || categoriaFiltro == 4}">Todas las categorías</option>
                             <option value="0" th:selected="${categoriaFiltro == 0}">Básico</option>
                             <option value="1" th:selected="${categoriaFiltro == 1}">4000m (Fácil)</option>
                             <option value="2" th:selected="${categoriaFiltro == 2}">6000m (Moderado)</option>
@@ -186,64 +205,85 @@
         </div>
 
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-            <div class="col" th:each="expedicion : ${expediciones}">
-                <div class="card expedition-card h-100">
-                    <img th:src="${expedicion.imagenUrl}" class="card-img-top" alt="Expedición">
-                    
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-start mb-3">
-                            <h5 class="card-title" th:text="${expedicion.nombre}"></h5>
-                            <span class="price-tag" th:text="${'€' + expedicion.precio}"></span>
-                        </div>
-                        
-                        <div class="mb-3">
-                            <span class="category-badge" 
-                                  th:classappend="${expedicion.categoria == 0 ? 'bg-info' : ''} 
-                                                + ${expedicion.categoria == 1 ? 'bg-success' : ''} 
-                                                + ${expedicion.categoria == 2 ? 'bg-warning text-dark' : ''} 
-                                                + ${expedicion.categoria == 3 ? 'bg-danger' : ''}"
-                                  th:text="${expedicion.categoria == 0 ? 'Básico' : ''} 
-                                           + ${expedicion.categoria == 1 ? '4000m (Fácil)' : ''} 
-                                           + ${expedicion.categoria == 2 ? '6000m (Moderado)' : ''} 
-                                           + ${expedicion.categoria == 3 ? '8000m (Difícil)' : ''}">
-                            </span>
-                        </div>
-                        
-                        <div class="d-flex justify-content-between text-muted small mb-3">
-                            <div>
-                                <i class="bi bi-calendar me-1"></i>
-                                <span th:text="${#temporals.format(expedicion.fechaExpedicion, 'dd/MM/yyyy')}"></span>
-                            </div>
-                            <div>
-                                <i class="bi bi-people me-1"></i>
-                                <span th:text="${expedicion.capacidad + ' plazas'}"></span>
-                            </div>
-                        </div>
-                        
-                        <div class="d-flex justify-content-between align-items-center">
-                            <small class="text-muted">
-                                <i class="bi bi-clock me-1"></i>
-                                <span th:text="${'Hasta ' + #temporals.format(expedicion.fechaLimite, 'dd/MM')}"></span>
-                            </small>
-                            <div>
-                                <a th:href="@{'/expedicion/' + ${expedicion.id}}" class="btn btn-sm btn-detail me-1">
-                                    <i class="bi bi-eye"></i>
-                                </a>
-                                <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" 
-                                    th:attr="data-bs-target='#editModal'+${expedicion.id}">
-                                    <i class="bi bi-pencil"></i>
-                                </button>
-                                <form th:action="@{/expedicion/eliminar}" method="post" class="d-inline ms-1">
-                                    <input type="hidden" name="id" th:value="${expedicion.id}">
-                                    <button type="submit" class="btn btn-sm btn-outline-danger">
-                                        <i class="bi bi-trash"></i>
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
+    <div class="col" th:each="expedicion : ${expediciones}">
+        <div class="card expedition-card h-100">
+            <!-- Badge de oferta -->
+            <div th:if="${expedicion.tieneDescuento()}" class="position-absolute top-0 end-0 m-2">
+                <span class="badge bg-danger">¡Oferta! 
+                    <span th:text="${expedicion.getPorcentajeDescuento() + '%'}"></span>
+                </span>
+            </div>
+            
+            <img th:src="${expedicion.imagenUrl}" class="card-img-top" alt="Expedición">
+            
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-start mb-3">
+                    <h5 class="card-title" th:text="${expedicion.nombre}"></h5>
+                    <div class="text-end">
+                        <span class="price-tag" th:text="${'€' + #numbers.formatDecimal(expedicion.precio, 1, 2, 'COMMA')}"></span>
+                        <span th:if="${expedicion.tieneDescuento()}" 
+                              class="text-muted text-decoration-line-through small d-block" 
+                              th:text="${'€' + #numbers.formatDecimal(expedicion.precioOriginal, 1, 2, 'COMMA')}"></span>
                     </div>
                 </div>
+                
+                <div class="mb-3">
+                    <span class="category-badge" 
+                          th:classappend="${expedicion.categoria == 0 ? 'bg-info' : ''} 
+                                        + ${expedicion.categoria == 1 ? 'bg-success' : ''} 
+                                        + ${expedicion.categoria == 2 ? 'bg-warning text-dark' : ''} 
+                                        + ${expedicion.categoria == 3 ? 'bg-danger' : ''}"
+                          th:text="${expedicion.categoria == 0 ? 'Básico' : ''} 
+                                   + ${expedicion.categoria == 1 ? '4000m (Fácil)' : ''} 
+                                   + ${expedicion.categoria == 2 ? '6000m (Moderado)' : ''} 
+                                   + ${expedicion.categoria == 3 ? '8000m (Difícil)' : ''}">
+                    </span>
+                </div>
+                
+                <div class="d-flex justify-content-between text-muted small mb-3">
+                    <div>
+                        <i class="bi bi-calendar me-1"></i>
+                        <span th:text="${#temporals.format(expedicion.fechaExpedicion, 'dd/MM/yyyy')}"></span>
+                    </div>
+                    <div>
+                        <i class="bi bi-people me-1"></i>
+                        <span th:text="${expedicion.usuarios.size() + '/' + expedicion.capacidad + ' plazas'}"></span>
+                    </div>
+                </div>
+                
+                <!-- Motivo del descuento -->
+                <div th:if="${expedicion.tieneDescuento() && expedicion.motivoDescuento != null}" 
+                     class="alert alert-info p-2 mb-3">
+                    <i class="bi bi-tag"></i>
+                    <span th:text="${expedicion.motivoDescuento}"></span>
+                </div>
+                
+                <div class="d-flex justify-content-between align-items-center">
+                    <small class="text-muted">
+                        <i class="bi bi-clock me-1"></i>
+                        <span th:text="${'Hasta ' + #temporals.format(expedicion.fechaLimite, 'dd/MM')}"></span>
+                    </small>
+                    <div>
+                        <a th:href="@{'/expedicion/' + ${expedicion.id}}" class="btn btn-sm btn-detail me-1">
+                            <i class="bi bi-eye"></i>
+                        </a>
+                        <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" 
+                            th:attr="data-bs-target='#editModal'+${expedicion.id}">
+                            <i class="bi bi-pencil"></i>
+                        </button>
+                        <form th:action="@{/expedicion/eliminar}" method="post" class="d-inline ms-1">
+                            <input type="hidden" name="id" th:value="${expedicion.id}">
+                            <button type="submit" class="btn btn-sm btn-outline-danger">
+                                <i class="bi bi-trash"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
 
+                <!-- Modal de edición -->
                 <div class="modal fade" th:id="'editModal'+${expedicion.id}" tabindex="-1" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -262,9 +302,16 @@
                                     </div>
                                     
                                     <div class="mb-3">
-                                        <label for="precio" class="form-label">Precio (€)</label>
+                                        <label for="precio" class="form-label">Precio Actual (€)</label>
                                         <input type="number" step="0.01" class="form-control" id="precio" 
                                                name="precio" th:value="${expedicion.precio}" required>
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <label for="precioOriginal" class="form-label">Precio Base (€)</label>
+                                        <input type="number" step="0.01" class="form-control" id="precioOriginal" 
+                                               name="precioOriginal" th:value="${expedicion.precioOriginal}">
+                                        <small class="text-muted">Dejar vacío si no hay precio base diferente</small>
                                     </div>
                                     
                                     <div class="mb-3">

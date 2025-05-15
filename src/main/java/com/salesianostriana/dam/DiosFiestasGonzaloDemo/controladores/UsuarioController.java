@@ -46,4 +46,15 @@ public class UsuarioController {
         usuarioServicio.save(usuario);
         return "redirect:/usuarios";
     }
+@PostMapping("/usuario/editar/{id}")
+public String verEdicionUsuario(Model modal, Long id){
+    Usuario usuario= usuarioServicio.findById(id);
+    modal.addAttribute("usuario",usuario);
+    modal.addAttribute("expediciones", expedicionServicio.findAll());
+    return "usuarios";
+
+}
+
+
+
 }
