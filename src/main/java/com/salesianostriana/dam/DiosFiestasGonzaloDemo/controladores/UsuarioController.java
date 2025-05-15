@@ -54,7 +54,20 @@ public String verEdicionUsuario(Model modal, Long id){
     return "usuarios";
 
 }
-
-
+@GetMapping("/usuario/editar/{id}/submit")
+public String editarUsuario(@ModelAttribute Usuario usuario, @RequestParam("expedicionesSeleccionadas") List<Long> expedicionesIds) {
+    if(expedicionesIds != null && !expedicionesIds.isEmpty()){
+        List<Expedicion> expediciones = expedicionServicio.findAllById(expedicionesIds);
+        usuario.setExpediciones(expediciones);
+    }
+    usuarioServicio.save(usuario);
+    return "redirect:/usuarios";    
+    }
+@GetMapping("/usuario/{id}")
+public String verUsuario(@RequestParam Long id, Model model){
+    Usuario usuario = usuarioServicio.findById(id);
+    model.addAttribute("usuario", usuario);
+    return "detalleUsuario";
+}
 
 }

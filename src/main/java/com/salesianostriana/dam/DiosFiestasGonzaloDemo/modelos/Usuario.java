@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,9 +20,12 @@ public class Usuario {
     private long id;
     private String nombre;
     private String apellido;
-    private int edad;
+    private int edad; // Se mantiene como int
     private String dni;
     private String nivel;
+    private String telefono;
+    private String direccion;
+    private String fechaRegistro; // Puedes cambiarlo a LocalDate después si quieres
     
     @ManyToMany
     @JoinTable(
@@ -30,4 +34,17 @@ public class Usuario {
         inverseJoinColumns = @JoinColumn(name = "expedicion_id")
     )
     private List<Expedicion> expediciones = new ArrayList<>();
+    
+    // Métodos de negocio
+    public List<Expedicion> getExpedicionesActivas() {
+        return expediciones.stream()
+                .filter(e -> e.getFechaExpedicion().isAfter(LocalDate.now()))
+                .toList();
+    }
+    
+   
+    
+    public String getNivelCompleto() {
+        return nivel + " (" + edad + " años)";
+    }
 }

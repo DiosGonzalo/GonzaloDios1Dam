@@ -39,6 +39,8 @@ public class Expedicion {
     @Transient
     private String motivoDescuento;
 
+
+    //chekear esto
     public boolean tieneDescuento() {
         return precioOriginal != null && precio < precioOriginal;
     }

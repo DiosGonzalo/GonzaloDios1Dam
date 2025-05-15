@@ -12,6 +12,8 @@ import java.util.stream.Collectors;
 
 @Service
 public class ExpedicionServicio extends ServiciosBase<Expedicion, Long, ExpedicionRepositorio> {
+    private double descuentos=0;
+    private double cien = 100;
 
     public List<Expedicion> buscarExpedicion(String nombre) {
         if (nombre == null || nombre.isBlank()) {
@@ -68,23 +70,23 @@ public class ExpedicionServicio extends ServiciosBase<Expedicion, Long, Expedici
         double precioFinal = exp.getPrecioOriginal();
         StringBuilder motivos = new StringBuilder();
 
-        // Descuento por capacidad (<40%)
         if (exp.getUsuarios().size() < exp.getCapacidad() * 0.4) {
-            double descuento = precioFinal * 0.20;
+            descuentos = 20;
+            double descuento = precioFinal * descuentos / cien;
             precioFinal -= descuento;
-            motivos.append("35% por baja ocupación. ");
+            motivos.append("320% por baja ocupación. ");
         }
 
-        // Descuento por precio alto (>10,000€)
         if (exp.getPrecioOriginal() > 10000) {
-            double descuento = precioFinal * 0.15;
+            descuentos = 15;
+            double descuento = precioFinal * descuentos / cien;
             precioFinal -= descuento;
             motivos.append("15% por precio alto. ");
         }
 
-        // Descuento por fecha próxima (<6 meses)
         if (exp.getFechaExpedicion().isBefore(LocalDate.now().plusMonths(6))) {
-            double descuento = precioFinal * 0.10;
+            descuentos = 10;
+            double descuento = precioFinal * descuentos / cien;
             precioFinal -= descuento;
             motivos.append("10% por fecha próxima. ");
         }
