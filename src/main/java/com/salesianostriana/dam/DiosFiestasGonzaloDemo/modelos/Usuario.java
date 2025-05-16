@@ -25,7 +25,11 @@ public class Usuario {
     private String nivel;
     private String telefono;
     private String direccion;
-    private String fechaRegistro; // Puedes cambiarlo a LocalDate después si quieres
+    @Transient
+    private double descuento;
+    @Transient
+    private String motivoDescuento;
+    private String fechaRegistro; 
     
     @ManyToMany
     @JoinTable(

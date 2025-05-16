@@ -1,5 +1,6 @@
 package com.salesianostriana.dam.DiosFiestasGonzaloDemo.controladores;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,11 +17,10 @@ import com.salesianostriana.dam.DiosFiestasGonzaloDemo.servicios.ExpedicionServi
 import com.salesianostriana.dam.DiosFiestasGonzaloDemo.servicios.UsuarioServicio;
 
 import lombok.RequiredArgsConstructor;
-
-@Controller
 @RequiredArgsConstructor
+@Controller
 public class UsuarioController {
-
+    
     private final UsuarioServicio usuarioServicio;
     private final ExpedicionServicio expedicionServicio;
 
@@ -70,4 +70,36 @@ public String verUsuario(@RequestParam Long id, Model model){
     return "detalleUsuario";
 }
 
+
+@PostMapping("/usuario/editar")
+public String editarUsuario(@ModelAttribute Usuario usuario,@RequestParam ("expediciones") List<Long> expedicionesIds,
+    Model model) {
+    
+    if (expedicionesIds != null) {
+        List<Expedicion> expediciones = expedicionServicio.findAllById(expedicionesIds);
+        usuario.setExpediciones(expediciones);
+    } else {
+        usuario.setExpediciones(new ArrayList<>());
+    }
+    
+    usuarioServicio.save(usuario);
+    return "redirect:/usuarios";
+}
+
+@PostMapping("/usuario/borrar")
+    public String borrarUsuario(Model model,@RequestParam Long id){
+        usuarioServicio.deleteById(id);
+        return "redirect:/usuarios";
+    }
+
+@GetMapping("/usuarios/{id}")
+public String verUsuario(Long id){
+    Usuario usuario = usuarioServicio.findById(id);
+    
+    if(usuario != null) {
+        return "detalleUsuario";
+    } else {
+        return "redirect:/usuarios";
+}
+}
 }
