@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre Nosotros - Easy Summits</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <style>
+        .team-card {
+            transition: all 0.3s ease;
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .team-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+        
+        .team-img {
+            height: 250px;
+            object-fit: cover;
+            object-position: center;
+        }
+        
+        .section-title {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+        
+        .section-title:after {
+            content: "";
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: #3a86ff;
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+        
+        .value-card {
+            border-radius: 10px;
+            padding: 30px;
+            height: 100%;
+            transition: all 0.3s;
+        }
+        
+        .value-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .value-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #3a86ff;
+        }
+        
+        .timeline {
+            position: relative;
+            padding-left: 50px;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #3a86ff;
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -38px;
+            top: 5px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #3a86ff;
+            border: 4px solid white;
+        }
+        
+        body {
+            padding-top: 56px;
+        }
+        
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" th:href="@{/}">
+                <i class="bi bi-compass me-2"></i>Easy Summits
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/}"><i class="bi bi-house-door me-1"></i> Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/expediciones}"><i class="bi bi-map me-1"></i> Expediciones</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="adminDropdown" role="button"
+                            data-bs-toggle="dropdown">
+                            <i class="bi bi-gear me-1"></i> Información
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" th:href="@{/carrusel}"><i class="bi bi-plus-circle"></i> Imagenes</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item active" th:href="@{/sobreNosotros}"><i class="bi bi-people"></i> Sobre nosotros</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="adminDropdown" role="button"
+                            data-bs-toggle="dropdown">
+                            <i class="bi bi-gear me-1"></i> Administración
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" th:href="@{/nueva}"><i class="bi bi-plus-circle"></i> Añadir Expedición</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" th:href="@{/usuarios}"><i class="bi bi-people"></i> Lista usuarios</a></li>
+                            <li><a class="dropdown-item" th:href="@{/usuario/nuevo}"><i class="bi bi-person-plus"></i> Añadir Usuario</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero-section text-center">
+        <div class="container">
+            <h1 class="display-3 fw-bold">Sobre Nosotros</h1>
+            <p class="lead">Conoce al equipo que hace posibles tus aventuras</p>
+        </div>
+    </header>
+
+    <main class="container my-5">
+        <!-- Nuestra Historia -->
+        <section class="mb-5">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h2 class="section-title">Nuestra Historia</h2>
+                    <p>Fundada en 2005, Easy Summits nació de la pasión compartida por las montañas y el deseo de hacer accesibles las cumbres más emblemáticas del mundo a aventureros de todos los niveles.</p>
+                    <p>Lo que comenzó como un pequeño grupo de guías locales se ha convertido en una de las empresas líderes en expediciones de montaña, con más de 500 rutas completadas y miles de clientes satisfechos.</p>
+                    <p>Nuestro compromiso con la seguridad, la sostenibilidad y la experiencia auténtica nos ha permitido crecer manteniendo nuestros valores fundamentales.</p>
+                </div>
+                <div class="col-lg-6">
+                    <img src="https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                         class="img-fluid rounded-3 shadow" alt="Nuestra historia">
+                </div>
+            </div>
+        </section>
+
+        <!-- Línea de tiempo -->
+        <section class="mb-5">
+            <h2 class="section-title text-center">Nuestro Camino</h2>
+            <div class="timeline mt-4">
+                <div class="timeline-item">
+                    <h4>2005 - Fundación</h4>
+                    <p>Comenzamos como un pequeño equipo de 3 guías apasionados por los Pirineos.</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>2010 - Primera expedición internacional</h4>
+                    <p>Llevamos nuestro primer grupo al Kilimanjaro, marcando el inicio de nuestras aventuras globales.</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>2015 - Certificación de seguridad</h4>
+                    <p>Obtuvimos la certificación UIAA por nuestros estándares de seguridad en alta montaña.</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>2020 - Sostenibilidad</h4>
+                    <p>Implementamos nuestro programa "Zero Footprint" para minimizar el impacto ambiental.</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>2023 - Más de 10,000 clientes</h4>
+                    <p>Superamos la marca de 10,000 aventureros guiados a cumbres alrededor del mundo.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Nuestros Valores -->
+        <section class="mb-5">
+            <h2 class="section-title text-center">Nuestros Valores</h2>
+            <div class="row g-4 mt-4">
+                <div class="col-md-4">
+                    <div class="value-card bg-white shadow-sm">
+                        <div class="value-icon">
+                            <i class="bi bi-shield-check"></i>
+                        </div>
+                        <h3>Seguridad</h3>
+                        <p>Nuestra prioridad absoluta. Todos nuestros guías están certificados y nuestro equipo cuenta con los más altos estándares de seguridad.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="value-card bg-white shadow-sm">
+                        <div class="value-icon">
+                            <i class="bi bi-tree"></i>
+                        </div>
+                        <h3>Sostenibilidad</h3>
+                        <p>Nos comprometemos a minimizar nuestro impacto ambiental y apoyar a las comunidades locales.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="value-card bg-white shadow-sm">
+                        <div class="value-icon">
+                            <i class="bi bi-heart"></i>
+                        </div>
+                        <h3>Pasión</h3>
+                        <p>Amamos lo que hacemos y eso se refleja en cada expedición. Compartimos nuestra pasión por las montañas.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Nuestro Equipo -->
+        <section class="mb-5">
+            <h2 class="section-title text-center">Conoce a Nuestro Equipo</h2>
+            <p class="text-center text-muted mb-5">Profesionales certificados con años de experiencia en montañismo</p>
+            
+            <div class="row g-4">
+                <!-- Guía 1 -->
+                <div class="col-md-4">
+                    <div class="card team-card h-100">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                             class="card-img-top team-img" alt="Guía principal">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Carlos Mendoza</h5>
+                            <p class="text-muted">Guía Principal - UIAGM</p>
+                            <p class="card-text">15 años de experiencia. Especialista en expediciones a los Alpes y el Himalaya.</p>
+                            <div class="d-flex justify-content-center gap-2">
+                                <a href="#" class="btn btn-sm btn-outline-primary"><i class="bi bi-facebook"></i></a>
+                                <a href="#" class="btn btn-sm btn-outline-primary"><i class="bi bi-linkedin"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Guía 2 -->
+                <div class="col-md-4">
+                    <div class="card team-card h-100">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                             class="card-img-top team-img" alt="Guía de expediciones">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Ana Rodríguez</h5>
+                            <p class="text-muted">Guía de Expediciones</p>
+                            <p class="card-text">Especialista en trekking y expediciones en Sudamérica. Habla 4 idiomas.</p>
+                            <div class="d-flex justify-content-center gap-2">
+                                <a href="#" class="btn btn-sm btn-outline-primary"><i class="bi bi-facebook"></i></a>
+                                <a href="#" class="btn btn-sm btn-outline-primary"><i class="bi bi-linkedin"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Guía 3 -->
+                <div class="col-md-4">
+                    <div class="card team-card h-100">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                             class="card-img-top team-img" alt="Responsable de logística">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">David Torres</h5>
+                            <p class="text-muted">Responsable de Logística</p>
+                            <p class="card-text">Experto en planificación y coordinación de expediciones complejas.</p>
+                            <div class="d-flex justify-content-center gap-2">
+                                <a href="#" class="btn btn-sm btn-outline-primary"><i class="bi bi-facebook"></i></a>
+                                <a href="#" class="btn btn-sm btn-outline-primary"><i class="bi bi-linkedin"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Estadísticas -->
+        <section class="bg-light p-5 rounded-3 mb-5">
+            <h2 class="section-title text-center">En Números</h2>
+            <div class="row text-center mt-4">
+                <div class="col-md-3">
+                    <h3 class="display-4">18</h3>
+                    <p>Años de experiencia</p>
+                </div>
+                <div class="col-md-3">
+                    <h3 class="display-4">500+</h3>
+                    <p>Expediciones completadas</p>
+                </div>
+                <div class="col-md-3">
+                    <h3 class="display-4">10k+</h3>
+                    <p>Aventureros satisfechos</p>
+                </div>
+                <div class="col-md-3">
+                    <h3 class="display-4">25</h3>
+                    <p>Guías profesionales</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-dark text-white pt-5 pb-3">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="mb-4">
+                        <h4 class="d-flex align-items-center mb-3">
+                            <i class="bi bi-compass fs-3 me-2"></i>
+                            <span class="fw-bold">Easy Summits</span>
+                        </h4>
+                        <p class="text-muted">Especialistas en expediciones de alta montaña desde 2005. Guiamos tus sueños a las cumbres más altas del mundo con seguridad y profesionalidad.</p>
+                    </div>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="social-icon">
+                            <i class="bi bi-facebook"></i>
+                        </a>
+                        <a href="https://i.pinimg.com/736x/eb/b9/80/ebb9801d73b9a9e2286055430c30fa82.jpg" class="social-icon">
+                            <i class="bi bi-instagram"></i>
+                        </a>
+                        <a href="https://www.youtube.com/watch?v=P-70gZNWdAM" class="social-icon">
+                            <i class="bi bi-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-6">
+                    <h5 class="fw-bold mb-3">Enlaces</h5>
+                    <ul class="list-unstyled footer-links">
+                        <li class="mb-2"><a th:href="@{/}"><i class="bi bi-chevron-right me-1"></i> Inicio</a></li>
+                        <li class="mb-2"><a th:href="@{/expediciones}"><i class="bi bi-chevron-right me-1"></i> Expediciones</a></li>
+                        <li class="mb-2"><a th:href="@{/carrusel}"><i class="bi bi-chevron-right me-1"></i> Galería</a></li>
+                        <li class="mb-2"><a th:href="@{/sobreNosotros}"><i class="bi bi-chevron-right me-1"></i> Sobre nosotros</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-3 col-md-6" id="contacto">
+                    <h5 class="fw-bold mb-3">Formulario de Contacto</h5>
+                    <div class="contact-form">
+                        <form>
+                            <div class="mb-3 ">
+                                <input type="text" class="form-control text-white border-secondary" placeholder="Nombre" required>
+                            </div>
+                            <div class="mb-3 text-white">
+                                <input type="email" class="form-control text-white border-secondary" placeholder="Email" required>
+                            </div>
+                            <div class="mb-3 ">
+                                <textarea class="form-control text-white border-secondary" rows="3" placeholder="Mensaje" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100">Enviar Mensaje</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <hr class="my-4 border-secondary">
+            
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-0 text-muted">&copy; 2023 Easy Summits. Todos los derechos reservados.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <p class="mb-0 text-muted">
+                        <a href="#" class="text-muted me-3">Política de Privacidad</a>
+                        <a href="#" class="text-muted">Términos y Condiciones</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

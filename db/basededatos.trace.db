@@ -756,3 +756,7 @@ Caused by: org.h2.mvstore.MVStoreException: The file is locked: C:/Users/dios.fi
 org.h2.jdbc.JdbcSQLDataException: Valor demasiado largo para la columna "IMAGEN_URL CHARACTER VARYING(255)": "'https://www.google.com/imgres?q=pepe&imgurl=https%3A%2F%2Fmedia.cnn.com%2Fapi%2... (484)"
 Value too long for column "IMAGEN_URL CHARACTER VARYING(255)": "'https://www.google.com/imgres?q=pepe&imgurl=https%3A%2F%2Fmedia.cnn.com%2Fapi%2... (484)"; SQL statement:
 insert into expedicion (capacidad,categoria,fecha_expedicion,fecha_limite,imagen_url,nombre,precio,precio_original,id) values (?,?,?,?,?,?,?,?,?) [22001-232]
+2025-05-19 23:59:05.800499+02:00 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Tabla "USUARIOS" no encontrada
+Table "USUARIOS" not found; SQL statement:
+ALTER TABLE USUARIOS DROP COLUMN edad [42102-232]

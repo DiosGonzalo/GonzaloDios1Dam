@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +21,7 @@ public class Usuario {
     private Long id;
     private String nombre;
     private String apellido;
-    private int edad;
+    private LocalDate fechaNacimiento;
     private String dni;
     private String nivel;
     
@@ -30,4 +32,12 @@ public class Usuario {
         inverseJoinColumns = @JoinColumn(name = "expedicion_id")
     )
     private List<Expedicion> expediciones = new ArrayList<>();
+
+    // Método para calcular la edad a partir de la fecha de nacimiento
+    public int getEdad() {
+        if (this.fechaNacimiento == null) {
+            return 0;
+        }
+        return Period.between(this.fechaNacimiento, LocalDate.now()).getYears();
+    }
 }
