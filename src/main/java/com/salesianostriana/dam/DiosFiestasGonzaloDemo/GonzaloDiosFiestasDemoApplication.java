@@ -11,7 +11,6 @@ public class GonzaloDiosFiestasDemoApplication {
 	}
 
 }
-//añadir descuento si la fecha es proxima, añadir descuento si hay poca gente inscrita, si la expedicion vale mas de 10000 euros
 
 //añadir un ver mas en los usuarios
 //hacerlos con una tabla y no con boxes

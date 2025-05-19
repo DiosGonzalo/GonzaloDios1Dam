@@ -68,21 +68,18 @@ public class ExpedicionServicio extends ServiciosBase<Expedicion, Long, Expedici
         double precioFinal = exp.getPrecioOriginal();
         StringBuilder motivos = new StringBuilder();
 
-        // Descuento por capacidad (<40%)
         if (exp.getUsuarios().size() < exp.getCapacidad() * 0.4) {
             double descuento = precioFinal * 0.20;
             precioFinal -= descuento;
-            motivos.append("35% por baja ocupación. ");
+            motivos.append("20% por baja ocupación. ");
         }
 
-        // Descuento por precio alto (>10,000€)
         if (exp.getPrecioOriginal() > 10000) {
             double descuento = precioFinal * 0.15;
             precioFinal -= descuento;
             motivos.append("15% por precio alto. ");
         }
 
-        // Descuento por fecha próxima (<6 meses)
         if (exp.getFechaExpedicion().isBefore(LocalDate.now().plusMonths(6))) {
             double descuento = precioFinal * 0.10;
             precioFinal -= descuento;

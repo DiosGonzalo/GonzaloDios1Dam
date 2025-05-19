@@ -22,11 +22,11 @@
         }
         
         .user-avatar {
-            width: 80px;
-            height: 80px;
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             object-fit: cover;
-            border: 3px solid #3a86ff;
+            border: 2px solid #3a86ff;
         }
         
         .section-title {
@@ -49,6 +49,12 @@
             margin-right: 5px;
             margin-bottom: 5px;
         }
+        
+        .level-badge {
+            font-size: 0.8rem;
+            padding: 0.3rem 0.6rem;
+            border-radius: 20px;
+        }
     </style>
 </head>
 <body>
@@ -68,7 +74,6 @@
                     <li class="nav-item">
                         <a class="nav-link" th:href="@{/expediciones}"><i class="bi bi-map me-1"></i> Expediciones</a>
                     </li>
-                  
                     <li class="nav-item">
                         <a class="nav-link" th:href="@{/carrusel}"><i class="bi bi-images me-1"></i> Galería</a>
                     </li>
@@ -109,11 +114,13 @@
                         <div class="d-flex align-items-center mb-3">
                             <div>
                                 <h5 class="card-title mb-0" th:text="${usuario.nombre + ' ' + usuario.apellido}"></h5>
+                                <span class="badge level-badge"
+                                      th:classappend="${usuario.nivel == 'Principiante' ? 'bg-info' : ''}
+                                                    + ${usuario.nivel == 'Intermedio' ? 'bg-primary' : ''}
+                                                    + ${usuario.nivel == 'Avanzado' ? 'bg-warning text-dark' : ''}
+                                                    + ${usuario.nivel == 'Experto' ? 'bg-danger' : ''}"
+                                      th:text="${usuario.nivel}"></span>
                             </div>
-                        </div>
-                        
-                        <div class="mb-3">
-                            <span class="badge bg-secondary ms-1" th:text="${usuario.nivel}"></span>
                         </div>
                         
                         <div th:if="${usuario.expediciones != null and !usuario.expediciones.isEmpty()}">
@@ -126,18 +133,25 @@
                         </div>
                         
                         <div class="d-flex justify-content-between mt-3">
-                            <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" 
+                            <a th:href="@{'/usuario/' + ${usuario.id}}" class="btn btn-sm btn-outline-primary">
+                                <i class="bi bi-eye me-1"></i> Ver más
+                            </a>
+                          
+                            <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal"
                                 th:attr="data-bs-target='#editUserModal'+${usuario.id}">
-                                <i class="bi bi-pencil"></i> Editar
+                                <i class="bi bi-pencil me-1"></i> Editar
                             </button>
-                            <button class="btn btn-sm btn-outline-danger" data-bs-toggle="modal" 
-                                th:attr="data-bs-target='#deleteUserModal'+${usuario.id}">
-                                <i class="bi bi-trash"></i> Eliminar
-                            </button>
+                            <form th:action="@{/usuario/eliminar}" method="post" class="d-inline">
+                                <input type="hidden" name="id" th:value="${usuario.id}">
+                                <button type="submit" class="btn btn-sm btn-outline-danger">
+                                    <i class="bi bi-trash me-1"></i> Eliminar
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>
 
+                <!-- Modal de edición - DEBE ESTAR DENTRO DEL th:each -->
                 <div class="modal fade" th:id="'editUserModal'+${usuario.id}" tabindex="-1" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -145,22 +159,34 @@
                                 <h5 class="modal-title">Editar Usuario</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
-                            <form th:action="@{/usuario/editar}" method="post">
+                            <form th:action="@{/usuario/editar/submit}" method="post">
                                 <div class="modal-body">
                                     <input type="hidden" name="id" th:value="${usuario.id}">
-                                    
+                                
                                     <div class="mb-3">
                                         <label for="nombre" class="form-label">Nombre</label>
-                                        <input type="text" class="form-control" id="nombre" name="nombre" 
-                                               th:value="${usuario.nombre}" required>
+                                        <input type="text" class="form-control" id="nombre" name="nombre"
+                                            th:value="${usuario.nombre}" required>
                                     </div>
-                                    
+                                
                                     <div class="mb-3">
-                                        <label for="apellidos" class="form-label">Apellidos</label>
-                                        <input type="text" class="form-control" id="apellidos" name="apellidos" 
-                                               th:value="${usuario.apellido}" required>
+                                        <label for="apellido" class="form-label">Apellido</label>
+                                        <input type="text" class="form-control" id="apellido" name="apellido"
+                                            th:value="${usuario.apellido}" required>
                                     </div>
-                                    
+                                
+                                    <div class="mb-3">
+                                        <label for="edad" class="form-label">Edad</label>
+                                        <input type="number" class="form-control" id="edad" name="edad"
+                                            th:value="${usuario.edad}" required>
+                                    </div>
+                                
+                                    <div class="mb-3">
+                                        <label for="dni" class="form-label">DNI</label>
+                                        <input type="text" class="form-control" id="dni" name="dni"
+                                            th:value="${usuario.dni}" required>
+                                    </div>
+                                
                                     <div class="mb-3">
                                         <label for="nivel" class="form-label">Nivel</label>
                                         <select class="form-select" id="nivel" name="nivel" required>
@@ -170,14 +196,20 @@
                                             <option value="Experto" th:selected="${usuario.nivel == 'Experto'}">Experto</option>
                                         </select>
                                     </div>
-                                    
+                                
+                                    <div class="mb-3">
+                                        <label for="fotoUrl" class="form-label">URL de la Foto</label>
+                                        <input type="url" class="form-control" id="fotoUrl" name="fotoUrl"
+                                            th:value="${usuario.fotoUrl}">
+                                    </div>
+                                
                                     <div class="mb-3">
                                         <label class="form-label">Expediciones</label>
                                         <div th:each="expedicion : ${todasExpediciones}">
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" 
                                                        th:id="'expedicion_' + ${expedicion.id} + '_' + ${usuario.id}"
-                                                       th:name="expediciones" th:value="${expedicion.id}"
+                                                       th:name="expedicionesSeleccionadas" th:value="${expedicion.id}"
                                                        th:checked="${usuario.expediciones.contains(expedicion)}">
                                                 <label class="form-check-label" 
                                                        th:for="'expedicion_' + ${expedicion.id} + '_' + ${usuario.id}"
@@ -191,28 +223,6 @@
                                     <button type="submit" class="btn btn-primary">Guardar Cambios</button>
                                 </div>
                             </form>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="modal fade" th:id="'deleteUserModal'+${usuario.id}" tabindex="-1" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">Confirmar Eliminación</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <p>¿Estás seguro de que deseas eliminar al usuario <strong th:text="${usuario.nombre + ' ' + usuario.apellido}"></strong>?</p>
-                                <p class="text-danger">Esta acción no se puede deshacer.</p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                <form th:action="@{/usuario/eliminar}" method="post">
-                                    <input type="hidden" name="id" th:value="${usuario.id}">
-                                    <button type="submit" class="btn btn-danger">Eliminar</button>
-                                </form>
-                            </div>
                         </div>
                     </div>
                 </div>

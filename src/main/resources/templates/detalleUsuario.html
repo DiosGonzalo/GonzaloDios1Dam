@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${usuario.nombre} + ' ' + ${usuario.apellido} + ' - Easy Summits'">Detalle Usuario</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <style>
+        .user-header {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+                        var(--header-image);
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 5rem 0;
+            margin-bottom: 2rem;
+            border-radius: 0 0 10px 10px;
+        }
+       
+        .user-details-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: none;
+        }
+       
+        .expedition-card {
+            border: none;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+            background-color: #f8f9fa;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+       
+        .expedition-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+       
+        .level-badge {
+            font-size: 0.9rem;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+        }
+       
+        .detail-icon {
+            font-size: 1.5rem;
+            color: #3a86ff;
+            margin-right: 1rem;
+        }
+       
+        .expeditions-section {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            padding: 2rem;
+        }
+
+        .user-avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid white;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" th:href="@{/}">
+                <i class="bi bi-compass me-2"></i>Easy Summits
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/}"><i class="bi bi-house-door me-1"></i> Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/expediciones}"><i class="bi bi-map me-1"></i> Expediciones</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/carrusel}"><i class="bi bi-images me-1"></i> Galería</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle active" href="#" id="adminDropdown" role="button"
+                            data-bs-toggle="dropdown">
+                            <i class="bi bi-gear me-1"></i> Administración
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" th:href="@{/nueva}"><i class="bi bi-plus-circle"></i> Añadir Expedición</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item active" th:href="@{/usuarios}"><i class="bi bi-people"></i> Lista usuarios</a></li>
+                            <li><a class="dropdown-item" th:href="@{/usuario/nuevo}"><i class="bi bi-person-plus"></i> Añadir Usuario</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+        <div class="container text-center">
+           
+            <h1 class="display-4 fw-bold mb-2 margin-top" th:text="${usuario.nombre + ' ' + usuario.apellido}"></h1>
+            <span class="badge level-badge fs-5"
+                  th:classappend="${usuario.nivel == 'Principiante' ? 'bg-info' : ''}
+                                + ${usuario.nivel == 'Intermedio' ? 'bg-primary' : ''}
+                                + ${usuario.nivel == 'Avanzado' ? 'bg-warning text-dark' : ''}
+                                + ${usuario.nivel == 'Experto' ? 'bg-danger' : ''}"
+                  th:text="${usuario.nivel}"></span>
+        </div>
+    
+
+    <main class="container mt-4">
+        <div class="row">
+            <div class="col-lg-8 mb-4">
+                <div class="user-details-card">
+                    <h2 class="mb-4">
+                        <i class="bi bi-info-circle-fill text-primary me-2"></i>
+                        Información personal
+                    </h2>
+                   
+                    <div class="row mb-4">
+                        <div class="col-md-6 mb-3">
+                            <div class="d-flex align-items-center">
+                                <i class="bi bi-person-vcard detail-icon"></i>
+                                <div>
+                                    <h5 class="mb-1">DNI</h5>
+                                    <p class="mb-0 text-muted" th:text="${usuario.dni}"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="d-flex align-items-center">
+                                <i class="bi bi-calendar detail-icon"></i>
+                                <div>
+                                    <h5 class="mb-1">Edad</h5>
+                                    <p class="mb-0 text-muted" th:text="${usuario.edad} + ' años'"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                   
+                    <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top">
+                        <a th:href="@{/usuarios}" class="btn btn-outline-primary">
+                            <i class="bi bi-arrow-left me-1"></i> Volver a usuarios
+                        </a>
+                        <div>
+                            <button class="btn btn-primary me-2" data-bs-toggle="modal"
+                                th:attr="data-bs-target='#editUserModal'+${usuario.id}">
+                                <i class="bi bi-pencil me-1"></i> Editar
+                            </button>
+                            <form th:action="@{/usuario/eliminar}" method="post" class="d-inline">
+                                <input type="hidden" name="id" th:value="${usuario.id}">
+                                <button type="submit" class="btn btn-danger">
+                                    <i class="bi bi-trash me-1"></i> Eliminar
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
+            <div class="col-lg-4">
+                <div class="expeditions-section">
+                    <h3 class="mb-4">
+                        <i class="bi bi-map-fill text-primary me-2"></i>
+                        Expediciones
+                        <span class="badge bg-secondary ms-2" th:text="${usuario.expediciones.size()}"></span>
+                    </h3>
+                   
+                    <div th:if="${not usuario.expediciones.empty}">
+                        <div class="expedition-card" th:each="expedicion : ${usuario.expediciones}">
+                            <div class="d-flex align-items-center">
+                                <div class="flex-shrink-0">
+                                    <img th:src="${expedicion.imagenUrl}" class="rounded" width="60" height="60" alt="Expedición">
+                                </div>
+                                <div class="flex-grow-1 ms-3">
+                                    <h5 class="mb-1" th:text="${expedicion.nombre}"></h5>
+                                    <p class="mb-1 small text-muted" th:text="${#temporals.format(expedicion.fechaExpedicion, 'dd/MM/yyyy')}"></p>
+                                    <span class="badge" 
+                                          th:classappend="${expedicion.categoria == 0 ? 'bg-info' : ''} 
+                                                        + ${expedicion.categoria == 1 ? 'bg-success' : ''} 
+                                                        + ${expedicion.categoria == 2 ? 'bg-warning text-dark' : ''} 
+                                                        + ${expedicion.categoria == 3 ? 'bg-danger' : ''}"
+                                          th:text="${expedicion.categoria == 0 ? 'Básico' : ''} 
+                                                   + ${expedicion.categoria == 1 ? '4000m (Fácil)' : ''} 
+                                                   + ${expedicion.categoria == 2 ? '6000m (Moderado)' : ''} 
+                                                   + ${expedicion.categoria == 3 ? '8000m (Difícil)' : ''}">
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                   
+                    <div th:if="${usuario.expediciones.empty}" class="text-center py-4">
+                        <i class="bi bi-map fs-1 text-muted mb-3"></i>
+                        <p class="text-muted mb-4">El usuario no está inscrito en ninguna expedición</p>
+                        <a th:href="@{/expediciones}" class="btn btn-primary">
+                            <i class="bi bi-plus-lg me-1"></i> Ver Expediciones
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal de edición -->
+    <div class="modal fade" th:id="'editUserModal'+${usuario.id}" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Editar Usuario</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form th:action="@{/usuario/editar/submit}" method="post">
+                    <div class="modal-body">
+                        <input type="hidden" name="id" th:value="${usuario.id}">
+                       
+                        <div class="mb-3">
+                            <label for="nombre" class="form-label">Nombre</label>
+                            <input type="text" class="form-control" id="nombre" name="nombre"
+                                   th:value="${usuario.nombre}" required>
+                        </div>
+                       
+                        <div class="mb-3">
+                            <label for="apellido" class="form-label">Apellido</label>
+                            <input type="text" class="form-control" id="apellido" name="apellido"
+                                   th:value="${usuario.apellido}" required>
+                        </div>
+                       
+                        <div class="mb-3">
+                            <label for="edad" class="form-label">Edad</label>
+                            <input type="number" class="form-control" id="edad" name="edad"
+                                   th:value="${usuario.edad}" required>
+                        </div>
+                       
+                        <div class="mb-3">
+                            <label for="dni" class="form-label">DNI</label>
+                            <input type="text" class="form-control" id="dni" name="dni"
+                                   th:value="${usuario.dni}" required>
+                        </div>
+                       
+                        <div class="mb-3">
+                            <label for="nivel" class="form-label">Nivel</label>
+                            <select class="form-select" id="nivel" name="nivel" required>
+                                <option value="Principiante" th:selected="${usuario.nivel == 'Principiante'}">Principiante</option>
+                                <option value="Intermedio" th:selected="${usuario.nivel == 'Intermedio'}">Intermedio</option>
+                                <option value="Avanzado" th:selected="${usuario.nivel == 'Avanzado'}">Avanzado</option>
+                                <option value="Experto" th:selected="${usuario.nivel == 'Experto'}">Experto</option>
+                            </select>
+                        </div>
+                       
+                       
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-white py-4 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h5 class="fs-4 mb-3">
+                        <i class="bi bi-compass me-2"></i>Easy Summits
+                    </h5>
+                    <p class="mb-0">Guiando tus sueños a las cumbres más altas.</p>
+                </div>
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <h5 class="fs-4 mb-3">Contacto</h5>
+                    <p><i class="bi bi-envelope me-2"></i> info@easysummits.com</p>
+                    <p><i class="bi bi-phone me-2"></i> +34 123 456 789</p>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="fs-4 mb-3">Síguenos</h5>
+                    <div class="d-flex gap-3 fs-3">
+                        <a href="#" class="text-white"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="text-white"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="text-white"><i class="bi bi-twitter-x"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="text-center">
+                <p class="mb-0">&copy; 2023 Easy Summits. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
