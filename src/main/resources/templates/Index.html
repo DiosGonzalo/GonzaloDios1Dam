@@ -3,100 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Easy Summits - Guías Profesionales para Ascensos</title>
+    <title>EASY SUMMITS - Expediciones de Montaña</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-    <style>
-        .hero-bg {
-            background: linear-gradient(135deg, rgba(26,26,46,0.9) 0%, rgba(58,134,255,0.7) 100%), 
-                        url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-        }
-        
-        .display-title {
-            font-family: 'Playfair Display', serif;
-        }
-        
-        /* Estilos para el footer anterior */
-        .footer-links a {
-            color: #adb5bd;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        
-        .footer-links a:hover {
-            color: white;
-        }
-        
-        .social-icon {
-            width: 40px;
-            height: 40px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.1);
-            transition: all 0.3s;
-        }
-        
-        .social-icon:hover {
-            background: #3a86ff;
-            transform: translateY(-3px);
-        }
-        
-        .contact-form {
-            background: rgba(255,255,255,0.05);
-            border-radius: 10px;
-            padding: 20px;
-        }
-    </style>
 </head>
-<body class="bg-dark text-white">
+<body class="bg-black text-white">
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top py-3 bg-dark bg-opacity-75">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-black">
         <div class="container">
-            <a class="navbar-brand fw-bold fs-3" th:href="@{/}">
-                <i class="bi bi-compass me-2"></i>Easy Summits
+            <a class="navbar-brand fw-bold" th:href="@{/}">
+                <i class="bi bi-compass me-2"></i>EASY SUMMITS
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarContent">
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <ul class="navbar-nav ms-auto">
                     <li class="nav-item mx-2">
-                        <a class="nav-link active fs-5" th:href="@{/}">
-                            <i class="bi bi-house-door me-1"></i> Inicio
-                        </a>
+                        <a class="nav-link" th:href="@{/}">Inicio</a>
                     </li>
                     <li class="nav-item mx-2">
-                        <a class="nav-link fs-5" th:href="@{/expediciones}">
-                            <i class="bi bi-map me-1"></i> Expediciones
-                        </a>
+                        <a class="nav-link" th:href="@{/expediciones}">Expediciones</a>
                     </li>
-                   <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="adminDropdown" role="button"
-                            data-bs-toggle="dropdown">
-                            <i class="bi bi-gear me-1"></i> Información
+                    <li class="nav-item dropdown mx-2">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            Información
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" th:href="@{/carrusel}"><i class="bi bi-plus-circle"></i> Imagenes</a></li>
+                            <li><a class="dropdown-item" th:href="@{/carrusel}">Galería</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" th:href="@{/sobreNosotros}"><i class="bi bi-people"></i> Sobre nosotros</a></li>
+                            <li><a class="dropdown-item" th:href="@{/sobreNosotros}">Sobre nosotros</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="adminDropdown" role="button"
-                            data-bs-toggle="dropdown">
-                            <i class="bi bi-gear me-1"></i> Administración
+                    <li class="nav-item dropdown mx-2">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            Admin
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" th:href="@{/nueva}"><i class="bi bi-plus-circle"></i> Añadir Expedición</a></li>
+                            <li><a class="dropdown-item" th:href="@{/nueva}">Nueva Expedición</a></li>
+                            <li><a class="dropdown-item" th:href="@{/usuario/nuevo}">Nuevo Usuario</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" th:href="@{/usuarios}"><i class="bi bi-people"></i> Lista usuarios</a></li>
-                            <li><a class="dropdown-item" th:href="@{/usuario/nuevo}"><i class="bi bi-person-plus"></i> Añadir Usuario</a></li>
+                            <li><a class="dropdown-item" th:href="@{/usuarios}">Usuarios</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -104,153 +51,156 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero-bg min-vh-100 d-flex align-items-center justify-content-center text-center">
-        <div class="container py-5">
-            <h1 class="display-title display-1 fw-bold mb-4">EASY SUMMITS</h1>
-            <p class="lead fs-3 mb-4">Guías profesionales para tus ascensos</p>
-            
-            <div class="d-flex flex-wrap justify-content-center gap-3 mb-5">
-                <span class="badge bg-white bg-opacity-25 px-4 py-2 fs-5 rounded-pill">8000m</span>
-                <span class="badge bg-white bg-opacity-25 px-4 py-2 fs-5 rounded-pill">7000m</span>
-                <span class="badge bg-white bg-opacity-25 px-4 py-2 fs-5 rounded-pill">Montañas icónicas</span>
+    <!-- Hero Video Section -->
+    <section class="position-relative vh-100">
+        <video autoplay muted loop class="w-100 h-100 object-fit-cover">
+            <source th:src="@{/videos/videoPortada.mp4}" type="video/mp4">
+            Tu navegador no soporta el elemento de video.
+        </video>
+        <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-50"></div>
+        <div class="container h-100 d-flex align-items-center justify-content-center text-center position-relative">
+            <div>
+                <h1 class="display-1 fw-bold mb-4">EASY SUMMITS</h1>
+                <p class="lead fs-3">Descubre las cumbres más impresionantes del mundo</p>
             </div>
-            
-            <!-- Botón con menú emergente integrado -->
-            <div class="position-relative d-inline-block">
-                <button class="btn btn-primary btn-lg px-4 py-3 fs-4 fw-bold rounded-end-0" 
-                        onclick="toggleMenu()">
-                    <i class="bi bi-gear-fill me-2"></i>Opciones Admin
-                </button>
-                
-                <div id="adminMenu" class="position-absolute start-0 mt-1 w-100 d-none" 
-                     style="z-index: 1000;">
-                    <div class="bg-dark border border-primary rounded-bottom p-2 shadow-lg">
-                        <div class="d-grid gap-1">
-                            <h6 class="text-primary px-3 pt-2 pb-1 mb-1 border-bottom border-primary">Agregar</h6>
-                            <a class="btn btn-dark text-start rounded-0 py-2" th:href="@{/nueva}">
-                                <i class="bi bi-plus-circle me-2"></i>Nueva Expedición
-                            </a>
-                            <a class="btn btn-dark text-start rounded-0 py-2" th:href="@{/usuario/nuevo}">
-                                <i class="bi bi-person-plus me-2"></i>Nuevo Usuario
-                            </a>
-                            
-                            <h6 class="text-primary px-3 pt-2 pb-1 mb-1 border-bottom border-primary">Listas</h6>
-                            <a class="btn btn-dark text-start rounded-0 py-2" th:href="@{/expediciones}">
-                                <i class="bi bi-list-ul me-2"></i>Lista de Expediciones
-                            </a>
-                            <a class="btn btn-dark text-start rounded-0 py-2" th:href="@{/usuarios}">
-                                <i class="bi bi-people me-2"></i>Lista de Usuarios
-                            </a>
-                            
-                           
-                        </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="position-relative py-5 min-vh-100 d-flex align-items-center" style="background-image: url('https://yamnuska.com/wp-content/uploads/2020/11/Mountaineering-Homepage-1.jpg'); background-size: cover; background-position: center; background-attachment: fixed;">
+        <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-50"></div>
+        <div class="container position-relative py-5">
+            <div class="row">
+                <div class="col-1 d-flex align-items-center">
+                    <h2 class="text-white fw-bold m-0" style="writing-mode: vertical-rl; transform: rotate(180deg);">EASY SUMMITS</h2>
+                </div>
+                <div class="col-11 ps-5">
+                    <h2 class="display-3 mb-4">"No se trata de dónde vas, sino de lo que vas a hacer y con quién."</h2>
+                    <a th:href="@{/sobre-nosotros}" class="btn btn-outline-light btn-lg px-4 py-2">
+                        CONOCE MÁS
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expediciones Section -->
+    <section class="position-relative py-5 min-vh-100 d-flex align-items-center" style="background-image: url('https://static.nationalgeographic.es/files/styles/image_3200/public/01_20.jpg?w=1600'); background-size: cover; background-position: center; background-attachment: fixed;">
+        <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-50"></div>
+        <div class="container position-relative py-5">
+            <div class="row">
+                <div class="col-1 d-flex align-items-center">
+                    <h2 class="text-white fw-bold m-0" style="writing-mode: vertical-rl; transform: rotate(180deg);">LA AVENTURA</h2>
+                </div>
+                <div class="col-11 ps-5">
+                    <h2 class="display-3 mb-4">Somos montañeros infatigables, ponemos a tu alcance toda nuestra experiencia para que tu expedición sea única e irrepetible.</h2>
+                    <a th:href="@{/agregarExpedicion}" class="btn btn-outline-light btn-lg px-4 py-2">
+                        AGREGAR EXPEDICIONES
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Montañas Section -->
+    <section class="position-relative py-5 min-vh-100 d-flex align-items-center" style="background-image: url('https://img.aullidos.com/imagenes/noticias/tw-32217.jpg'); background-size: cover; background-position: center; background-attachment: fixed;">
+        <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-50"></div>
+        <div class="container position-relative py-5">
+            <div class="row">
+                <div class="col-1 d-flex align-items-center">
+                    <h2 class="text-white fw-bold m-0" style="writing-mode: vertical-rl; transform: rotate(180deg);">LAS CUMBRES</h2>
+                </div>
+                <div class="col-11 ps-5">
+                    <h2 class="display-3 mb-4">Nacimos para escalar, vivimos para compartir.</h2>
+                    <a th:href="@{/expediciones}" class="btn btn-outline-light btn-lg px-4 py-2">
+                        EXPEDICIONES
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tú Section -->
+    <section class="position-relative py-5 min-vh-100 d-flex align-items-center" style="background-image: url('https://www.desnivel.com/images/2022/07/nimsdai-k2-2022-750x440.jpg'); background-size: cover; background-position: center; background-attachment: fixed;">
+        <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-50"></div>
+        <div class="container position-relative py-5">
+            <div class="row">
+                <div class="col-1 d-flex align-items-center">
+                    <h2 class="text-white fw-bold m-0" style="writing-mode: vertical-rl; transform: rotate(180deg);">TÚ</h2>
+                </div>
+                <div class="col-11 ps-5">
+                    <h2 class="display-3 mb-4">Lo único que importa eres tú.</h2>
+                    <a th:href="@{/usuarios}" class="btn btn-outline-light btn-lg px-4 py-2">
+                        USUARIOS
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galería Section -->
+    <section class="position-relative py-5 min-vh-100 d-flex align-items-center" style="background-image: url('https://viajes.nationalgeographic.com.es/medio/2018/02/27/dolomitas__1280x720.jpg'); background-size: cover; background-position: center; background-attachment: fixed;">
+        <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark opacity-50"></div>
+        <div class="container position-relative py-5">
+            <div class="row">
+                <div class="col-1 d-flex align-items-center">
+                    <h2 class="text-white fw-bold m-0" style="writing-mode: vertical-rl; transform: rotate(180deg);">GALERÍA</h2>
+                </div>
+                <div class="col-11 ps-5">
+                    <h2 class="display-3 mb-4">Descubre nuestras expediciones a través de estas imágenes.</h2>
+                    <div class="d-flex gap-3">
+                        <a th:href="@{/carrusel}" class="btn btn-outline-light btn-lg px-4 py-2">
+                            VER GALERÍA
+                        </a>
+                        <a th:href="@{/sobreNosotros}" class="btn btn-outline-light btn-lg px-4 py-2">
+                            SOBRE NOSOTROS
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer anterior -->
-    <footer class="bg-dark text-white pt-5 pb-3">
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-5">
         <div class="container">
-            <div class="row g-4">
-                <div class="col-lg-4 col-md-6">
-                    <div class="mb-4">
-                        <h4 class="d-flex align-items-center mb-3">
-                            <i class="bi bi-compass fs-3 me-2"></i>
-                            <span class="fw-bold">Easy Summits</span>
-                        </h4>
-                        <p class="text-muted">Especialistas en expediciones de alta montaña desde 2005. Guiamos tus sueños a las cumbres más altas del mundo con seguridad y profesionalidad.</p>
-                    </div>
-                    <div class="d-flex gap-3">
-                        <a href="#" class="social-icon">
-                            <i class="bi bi-facebook"></i>
-                        </a>
-                        <a href="https://i.pinimg.com/736x/eb/b9/80/ebb9801d73b9a9e2286055430c30fa82.jpg" class="social-icon">
-                            <i class="bi bi-instagram"></i>
-                        </a>
-
-                        <a href="https://www.youtube.com/watch?v=P-70gZNWdAM" class="social-icon">
-                            <i class="bi bi-youtube"></i>
-                        </a>
-                    </div>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h3 class="mb-3">EASY SUMMITS</h3>
+                    <p>Guiando tus sueños a las cumbres más altas del mundo.</p>
                 </div>
-                
-                <div class="col-lg-2 col-md-6">
-                    <h5 class="fw-bold mb-3">Enlaces</h5>
-                    <ul class="list-unstyled footer-links">
-                        <li class="mb-2"><a th:href="@{/}"><i class="bi bi-chevron-right me-1"></i> Inicio</a></li>
-                        <li class="mb-2"><a th:href="@{/expediciones}"><i class="bi bi-chevron-right me-1"></i> Expediciones</a></li>
-                        <li class="mb-2"><a th:href="@{/carrusel}"><i class="bi bi-chevron-right me-1"></i> Galería</a></li>
-                    </ul>
+                <div class="col-md-4 mb-4">
+                    <h3 class="mb-3">Contacto</h3>
+                    <p><i class="bi bi-envelope me-2"></i> info@easysummits.com</p>
+                    <p><i class="bi bi-phone me-2"></i> +34 123 456 789</p>
                 </div>
-                
-               
-                
-                <div class="col-lg-3 col-md-6" id="contacto">
-                    <h5 class="fw-bold mb-3">Formulario de Contacto</h5>
-                    <div class="contact-form">
-                        <form>
-                            <div class="mb-3 ">
-                                <input type="text" class="form-control text-white border-secondary" placeholder="Nombre" required>
-                            </div>
-                            <div class="mb-3 text-white">
-                                <input type="email" class="form-control text-white border-secondary" placeholder="Email" required>
-                            </div>
-                            <div class="mb-3 ">
-                                <textarea class="form-control text-white border-secondary" rows="3" placeholder="Mensaje" required></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary w-100">Enviar Mensaje</button>
-                        </form>
+                <div class="col-md-4 mb-4">
+                    <h3 class="mb-3">Síguenos</h3>
+                    <div class="d-flex gap-3 fs-4">
+                        <a href="#" class="text-white"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="text-white"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="text-white"><i class="bi bi-youtube"></i></a>
                     </div>
                 </div>
             </div>
-            
-            <hr class="my-4 border-secondary">
-            
-            <div class="row">
-                <div class="col-md-6 text-center text-md-start">
-                    <p class="mb-0 text-muted">&copy; 2023 Easy Summits. Todos los derechos reservados.</p>
-                </div>
-                <div class="col-md-6 text-center text-md-end">
-                    <p class="mb-0 text-muted">
-                        <a href="#" class="text-muted me-3">Política de Privacidad</a>
-                        <a href="#" class="text-muted">Términos y Condiciones</a>
-                    </p>
-                </div>
+            <hr class="my-4">
+            <div class="text-center">
+                <p class="mb-0">&copy; 2023 EASY SUMMITS. Todos los derechos reservados.</p>
             </div>
         </div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    
     <script>
-        function toggleMenu() {
-            const menu = document.getElementById('adminMenu');
-            menu.classList.toggle('d-none');
-        }
-        
-        document.addEventListener('click', function(event) {
-            const menu = document.getElementById('adminMenu');
-            const button = document.querySelector('button[onclick="toggleMenu()"]');
-            
-            if (!menu.contains(event.target) && event.target !== button) {
-                menu.classList.add('d-none');
-            }
-        });
-        
-        
+        // Efecto de navbar al hacer scroll
         window.addEventListener('scroll', function() {
             const navbar = document.querySelector('.navbar');
             if (window.scrollY > 50) {
+                navbar.classList.add('bg-black');
                 navbar.classList.add('shadow');
-                navbar.classList.remove('bg-opacity-75');
-                navbar.classList.add('bg-opacity-100');
             } else {
+                navbar.classList.remove('bg-black');
                 navbar.classList.remove('shadow');
-                navbar.classList.remove('bg-opacity-100');
-                navbar.classList.add('bg-opacity-75');
             }
         });
     </script>

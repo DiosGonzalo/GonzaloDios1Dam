@@ -26,6 +26,10 @@ public class Expedicion {
     private int capacidad;
     private int categoria;
     private String imagenUrl;
+
+    @Transient
+    private Integer plazasDisponibles;
+
     
     @ManyToMany(mappedBy = "expediciones")
     private List<Usuario> usuarios = new ArrayList<>();
@@ -47,6 +51,12 @@ public class Expedicion {
         if (!tieneDescuento()) return 0;
         return (int) Math.round((1 - (precio / precioOriginal)) * 100);
     }
+    public int getPlazasDisponibles() {
+    if (plazasDisponibles == null) {
+        plazasDisponibles = capacidad - usuarios.size();
+    }
+    return plazasDisponibles;
+}
 
     public Expedicion(String nombre, double precio, int capacidad, int categoria, 
                      LocalDate fechaExpedicion, LocalDate fechaLimite, String imagenUrl) {

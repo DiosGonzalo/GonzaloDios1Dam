@@ -44,9 +44,7 @@ public class ExpedicionServicio extends ServiciosBase<Expedicion, Long, Expedici
     }
     
 
-    
-
-   public List<Expedicion> buscarExpedicion(String nombre) {
+    public List<Expedicion> buscarExpedicion(String nombre) {
         if (nombre == null || nombre.isBlank()) {
             return repositorio.findAll();
         }
@@ -100,28 +98,36 @@ public class ExpedicionServicio extends ServiciosBase<Expedicion, Long, Expedici
 
         double precioFinal = exp.getPrecioOriginal();
         StringBuilder motivos = new StringBuilder();
+        boolean tieneDescuento = false;
 
         if (exp.getUsuarios().size() < exp.getCapacidad() * 0.4) {
             double descuento = precioFinal * 0.20;
             precioFinal -= descuento;
             motivos.append("20% por baja ocupación. ");
+            tieneDescuento = true;
         }
 
         if (exp.getPrecioOriginal() > 10000) {
             double descuento = precioFinal * 0.15;
             precioFinal -= descuento;
             motivos.append("15% por precio alto. ");
+            tieneDescuento = true;
         }
 
         if (exp.getFechaExpedicion().isBefore(LocalDate.now().plusMonths(6))) {
             double descuento = precioFinal * 0.10;
             precioFinal -= descuento;
             motivos.append("10% por fecha próxima. ");
+            tieneDescuento = true;
         }
 
-        if (motivos.length() > 0) {
+        if (tieneDescuento) {
             exp.setPrecio(precioFinal);
             exp.setMotivoDescuento(motivos.toString().trim());
+        } else {
+            // Si no cumple ningún requisito, no hay descuento
+            exp.setPrecio(exp.getPrecioOriginal());
+            exp.setMotivoDescuento(null);
         }
 
         return exp;
