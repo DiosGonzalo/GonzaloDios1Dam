@@ -1,5 +1,6 @@
 package com.salesianostriana.dam.DiosFiestasGonzaloDemo.controladores;
 
+import com.salesianostriana.dam.DiosFiestasGonzaloDemo.modelos.Expedicion;
 import com.salesianostriana.dam.DiosFiestasGonzaloDemo.modelos.Usuario;
 import com.salesianostriana.dam.DiosFiestasGonzaloDemo.servicios.ExpedicionServicio;
 import com.salesianostriana.dam.DiosFiestasGonzaloDemo.servicios.UsuarioServicio;
@@ -58,20 +59,43 @@ public class UsuarioController {
         } else {
             usuario.setExpediciones(new ArrayList<>());
         }
-        usuarioServicio.save(usuario);
+        usuarioServicio.edit(usuario);
         return "redirect:/usuarios";
     }
 
     @GetMapping("/usuario/{id}")
-    public String verDetalleUsuario(@PathVariable Long id, Model model) {
+    public String mostrarDetalleUsuario(@PathVariable Long id, Model model) {
         Usuario usuario = usuarioServicio.findById(id);
+        
         if(usuario == null) {
             return "redirect:/usuarios";
         }
+        
+        double totalGastado = usuarioServicio.calcularGastado(usuario);
+        boolean tieneDescuento = usuarioServicio.tieneDescuentoTerceraExpedicion(usuario);
+        boolean esCumpleanios = usuarioServicio.esCumpleanios(usuario);
+        
+        int[] expedicionesPorCategoria = new int[4];
+        double[] gastoPorCategoria = new double[4];
+        
+        for (Expedicion exp : usuario.getExpediciones()) {
+            int categoria = exp.getCategoria();
+            if (categoria >= 0 && categoria <= 3) {
+                expedicionesPorCategoria[categoria]++;
+                gastoPorCategoria[categoria] += exp.getPrecio();
+            }
+        }
+        
         model.addAttribute("usuario", usuario);
+        model.addAttribute("totalGastado", totalGastado);
+        model.addAttribute("tieneDescuento", tieneDescuento);
+        model.addAttribute("esCumpleanios", esCumpleanios);
+        model.addAttribute("expPorCategoria", expedicionesPorCategoria);
+        model.addAttribute("gastoPorCategoria", gastoPorCategoria);
+        
         return "detalleUsuario";
     }
-
+   
     @PostMapping("/usuario/eliminar")
     public String eliminarUsuario(@RequestParam Long id) {
         usuarioServicio.deleteById(id);

@@ -1,8 +1,12 @@
 package com.salesianostriana.dam.DiosFiestasGonzaloDemo.servicios;
 
 import com.salesianostriana.dam.DiosFiestasGonzaloDemo.modelos.Expedicion;
+import com.salesianostriana.dam.DiosFiestasGonzaloDemo.modelos.Usuario;
 import com.salesianostriana.dam.DiosFiestasGonzaloDemo.repositorio.ExpedicionRepositorio;
 import com.salesianostriana.dam.DiosFiestasGonzaloDemo.servicios.base.ServiciosBase;
+
+import lombok.NoArgsConstructor;
+
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -13,7 +17,36 @@ import java.util.stream.Collectors;
 @Service
 public class ExpedicionServicio extends ServiciosBase<Expedicion, Long, ExpedicionRepositorio> {
 
-    public List<Expedicion> buscarExpedicion(String nombre) {
+    private final UsuarioServicio usuarioServicio;
+
+    public ExpedicionServicio(ExpedicionRepositorio repositorio, UsuarioServicio usuarioServicio) {
+        super(repositorio);
+        this.usuarioServicio = usuarioServicio;
+    }
+
+    public void deleteById(Long id) {
+        Expedicion expedicion = findById(id);
+        if (expedicion != null) {
+            // Primero eliminamos la expedición de todos los usuarios
+            List<Usuario> usuarios = usuarioServicio.findAll()
+                .stream()
+                .filter(u -> u.getExpediciones().contains(expedicion))
+                .collect(Collectors.toList());
+            
+            for (Usuario usuario : usuarios) {
+                usuario.getExpediciones().remove(expedicion);
+                usuarioServicio.save(usuario);
+            }
+            
+            // Luego eliminamos la expedición
+            repositorio.deleteById(id);
+        }
+    }
+    
+
+    
+
+   public List<Expedicion> buscarExpedicion(String nombre) {
         if (nombre == null || nombre.isBlank()) {
             return repositorio.findAll();
         }

@@ -63,8 +63,8 @@ public class ExpedicionController {
         return "expediciones";
     }
 
-    @PostMapping("/expedicion/eliminar")
-    public String eliminarExpedicion(@RequestParam("id") Long id) {
+     @PostMapping("/expedicion/eliminar")
+    public String eliminarExpedicion(@RequestParam Long id) {
         servicio.deleteById(id);
         return "redirect:/expediciones";
     }

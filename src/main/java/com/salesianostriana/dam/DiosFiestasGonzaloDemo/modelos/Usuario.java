@@ -25,7 +25,7 @@ public class Usuario {
     private String dni;
     private String nivel;
     
-    @ManyToMany
+    @ManyToMany (cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
         name = "usuario_expedicion",
         joinColumns = @JoinColumn(name = "usuario_id"),
