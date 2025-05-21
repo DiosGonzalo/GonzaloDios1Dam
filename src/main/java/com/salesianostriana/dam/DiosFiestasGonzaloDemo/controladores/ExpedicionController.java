@@ -118,7 +118,7 @@ public class ExpedicionController {
         return "detalleExpedicion";
     }
 
-    @GetMapping("/sobre-nosotros")
+    @GetMapping("/sobreNosotros")
     public String sobreNosotros() {
         return "sobreNosotros";
     }

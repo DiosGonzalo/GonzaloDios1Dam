@@ -6,110 +6,17 @@
     <title>Galería - Easy Summits</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
-    <style>
-        .gallery-header {
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
-                        url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            padding: 5rem 0;
-            margin-bottom: 3rem;
-        }
-        
-        .carousel-item img {
-            height: 500px;
-            object-fit: cover;
-        }
-        
-        .carousel-caption {
-            background: rgba(0, 0, 0, 0.6);
-            border-radius: 10px;
-            padding: 20px;
-        }
-        
-        .section-title {
-            position: relative;
-            margin-bottom: 2rem;
-        }
-        
-        .section-title:after {
-            content: "";
-            display: block;
-            width: 80px;
-            height: 4px;
-            background: #3a86ff;
-            margin: 15px auto 0;
-            border-radius: 2px;
-        }
-        
-        .thumbnail-container {
-            display: flex;
-            overflow-x: auto;
-            padding: 10px 0;
-            gap: 10px;
-        }
-        
-        .thumbnail {
-            width: 100px;
-            height: 75px;
-            object-fit: cover;
-            cursor: pointer;
-            border: 3px solid transparent;
-            transition: all 0.3s ease;
-        }
-        
-        .thumbnail:hover, .thumbnail.active {
-            border-color: #3a86ff;
-        }
-    </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
-        <div class="container">
-            <a class="navbar-brand fw-bold" th:href="@{/}">
-                <i class="bi bi-compass me-2"></i>Easy Summits
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarContent">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/}"><i class="bi bi-house-door me-1"></i> Inicio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/expediciones}"><i class="bi bi-map me-1"></i> Expediciones</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/sobre-nosotros}"><i class="bi bi-info-circle me-1"></i> Sobre Nosotros</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" th:href="@{/carrusel}"><i class="bi bi-images me-1"></i> Galería</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="adminDropdown" role="button"
-                            data-bs-toggle="dropdown">
-                            <i class="bi bi-gear me-1"></i> Administración
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" th:href="@{/nueva}"><i class="bi bi-plus-circle"></i> Añadir Expedición</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" th:href="@{/usuarios}"><i class="bi bi-people"></i> Lista usuarios</a></li>
-                            <li><a class="dropdown-item" th:href="@{/usuario/nuevo}"><i class="bi bi-person-plus"></i> Añadir Usuario</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <!-- Navbar Fragment -->
+    <div th:replace="~{Navbar :: navbar}"></div>
 
-    <div class="gallery-header text-center">
-        <div class="container">
+    <header class="bg-dark text-white py-5 mb-4" style="background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80'); background-size: cover; background-position: center;">
+        <div class="container text-center">
             <h1 class="display-4 fw-bold mb-3">Galería de Expediciones</h1>
             <p class="lead">Momentos inolvidables en las cumbres del mundo</p>
         </div>
-    </div>
+    </header>
 
     <main class="container">
         <div id="expeditionCarousel" class="carousel slide mb-5" data-bs-ride="carousel">
@@ -122,36 +29,36 @@
             </div>
             <div class="carousel-inner rounded-3">
                 <div class="carousel-item active">
-                    <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" class="d-block w-100" alt="Expedición">
-                    <div class="carousel-caption d-none d-md-block">
+                <img src="../imagenes/everest.jpg" class="img-fluid rounded shadow" alt="Expedición">
+                    <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-75 rounded">
                         <h5>Monte Everest - 2023</h5>
                         <p>Nuestro equipo alcanzando la cima del techo del mundo.</p>
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img src="https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1476&q=80" class="d-block w-100" alt="Expedición">
-                    <div class="carousel-caption d-none d-md-block">
+                <img src="../imagenes/k2.webp" class="img-fluid rounded shadow" alt="Expedición">
+                    <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-75 rounded">
                         <h5>Alpes Suizos - 2022</h5>
                         <p>Formación en técnicas de escalada en hielo.</p>
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" class="d-block w-100" alt="Expedición">
-                    <div class="carousel-caption d-none d-md-block">
+                <img src="../imagenes/matterhorn.jpg" class="img-fluid rounded shadow" alt="Expedición">
+                    <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-75 rounded">
                         <h5>Kilimanjaro - 2021</h5>
                         <p>Celebrando en la cima del continente africano.</p>
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img src="https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1476&q=80" class="d-block w-100" alt="Expedición">
-                    <div class="carousel-caption d-none d-md-block">
+                <img src="../imagenes/mulhacen.webp" class="img-fluid rounded shadow" alt="Expedición">
+                    <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-75 rounded">
                         <h5>Pirineos - 2020</h5>
                         <p>Primera expedición después del confinamiento.</p>
                     </div>
                 </div>
                 <div class="carousel-item">
-                    <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" class="d-block w-100" alt="Expedición">
-                    <div class="carousel-caption d-none d-md-block">
+                <img src="../imagenes/mont-blanc-mountain.jpg" class="img-fluid rounded shadow" alt="Expedición">
+                    <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-75 rounded">
                         <h5>Montañas Rocosas - 2019</h5>
                         <p>Expedición de iniciación a la alta montaña.</p>
                     </div>
@@ -167,94 +74,47 @@
             </button>
         </div>
 
-        <div class="mb-4">
-            <div class="thumbnail-container">
-                <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" class="thumbnail active" onclick="changeSlide(0)" alt="Miniatura">
-                <img src="https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1476&q=80" class="thumbnail" onclick="changeSlide(1)" alt="Miniatura">
-                <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" class="thumbnail" onclick="changeSlide(2)" alt="Miniatura">
-                <img src="https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1476&q=80" class="thumbnail" onclick="changeSlide(3)" alt="Miniatura">
-                <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" class="thumbnail" onclick="changeSlide(4)" alt="Miniatura">
-            </div>
-        </div>
+       
 
         <section class="mb-5">
-            <h2 class="section-title">Nuestras Expediciones en Imágenes</h2>
-            <p>Cada foto cuenta una historia de esfuerzo, superación y belleza. Desde las cumbres más altas del planeta hasta las montañas más accesibles, nuestros álbumes capturan la esencia de lo que significa escalar con Easy Summits.</p>
+            <h2 class="text-center mb-4 pb-2 border-bottom">
+                <i class="bi bi-images text-primary me-2"></i>Nuestras Expediciones en Imágenes
+            </h2>
+            <p class="text-center mb-5">Cada foto cuenta una historia de esfuerzo, superación y belleza. Desde las cumbres más altas del planeta hasta las montañas más accesibles, nuestros álbumes capturan la esencia de lo que significa escalar con Easy Summits.</p>
             
-            <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-3 mt-4">
+            <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-3">
                 <div class="col">
-                    <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" class="img-fluid rounded" alt="Expedición">
+                    <img src="../imagenes/expedicion 1.jpg" class="img-fluid rounded shadow" alt="Expedición">
                 </div>
                 <div class="col">
-                    <img src="https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1476&q=80" class="img-fluid rounded" alt="Expedición">
+                    <img src="../imagenes/expedicion 2.jpg" class="img-fluid rounded shadow" alt="Expedición">
+                </div> 675666    65655656566666666666666666666666666666666666666666666666666666666666666666666666666
+                <div class="col">
+                    <img src="../imagenes/expedicion 3.jpg" class="img-fluid rounded shadow" alt="Expedición">
                 </div>
                 <div class="col">
-                    <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" class="img-fluid rounded" alt="Expedición">
+                    <img src="../imagenes/expedicion 4.jpg" class="img-fluid rounded shadow" alt="Expedición">
                 </div>
                 <div class="col">
-                    <img src="https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1476&q=80" class="img-fluid rounded" alt="Expedición">
+                    <img src="../imagenes/expedicion 5.jpg" class="img-fluid rounded shadow" alt="Expedición">
                 </div>
                 <div class="col">
-                    <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" class="img-fluid rounded" alt="Expedición">
+                    <img src="../imagenes/expedicion 6.jpg" class="img-fluid rounded shadow" alt="Expedición">
                 </div>
                 <div class="col">
-                    <img src="https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1476&q=80" class="img-fluid rounded" alt="Expedición">
+                    <img src="../imagenes/expedicion 7.jpg" class="img-fluid rounded shadow" alt="Expedición">
                 </div>
                 <div class="col">
-                    <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" class="img-fluid rounded" alt="Expedición">
-                </div>
-                <div class="col">
-                    <img src="https://images.unsplash.com/photo-1483728642387-6c3bdd6c93e5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1476&q=80" class="img-fluid rounded" alt="Expedición">
+                    <img src="../imagenes/expedicion 8.jpg" class="img-fluid rounded shadow" alt="Expedición">
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="bg-dark text-white py-4 mt-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4 mb-4 mb-md-0">
-                    <h5 class="fs-4 mb-3">
-                        <i class="bi bi-compass me-2"></i>Easy Summits
-                    </h5>
-                    <p class="mb-0">Guiando tus sueños a las cumbres más altas.</p>
-                </div>
-                <div class="col-md-4 mb-4 mb-md-0">
-                    <h5 class="fs-4 mb-3">Contacto</h5>
-                    <p><i class="bi bi-envelope me-2"></i> info@easysummits.com</p>
-                    <p><i class="bi bi-phone me-2"></i> +34 123 456 789</p>
-                </div>
-                <div class="col-md-4">
-                    <h5 class="fs-4 mb-3">Síguenos</h5>
-                    <div class="d-flex gap-3 fs-3">
-                        <a href="#" class="text-white"><i class="bi bi-facebook"></i></a>
-                        <a href="#" class="text-white"><i class="bi bi-instagram"></i></a>
-                        <a href="#" class="text-white"><i class="bi bi-twitter-x"></i></a>
-                    </div>
-                </div>
-            </div>
-            <hr class="my-4">
-            <div class="text-center">
-                <p class="mb-0">&copy; 2023 Easy Summits. Todos los derechos reservados.</p>
-            </div>
-        </div>
-    </footer>
+    <!-- Footer Fragment -->
+    <div th:replace="~{footer :: footer}"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        function changeSlide(index) {
-            const carousel = new bootstrap.Carousel(document.getElementById('expeditionCarousel'));
-            carousel.to(index);
-            
-            // Actualizar miniaturas activas
-            document.querySelectorAll('.thumbnail').forEach((thumb, i) => {
-                if(i === index) {
-                    thumb.classList.add('active');
-                } else {
-                    thumb.classList.remove('active');
-                }
-            });
-        }
-    </script>
+    
 </body>
 </html>

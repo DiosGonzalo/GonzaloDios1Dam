@@ -6,262 +6,100 @@
     <title>Añadir Usuario - Easy Summits</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
-    <style>
-        .form-container {
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            max-width: 800px;
-            margin: 0 auto;
-        }
-        
-        .form-title {
-            position: relative;
-            margin-bottom: 2rem;
-            color: #1a1a2e;
-        }
-        
-        .form-title:after {
-            content: "";
-            display: block;
-            width: 80px;
-            height: 4px;
-            background: #3a86ff;
-            margin: 15px auto 0;
-            border-radius: 2px;
-        }
-        
-        .expedition-item {
-            display: flex;
-            align-items: center;
-            padding: 10px;
-            border: 1px solid #dee2e6;
-            border-radius: 5px;
-            margin-bottom: 8px;
-            background-color: #f8f9fa;
-            transition: all 0.2s;
-        }
-        
-        .expedition-item:hover {
-            background-color: #e9ecef;
-        }
-        
-        .expedition-info {
-            margin-left: 10px;
-            flex-grow: 1;
-        }
-        
-        .expedition-name {
-            font-weight: 500;
-            margin-bottom: 3px;
-        }
-        
-        .expedition-details {
-            font-size: 0.85rem;
-            color: #6c757d;
-        }
-        
-        .expedition-full {
-            background-color: #fff3cd;
-            border-color: #ffeeba;
-            position: relative;
-        }
-        
-        .expedition-full::after {
-            content: "COMPLETO";
-            position: absolute;
-            right: 10px;
-            top: 10px;
-            background-color: #dc3545;
-            color: white;
-            padding: 2px 8px;
-            border-radius: 10px;
-            font-size: 0.7rem;
-            font-weight: bold;
-        }
-        
-        .expedition-checkbox:disabled + .expedition-info {
-            opacity: 0.6;
-        }
-        
-        .plazas-disponibles {
-            font-weight: bold;
-        }
-        
-        .plazas-lleno {
-            color: #dc3545;
-        }
-        
-        .plazas-disponible {
-            color: #28a745;
-        }
-    </style>
 </head>
-<body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
-        <div class="container">
-            <a class="navbar-brand fw-bold" th:href="@{/}">
-                <i class="bi bi-compass me-2"></i>Easy Summits
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarContent">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/}"><i class="bi bi-house-door me-1"></i> Inicio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/expediciones}"><i class="bi bi-map me-1"></i> Expediciones</a>
-                    </li>
-                    
-                    <li class="nav-item">
-                        <a class="nav-link" th:href="@{/carrusel}"><i class="bi bi-images me-1"></i> Galería</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="adminDropdown" role="button"
-                            data-bs-toggle="dropdown">
-                            <i class="bi bi-gear me-1"></i> Administración
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" th:href="@{/nueva}"><i class="bi bi-plus-circle"></i> Añadir Expedición</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" th:href="@{/usuarios}"><i class="bi bi-people"></i> Lista usuarios</a></li>
-                            <li><a class="dropdown-item" th:href="@{/usuario/nuevo}"><i class="bi bi-person-plus"></i> Añadir Usuario</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+<body class="bg-light">
+    <!-- Navbar Fragment -->
+    <div th:replace="~{Navbar :: navbar}"></div>
 
     <main class="container mt-5 pt-5">
-        <div class="form-container">
-            <h2 class="form-title text-center">
-                <i class="bi bi-person-plus me-2"></i>Añadir Nuevo Usuario
-            </h2>
+        <div class="card shadow-lg">
+            <div class="card-body p-4">
+                <h2 class="card-title text-center mb-4">
+                    <i class="bi bi-person-plus me-2"></i>Añadir Nuevo Usuario
+                </h2>
 
-            <form th:action="@{/usuario/nuevo/submit}" th:object="${usuario}" method="post">
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label for="nombre" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" id="nombre" th:field="*{nombre}" required>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="apellido" class="form-label">Apellido</label>
-                        <input type="text" class="form-control" id="apellido" th:field="*{apellido}" required>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label for="fechaNacimiento" class="form-label">Fecha de Nacimiento</label>
-                        <input type="date" class="form-control" id="fechaNacimiento" th:field="*{fechaNacimiento}" required
-                               max="${#temporals.format(#temporals.createToday(), 'yyyy-MM-dd')}">
-                        <small class="text-muted">La edad calculada será: <span id="edadCalculada">0</span> años</small>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="dni" class="form-label">DNI</label>
-                        <input type="text" class="form-control" id="dni" th:field="*{dni}" required 
-                               pattern="[0-9]{8}[A-Za-z]" title="Formato de DNI: 8 números y 1 letra">
-                    </div>
-                </div>
-
-                <div class="mb-3">
-                    <label for="nivel" class="form-label">Nivel de Experiencia</label>
-                    <select class="form-select" id="nivel" th:field="*{nivel}" required>
-                        <option value="">Seleccione un nivel</option>
-                        <option value="Principiante">Principiante</option>
-                        <option value="Intermedio">Intermedio</option>
-                        <option value="Avanzado">Avanzado</option>
-                        <option value="Experto">Experto</option>
-                    </select>
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label">Expediciones Disponibles</label>
-                    <div class="expeditions-container" style="max-height: 300px; overflow-y: auto;">
-                        <div th:each="exp : ${expediciones}" 
-                             class="expedition-item"
-                             th:classappend="${exp.plazasDisponibles <= 0} ? 'expedition-full' : ''">
-                            <input type="checkbox" 
-                                   name="expedicionesSeleccionadas" 
-                                   th:value="${exp.id}" 
-                                   id="exp-${exp.id}" 
-                                   class="form-check-input expedition-checkbox"
-                                   th:disabled="${exp.plazasDisponibles <= 0}">
-                            <label th:for="'exp-' + ${exp.id}" class="expedition-info">
-                                <div class="expedition-name" th:text="${exp.nombre}"></div>
-                                <div class="expedition-details">
-                                    <span th:text="${'Fecha: ' + #temporals.format(exp.fechaExpedicion, 'dd/MM/yyyy')}"></span> | 
-                                    <span th:text="${'Precio: ' + #numbers.formatDecimal(exp.precio, 1, 2, 'POINT') + '€'}"></span> | 
-                                    <span class="plazas-disponibles" 
-                                          th:classappend="${exp.plazasDisponibles <= 0} ? 'plazas-lleno' : 'plazas-disponible'"
-                                          th:text="${'Plazas: ' + exp.plazasDisponibles + '/' + exp.capacidad}"></span>
-                                </div>
-                            </label>
+                <form th:action="@{/usuario/nuevo/submit}" th:object="${usuario}" method="post">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="nombre" class="form-label">Nombre</label>
+                            <input type="text" class="form-control" id="nombre" th:field="*{nombre}" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="apellido" class="form-label">Apellido</label>
+                            <input type="text" class="form-control" id="apellido" th:field="*{apellido}" required>
                         </div>
                     </div>
-                    <small class="text-muted">Selecciona las expediciones en las que participará el usuario (las expediciones completas aparecen marcadas)</small>
-                </div>
 
-                <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
-                    <a th:href="@{/usuarios}" class="btn btn-outline-secondary me-md-2">
-                        <i class="bi bi-x-circle me-1"></i> Cancelar
-                    </a>
-                    <button type="submit" class="btn btn-primary">
-                        <i class="bi bi-save me-1"></i> Guardar Usuario
-                    </button>
-                </div>
-            </form>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="fechaNacimiento" class="form-label">Fecha de Nacimiento</label>
+                            <input type="date" class="form-control" id="fechaNacimiento" th:field="*{fechaNacimiento}" required
+                                   max="${#temporals.format(#temporals.createToday(), 'yyyy-MM-dd')}">
+                            <small class="text-muted">La edad calculada será: <span id="edadCalculada">0</span> años</small>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="dni" class="form-label">DNI</label>
+                            <input type="text" class="form-control" id="dni" th:field="*{dni}" required 
+                                   pattern="[0-9]{8}[A-Za-z]" title="Formato de DNI: 8 números y 1 letra">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="nivel" class="form-label">Nivel de Experiencia</label>
+                        <select class="form-select" id="nivel" th:field="*{nivel}" required>
+                            <option value="">Seleccione un nivel</option>
+                            <option value="Principiante">Principiante</option>
+                            <option value="Intermedio">Intermedio</option>
+                            <option value="Avanzado">Avanzado</option>
+                            <option value="Experto">Experto</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Expediciones Disponibles</label>
+                        <div class="border rounded p-3" style="max-height: 300px; overflow-y: auto;">
+                            <div th:each="exp : ${expediciones}" 
+                                 class="d-flex align-items-center p-2 mb-2 border rounded"
+                                 th:classappend="${exp.plazasDisponibles <= 0} ? 'bg-warning bg-opacity-10' : ''">
+                                <input type="checkbox" 
+                                       name="expedicionesSeleccionadas" 
+                                       th:value="${exp.id}" 
+                                       id="exp-${exp.id}" 
+                                       class="form-check-input me-2"
+                                       th:disabled="${exp.plazasDisponibles <= 0}">
+                                <label th:for="'exp-' + ${exp.id}" class="flex-grow-1">
+                                    <div class="fw-bold" th:text="${exp.nombre}"></div>
+                                    <div class="small text-muted">
+                                        <span th:text="${'Fecha: ' + #temporals.format(exp.fechaExpedicion, 'dd/MM/yyyy')}"></span> | 
+                                        <span th:text="${'Precio: ' + #numbers.formatDecimal(exp.precio, 1, 2, 'POINT') + '€'}"></span> | 
+                                        <span th:classappend="${exp.plazasDisponibles <= 0} ? 'text-danger fw-bold' : 'text-success'"
+                                              th:text="${'Plazas: ' + exp.plazasDisponibles + '/' + exp.capacidad}"></span>
+                                        <span th:if="${exp.plazasDisponibles <= 0}" 
+                                              class="badge bg-danger ms-2">COMPLETO</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                        <small class="text-muted">Selecciona las expediciones en las que participará el usuario</small>
+                    </div>
+
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+                        <a th:href="@{/usuarios}" class="btn btn-outline-secondary me-md-2">
+                            <i class="bi bi-x-circle me-1"></i> Cancelar
+                        </a>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="bi bi-save me-1"></i> Guardar Usuario
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
     </main>
 
-    <footer class="bg-dark text-white py-4 mt-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4 mb-4 mb-md-0">
-                    <h5 class="fs-4 mb-3">
-                        <i class="bi bi-compass me-2"></i>Easy Summits
-                    </h5>
-                    <p class="mb-0">Guiando tus sueños a las cumbres más altas.</p>
-                </div>
-                <div class="col-md-4 mb-4 mb-md-0">
-                    <h5 class="fs-4 mb-3">Contacto</h5>
-                    <p><i class="bi bi-envelope me-2"></i> info@easysummits.com</p>
-                    <p><i class="bi bi-phone me-2"></i> +34 123 456 789</p>
-                </div>
-                <div class="col-md-4">
-                    <h5 class="fs-4 mb-3">Síguenos</h5>
-                    <div class="d-flex gap-3 fs-3">
-                        <a href="#" class="text-white"><i class="bi bi-facebook"></i></a>
-                        <a href="#" class="text-white"><i class="bi bi-instagram"></i></a>
-                        <a href="#" class="text-white"><i class="bi bi-twitter-x"></i></a>
-                    </div>
-                </div>
-            </div>
-            <hr class="my-4">
-            <div class="text-center">
-                <p class="mb-0">&copy; 2023 Easy Summits. Todos los derechos reservados.</p>
-            </div>
-        </div>
-    </footer>
+    <!-- Footer Fragment -->
+    <div th:replace="~{footer :: footer}"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        document.getElementById('fechaNacimiento').addEventListener('change', function() {
-            const fechaNacimiento = new Date(this.value);
-            const hoy = new Date();
-            let edad = hoy.getFullYear() - fechaNacimiento.getFullYear();
-            const mes = hoy.getMonth() - fechaNacimiento.getMonth();
-            
-            if (mes < 0 || (mes === 0 && hoy.getDate() < fechaNacimiento.getDate())) {
-                edad--;
-            }
-            
-            document.getElementById('edadCalculada').textContent = edad;
-        });
-    </script>
+    
 </body>
 </html>
