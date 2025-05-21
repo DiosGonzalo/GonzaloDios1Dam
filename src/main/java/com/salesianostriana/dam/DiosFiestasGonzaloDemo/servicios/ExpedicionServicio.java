@@ -5,13 +5,14 @@ import com.salesianostriana.dam.DiosFiestasGonzaloDemo.modelos.Usuario;
 import com.salesianostriana.dam.DiosFiestasGonzaloDemo.repositorio.ExpedicionRepositorio;
 import com.salesianostriana.dam.DiosFiestasGonzaloDemo.servicios.base.ServiciosBase;
 
-import lombok.NoArgsConstructor;
 
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -24,10 +25,38 @@ public class ExpedicionServicio extends ServiciosBase<Expedicion, Long, Expedici
         this.usuarioServicio = usuarioServicio;
     }
 
+   public Optional<Expedicion> findByIdOptional(Long id) {
+        return repositorio.findById(id);
+    }
+
+    public List<Expedicion> buscarExpedicion(String nombre) {
+        return repositorio.buscarPorNombre(nombre);
+    }
+
+    public List<Expedicion> filtrarCategoria(int categoria) {
+        return categoria == 4 ? repositorio.findAll() : repositorio.findByCategoria(categoria);
+    }
+
+    public List<Expedicion> ordenarPrecioMayor() {
+        return repositorio.findAllOrderByPrecioDesc();
+    }
+
+    public List<Expedicion> ordenarPrecioMenor() {
+        return repositorio.findAllOrderByPrecioAsc();
+    }
+
+    public List<Expedicion> ordenarFechaMayor() {
+        return repositorio.findAllOrderByFechaAsc();
+    }
+
+    public List<Expedicion> ordenarFechaMenor() {
+        return repositorio.findAllOrderByFechaDesc();
+    }
+
+    // Resto de métodos se mantienen igual...
     public void deleteById(Long id) {
         Expedicion expedicion = findById(id);
         if (expedicion != null) {
-            // Primero eliminamos la expedición de todos los usuarios
             List<Usuario> usuarios = usuarioServicio.findAll()
                 .stream()
                 .filter(u -> u.getExpediciones().contains(expedicion))
@@ -37,58 +66,34 @@ public class ExpedicionServicio extends ServiciosBase<Expedicion, Long, Expedici
                 usuario.getExpediciones().remove(expedicion);
                 usuarioServicio.save(usuario);
             }
-            
-            // Luego eliminamos la expedición
             repositorio.deleteById(id);
         }
-    }
-    
-
-    public List<Expedicion> buscarExpedicion(String nombre) {
-        if (nombre == null || nombre.isBlank()) {
-            return repositorio.findAll();
-        }
-        return repositorio.findAll().stream()
-                .filter(e -> e.getNombre().toLowerCase().contains(nombre.toLowerCase()))
-                .collect(Collectors.toList());
-    }
-
-    public List<Expedicion> filtrarCategoria(int categoria) {
-        return categoria == 4 ? 
-            repositorio.findAll() : 
-            repositorio.findAll().stream()
-                .filter(e -> e.getCategoria() == categoria)
-                .collect(Collectors.toList());
-    }
-
-    public List<Expedicion> ordenarPrecioMayor() {
-        return repositorio.findAll().stream()
-                .sorted(Comparator.comparing(Expedicion::getPrecio).reversed())
-                .collect(Collectors.toList());
-    }
-
-    public List<Expedicion> ordenarPrecioMenor() {
-        return repositorio.findAll().stream()
-                .sorted(Comparator.comparing(Expedicion::getPrecio))
-                .collect(Collectors.toList());
-    }
-
-    public List<Expedicion> ordenarFechaMayor() {
-        return repositorio.findAll().stream()
-                .sorted(Comparator.comparing(Expedicion::getFechaExpedicion))
-                .collect(Collectors.toList());
-    }
-
-    public List<Expedicion> ordenarFechaMenor() {
-        return repositorio.findAll().stream()
-                .sorted(Comparator.comparing(Expedicion::getFechaExpedicion).reversed())
-                .collect(Collectors.toList());
     }
 
     public List<Expedicion> aplicarDescuentos(List<Expedicion> expediciones) {
         return expediciones.stream()
                 .map(this::aplicarDescuentoIndividual)
                 .collect(Collectors.toList());
+    }
+    public boolean usuarioTieneDescuento(Usuario usuario, Expedicion expedicion) {
+        try {
+            if (usuario == null || expedicion == null) {
+                return false;
+            }
+            
+            // Descuento por tercera expedición
+            boolean terceraExpedicion = usuario.getExpediciones().size() >= 2;
+            
+            // Descuento por cumpleaños
+            boolean esCumpleanios = usuario.getFechaNacimiento() != null &&
+                                  usuario.getFechaNacimiento().getMonth() == LocalDate.now().getMonth() &&
+                                  usuario.getFechaNacimiento().getDayOfMonth() == LocalDate.now().getDayOfMonth();
+            
+            return terceraExpedicion || esCumpleanios;
+        } catch (Exception e) {
+            // Loggear el error
+            return false;
+        }
     }
 
     private Expedicion aplicarDescuentoIndividual(Expedicion exp) {

@@ -85,7 +85,7 @@ public class UsuarioController {
                 gastoPorCategoria[categoria] += exp.getPrecio();
             }
         }
-        
+        model.addAttribute("todasExpediciones",expedicionServicio.findAll());
         model.addAttribute("usuario", usuario);
         model.addAttribute("totalGastado", totalGastado);
         model.addAttribute("tieneDescuento", tieneDescuento);

@@ -5,9 +5,13 @@ import com.salesianostriana.dam.DiosFiestasGonzaloDemo.servicios.ExpedicionServi
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class ExpedicionController {
@@ -20,16 +24,34 @@ public class ExpedicionController {
         return "index";
     }
 
-    @GetMapping("/nueva")
+     @GetMapping("/nueva")
     public String mostrarFormulario(Model model) {
         model.addAttribute("expedicion", new Expedicion());
         return "agregarExpedicion";
     }
 
     @PostMapping("/nueva/summit")
-    public String procesarFormulario(@ModelAttribute("expedicion") Expedicion expedicion) {
-        servicio.save(expedicion);
-        return "redirect:/expediciones";
+    public String procesarFormulario(@Validated @ModelAttribute("expedicion") Expedicion expedicion,BindingResult bindingResult,RedirectAttributes redirectAttributes) {
+
+        if (expedicion.getFechaLimite() != null && expedicion.getFechaExpedicion() != null &&
+            expedicion.getFechaLimite().isAfter(expedicion.getFechaExpedicion())) {
+            bindingResult.rejectValue("fechaLimite", "error.fechaLimite", 
+                                    "La fecha límite debe ser anterior a la fecha de expedición");
+        }
+
+        if (bindingResult.hasErrors()) {
+            return "agregarExpedicion";
+        }
+
+        try {
+            expedicion.setPrecioOriginal(expedicion.getPrecio());
+            servicio.save(expedicion);
+            redirectAttributes.addFlashAttribute("success", "Expedición creada correctamente");
+            return "redirect:/expediciones";
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("error", "Error al crear la expedición: " + e.getMessage());
+            return "redirect:/nueva";
+        }
     }
 
     @GetMapping("/expediciones")
@@ -108,16 +130,40 @@ public class ExpedicionController {
     }
 
     @GetMapping("/expedicion/{id}")
-    public String verDetalleExpedicion(@PathVariable Long id, Model model) {
-        Expedicion expedicion = servicio.findById(id);
-        if (expedicion == null) {
-            return "redirect:/expediciones";
+    public String verDetalleExpedicion(@PathVariable Long id, Model model, RedirectAttributes redirectAttributes) {
+        try {
+            Optional<Expedicion> expedicionOpt = servicio.findByIdOptional(id);
+            
+            if (expedicionOpt.isPresent()) {
+                Expedicion expedicion = expedicionOpt.get();
+                model.addAttribute("expedicion", expedicion);
+                model.addAttribute("usuarios", expedicion.getUsuarios());
+                
+                long usuariosConDescuento = expedicion.getUsuarios().stream()
+                    .filter(u -> servicio.usuarioTieneDescuento(u, expedicion))
+                    .count();
+                model.addAttribute("usuariosConDescuento", usuariosConDescuento);
+                
+                return "detalleExpedicion";
+            } else {
+                redirectAttributes.addFlashAttribute("error", "Expedición no encontrada");
+                return "redirect:/expediciones";
+            }
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("error", "Error al cargar la expedición");
+            return "redirect:/error";
         }
-        model.addAttribute("expedicion", expedicion);
-        model.addAttribute("usuarios", expedicion.getUsuarios());
-        return "detalleExpedicion";
     }
 
+    // Nuevo endpoint para manejo de errores
+    @GetMapping("/error")
+    public String mostrarError(Model model, 
+                             @RequestParam(required = false) String error,
+                             @RequestParam(required = false) String mensaje) {
+        model.addAttribute("error", error != null ? error : "Error desconocido");
+        model.addAttribute("mensaje", mensaje != null ? mensaje : "Ha ocurrido un error inesperado");
+        return "error";
+    }
     @GetMapping("/sobreNosotros")
     public String sobreNosotros() {
         return "sobreNosotros";

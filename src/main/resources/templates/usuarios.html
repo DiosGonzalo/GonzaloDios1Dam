@@ -6,34 +6,49 @@
     <title>Usuarios - Easy Summits</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <style>
+        .bg-purple {
+            background-color: #6f42c1;
+            color: white;
+        }
+        .card {
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+        }
+    </style>
 </head>
-<body class="pt-5">
+<body class="pt-5 bg-light">
     <!-- Navbar -->
-        <div th:replace="~{Navbar :: navbar}"></div>
-
+    <div th:replace="~{Navbar :: navbar}"></div>
 
     <main class="container mt-5 pt-4">
-        <div class="d-flex justify-content-between align-items-center mb-5">
+        <!-- Encabezado -->
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-5 gap-3">
             <div>
-                <h1 class="text-primary mb-3">
+                <h1 class="text-primary mb-2">
                     <i class="bi bi-people me-2"></i>Gestión de Usuarios
                 </h1>
-                <p class="text-muted">Administra los usuarios registrados en el sistema</p>
+                <p class="text-muted mb-0">Administra los usuarios registrados en el sistema</p>
             </div>
-            <a th:href="@{/usuario/nuevo}" class="btn btn-primary">
-                <i class="bi bi-plus-lg me-1"></i> Agregar Usuario
-            </a>
+            <div>
+                <a th:href="@{/usuario/nuevo}" class="btn btn-primary px-4">
+                    <i class="bi bi-plus-lg me-1"></i> Agregar Usuario
+                </a>
+            </div>
         </div>
 
-        <div class="row">
-            <!-- Tarjetas de usuario -->
-            <div th:each="usuario : ${usuarios}" class="col-md-6 col-lg-4 mb-4">
-                <div class="card h-100 shadow-sm">
+        <!-- Lista de usuarios -->
+        <div class="row g-4">
+            <div th:each="usuario : ${usuarios}" class="col-12 col-md-6 col-lg-4">
+                <div class="card h-100 shadow-sm border-0">
                     <div class="card-body d-flex flex-column">
-                        <div class="d-flex align-items-center mb-3">
-                            <div>
-                                <h5 class="card-title mb-0" th:text="${usuario.nombre + ' ' + usuario.apellido}"></h5>
-                                <span class="badge rounded-pill mb-1"
+                        <div class="d-flex align-items-start mb-3">
+                            <div class="flex-grow-1">
+                                <h5 class="card-title mb-1" th:text="${usuario.nombre + ' ' + usuario.apellido}"></h5>
+                                <span class="badge rounded-pill mb-2"
                                       th:classappend="${usuario.nivel == 'Principiante' ? 'bg-info' : ''}
                                                     + ${usuario.nivel == 'Intermedio' ? 'bg-primary' : ''}
                                                     + ${usuario.nivel == 'Avanzado' ? 'bg-warning text-dark' : ''}
@@ -44,30 +59,31 @@
                         
                         <div class="mb-2">
                             <small class="text-muted">Edad:</small>
-                            <span th:text="${usuario.edad} + ' años'"></span>
+                            <span th:text="${usuario.edad} + ' años'" class="d-block"></span>
                         </div>
                         
                         <div th:if="${not usuario.expediciones.empty}" class="mb-3">
-                            <p class="small mb-1"><strong>Expediciones:</strong></p>
-                            <div>
+                            <p class="small mb-1 text-muted"><strong>Expediciones:</strong></p>
+                            <div class="d-flex flex-wrap gap-1">
                                 <span th:each="expedicion : ${usuario.expediciones}" 
                                       class="badge bg-purple me-1 mb-1" 
                                       th:text="${expedicion.nombre}"></span>
                             </div>
                         </div>
                         
-                        <div class="mt-auto d-flex justify-content-between">
-                            <a th:href="@{'/usuario/' + ${usuario.id}}" class="btn btn-sm btn-outline-primary">
-                                <i class="bi bi-eye me-1"></i> Ver más
+                        <div class="mt-auto pt-3 d-flex flex-wrap gap-2">
+                            <a th:href="@{'/usuario/' + ${usuario.id}}" class="btn btn-sm btn-outline-primary flex-grow-1">
+                                <i class="bi bi-eye me-1"></i> Ver
                             </a>
                           
-                            <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal"
+                            <button class="btn btn-sm btn-outline-secondary flex-grow-1" data-bs-toggle="modal"
                                 th:attr="data-bs-target='#editUserModal'+${usuario.id}">
                                 <i class="bi bi-pencil me-1"></i> Editar
                             </button>
-                            <form th:action="@{/usuario/eliminar}" method="post" class="d-inline">
+                            
+                            <form th:action="@{/usuario/eliminar}" method="post" class="flex-grow-1">
                                 <input type="hidden" name="id" th:value="${usuario.id}">
-                                <button type="submit" class="btn btn-sm btn-outline-danger">
+                                <button type="submit" class="btn btn-sm btn-outline-danger w-100">
                                     <i class="bi bi-trash me-1"></i> Eliminar
                                 </button>
                             </form>
@@ -77,41 +93,44 @@
             </div>
         </div>
 
-        <!-- Modales de edición -->
         <div th:each="usuario : ${usuarios}">
             <div class="modal fade" th:id="'editUserModal'+${usuario.id}" tabindex="-1" aria-hidden="true">
-                <div class="modal-dialog">
+                <div class="modal-dialog modal-lg">
                     <div class="modal-content">
-                        <div class="modal-header">
+                        <div class="modal-header bg-primary text-white">
                             <h5 class="modal-title">Editar Usuario</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <form th:action="@{/usuario/editar/submit}" method="post">
                             <div class="modal-body">
                                 <input type="hidden" name="id" th:value="${usuario.id}">
-                            
-                                <div class="mb-3">
-                                    <label for="nombre" class="form-label">Nombre</label>
-                                    <input type="text" class="form-control" id="nombre" name="nombre"
-                                        th:value="${usuario.nombre}" required>
+                                
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="nombre" class="form-label">Nombre</label>
+                                        <input type="text" class="form-control" id="nombre" name="nombre"
+                                            th:value="${usuario.nombre}" required>
+                                    </div>
+                                
+                                    <div class="col-md-6 mb-3">
+                                        <label for="apellido" class="form-label">Apellido</label>
+                                        <input type="text" class="form-control" id="apellido" name="apellido"
+                                            th:value="${usuario.apellido}" required>
+                                    </div>
                                 </div>
                             
-                                <div class="mb-3">
-                                    <label for="apellido" class="form-label">Apellido</label>
-                                    <input type="text" class="form-control" id="apellido" name="apellido"
-                                        th:value="${usuario.apellido}" required>
-                                </div>
-                            
-                                <div class="mb-3">
-                                    <label for="fechaNacimiento" class="form-label">Fecha de Nacimiento</label>
-                                    <input type="date" class="form-control" id="fechaNacimiento" name="fechaNacimiento"
-                                        th:value="${#temporals.format(usuario.fechaNacimiento, 'yyyy-MM-dd')}" required>
-                                </div>
-                            
-                                <div class="mb-3">
-                                    <label for="dni" class="form-label">DNI</label>
-                                    <input type="text" class="form-control" id="dni" name="dni"
-                                        th:value="${usuario.dni}" required>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="fechaNacimiento" class="form-label">Fecha de Nacimiento</label>
+                                        <input type="date" class="form-control" id="fechaNacimiento" name="fechaNacimiento"
+                                            th:value="${#temporals.format(usuario.fechaNacimiento, 'yyyy-MM-dd')}" required>
+                                    </div>
+                                
+                                    <div class="col-md-6 mb-3">
+                                        <label for="dni" class="form-label">DNI</label>
+                                        <input type="text" class="form-control" id="dni" name="dni"
+                                            th:value="${usuario.dni}" required>
+                                    </div>
                                 </div>
                             
                                 <div class="mb-3">
@@ -126,21 +145,23 @@
                             
                                 <div class="mb-3">
                                     <label class="form-label">Expediciones</label>
-                                    <div th:each="expedicion : ${todasExpediciones}">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" 
-                                                   th:id="'expedicion_' + ${expedicion.id} + '_' + ${usuario.id}"
-                                                   th:name="expedicionesSeleccionadas" th:value="${expedicion.id}"
-                                                   th:checked="${usuario.expediciones.contains(expedicion)}">
-                                            <label class="form-check-label" 
-                                                   th:for="'expedicion_' + ${expedicion.id} + '_' + ${usuario.id}"
-                                                   th:text="${expedicion.nombre}"></label>
+                                    <div class="row">
+                                        <div th:each="expedicion : ${todasExpediciones}" class="col-md-6">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" 
+                                                       th:id="'expedicion_' + ${expedicion.id} + '_' + ${usuario.id}"
+                                                       th:name="expedicionesSeleccionadas" th:value="${expedicion.id}"
+                                                       th:checked="${usuario.expediciones.contains(expedicion)}">
+                                                <label class="form-check-label" 
+                                                       th:for="'expedicion_' + ${expedicion.id} + '_' + ${usuario.id}"
+                                                       th:text="${expedicion.nombre}"></label>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
                                 <button type="submit" class="btn btn-primary">Guardar Cambios</button>
                             </div>
                         </form>
@@ -150,8 +171,7 @@
         </div>
     </main>
 
-        <div th:replace="~{footer :: footer}"></div>
-
+    <div th:replace="~{footer :: footer}"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>

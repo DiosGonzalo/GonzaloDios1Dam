@@ -6,34 +6,51 @@
     <title th:text="${usuario.nombre} + ' ' + ${usuario.apellido} + ' - Easy Summits'">Detalle Usuario</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <style>
+        .card-expedicion {
+            transition: transform 0.2s;
+        }
+        .card-expedicion:hover {
+            transform: translateY(-3px);
+        }
+        .badge-categoria {
+            font-size: 0.75rem;
+            padding: 0.35em 0.65em;
+        }
+        .info-icon {
+            font-size: 1.25rem;
+            width: 30px;
+            text-align: center;
+        }
+    </style>
 </head>
-<body>
-        <div th:replace="~{Navbar :: navbar}"></div>
+<body class="bg-light">
+    <div th:replace="~{Navbar :: navbar}"></div>
 
-    <div class="container text-center mt-5 pt-4">
-        <h1 class="display-4 fw-bold mb-2" th:text="${usuario.nombre + ' ' + usuario.apellido}"></h1>
-        <span class="badge fs-5 mb-4"
-              th:classappend="${usuario.nivel == 'Principiante' ? 'bg-info' : ''}
-                            + ${usuario.nivel == 'Intermedio' ? 'bg-primary' : ''}
-                            + ${usuario.nivel == 'Avanzado' ? 'bg-warning text-dark' : ''}
-                            + ${usuario.nivel == 'Experto' ? 'bg-danger' : ''}"
-              th:text="${usuario.nivel}"></span>
-    </div>
+    <main class="container my-5">
+        <div class="text-center mb-5">
+            <h1 class="display-5 fw-bold mb-3" th:text="${usuario.nombre + ' ' + usuario.apellido}"></h1>
+            <span class="badge rounded-pill fs-6 px-3 py-2"
+                  th:classappend="${usuario.nivel == 'Principiante' ? 'bg-info' : ''}
+                                + ${usuario.nivel == 'Intermedio' ? 'bg-primary' : ''}
+                                + ${usuario.nivel == 'Avanzado' ? 'bg-warning text-dark' : ''}
+                                + ${usuario.nivel == 'Experto' ? 'bg-danger' : ''}"
+                  th:text="${usuario.nivel}"></span>
+        </div>
 
-    <main class="container mt-4 mb-5">
         <div class="row g-4">
             <div class="col-lg-8">
-                <div class="card shadow-sm">
+                <div class="card shadow-sm mb-4">
                     <div class="card-body">
-                        <h2 class="card-title mb-4">
+                        <h2 class="card-title mb-4 d-flex align-items-center">
                             <i class="bi bi-info-circle-fill text-primary me-2"></i>
                             Información personal
                         </h2>
                        
-                        <div class="row g-3 mb-4">
+                        <div class="row g-3">
                             <div class="col-md-6">
-                                <div class="d-flex align-items-center">
-                                    <i class="bi bi-person-vcard fs-4 text-primary me-3"></i>
+                                <div class="d-flex align-items-center mb-3">
+                                    <i class="bi bi-person-vcard info-icon text-primary me-3"></i>
                                     <div>
                                         <h5 class="mb-1">DNI</h5>
                                         <p class="mb-0 text-muted" th:text="${usuario.dni}"></p>
@@ -41,8 +58,8 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="d-flex align-items-center">
-                                    <i class="bi bi-calendar fs-4 text-primary me-3"></i>
+                                <div class="d-flex align-items-center mb-3">
+                                    <i class="bi bi-calendar info-icon text-primary me-3"></i>
                                     <div>
                                         <h5 class="mb-1">Fecha de Nacimiento</h5>
                                         <p class="mb-0 text-muted" th:text="${#temporals.format(usuario.fechaNacimiento, 'dd/MM/yyyy')}"></p>
@@ -50,8 +67,8 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="d-flex align-items-center">
-                                    <i class="bi bi-person fs-4 text-primary me-3"></i>
+                                <div class="d-flex align-items-center mb-3">
+                                    <i class="bi bi-person info-icon text-primary me-3"></i>
                                     <div>
                                         <h5 class="mb-1">Edad</h5>
                                         <p class="mb-0 text-muted" th:text="${usuario.edad} + ' años'"></p>
@@ -59,135 +76,137 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+
+                <div class="card shadow-sm mb-4">
+                    <div class="card-body">
+                        <h2 class="card-title mb-4 d-flex align-items-center">
+                            <i class="bi bi-graph-up text-primary me-2"></i>
+                            Estadísticas
+                        </h2>
                         
-                        <!-- Sección de Estadísticas -->
-                        <div class="card shadow-sm mb-4">
-                            <div class="card-body">
-                                <h2 class="card-title mb-4">
-                                    <i class="bi bi-graph-up text-primary me-2"></i>
-                                    Estadísticas
-                                </h2>
-                                
-                                <!-- Resumen básico -->
-                                <div class="row g-3 mb-4">
-                                    <div class="col-md-6">
-                                        <div class="card bg-light h-100">
-                                            <div class="card-body text-center">
-                                                <h5 class="card-title text-muted">Total Expediciones</h5>
-                                                <p class="display-6 mb-0" th:text="${usuario.expediciones.size()}">0</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="card bg-light h-100">
-                                            <div class="card-body text-center">
-                                                <h5 class="card-title text-muted">Total Gastado</h5>
-                                                <p class="display-6 mb-0" th:text="${#numbers.formatDecimal(totalGastado, 1, 2, 'POINT') + ' €'}">0 €</p>
-                                            </div>
-                                        </div>
+                        <div class="row g-3 mb-4">
+                            <div class="col-md-6">
+                                <div class="card bg-white h-100 border-0 shadow-sm">
+                                    <div class="card-body text-center py-4">
+                                        <h5 class="card-title text-muted mb-3">Total Expediciones</h5>
+                                        <p class="display-5 fw-bold mb-0 text-primary" th:text="${usuario.expediciones.size()}"></p>
                                     </div>
                                 </div>
-                                
-                                <!-- Desglose de gastos por expedición -->
-                                <h4 class="border-bottom pb-2 mb-3">
-                                    <i class="bi bi-cash-stack me-2"></i>Desglose de Gastos
-                                </h4>
-                                <div class="table-responsive mb-4">
-                                    <table class="table table-hover">
-                                        <thead>
-                                            <tr>
-                                                <th>Expedición</th>
-                                                <th>Fecha</th>
-                                                <th class="text-end">Importe</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr th:each="expedicion : ${usuario.expediciones}">
-                                                <td th:text="${expedicion.nombre}"></td>
-                                                <td th:text="${#temporals.format(expedicion.fechaExpedicion, 'dd/MM/yyyy')}"></td>
-                                                <td class="text-end" th:text="${#numbers.formatDecimal(expedicion.precio, 1, 2, 'POINT') + ' €'}"></td>
-                                            </tr>
-                                            <tr class="table-active fw-bold">
-                                                <td colspan="2">Total</td>
-                                                <td class="text-end" th:text="${#numbers.formatDecimal(totalGastado, 1, 2, 'POINT') + ' €'}"></td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                
-                                <!-- Beneficios -->
-                                <h4 class="border-bottom pb-2 mb-3">
-                                    <i class="bi bi-award me-2"></i>Beneficios
-                                </h4>
-                                
-                                <div th:if="${usuario.expediciones.size() >= 3}" class="alert alert-success d-flex align-items-center">
-                                    <i class="bi bi-award-fill me-3 fs-4"></i>
-                                    <div>
-                                        <h5 class="mb-1">Descuento por cliente frecuente</h5>
-                                        <p class="mb-0">Tiene un 10% de descuento en su próxima expedición.</p>
-                                    </div>
-                                </div>
-                                
-                                <div th:if="${esCumpleanios}" class="alert alert-warning d-flex align-items-center">
-                                    <i class="bi bi-gift-fill me-3 fs-4"></i>
-                                    <div>
-                                        <h5 class="mb-1">¡Feliz cumpleaños!</h5>
-                                        <p class="mb-0">Descuento especial del 15% hoy.</p>
-                                    </div>
-                                </div>
-                                
-                                <div th:if="${usuario.expediciones.size() < 3 and !esCumpleanios}" class="alert alert-info d-flex align-items-center">
-                                    <i class="bi bi-info-circle-fill me-3 fs-4"></i>
-                                    <div>
-                                        <h5 class="mb-1">Sin beneficios activos</h5>
-                                        <p class="mb-0" th:text="'Faltan ' + (3 - usuario.expediciones.size()) + ' expediciones para descuento.'"></p>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="card bg-white h-100 border-0 shadow-sm">
+                                    <div class="card-body text-center py-4">
+                                        <h5 class="card-title text-muted mb-3">Total Gastado</h5>
+                                        <p class="display-5 fw-bold mb-0 text-primary" th:text="${#numbers.formatDecimal(totalGastado, 1, 2, 'POINT') + ' €'}"></p>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                       
-                        <div class="d-flex justify-content-between align-items-center pt-3 border-top">
-                            <a th:href="@{/usuarios}" class="btn btn-outline-primary">
-                                <i class="bi bi-arrow-left me-1"></i> Volver a usuarios
-                            </a>
+                        
+                        <h4 class="border-bottom pb-2 mb-3 d-flex align-items-center">
+                            <i class="bi bi-cash-stack me-2"></i>Desglose de Gastos
+                        </h4>
+                        <div class="table-responsive mb-4">
+                            <table class="table table-hover align-middle">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Expedición</th>
+                                        <th>Fecha</th>
+                                        <th class="text-end">Importe</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="expedicion : ${usuario.expediciones}">
+                                        <td th:text="${expedicion.nombre}"></td>
+                                        <td th:text="${#temporals.format(expedicion.fechaExpedicion, 'dd/MM/yyyy')}"></td>
+                                        <td class="text-end" th:text="${#numbers.formatDecimal(expedicion.precio, 1, 2, 'POINT') + ' €'}"></td>
+                                    </tr>
+                                    <tr class="table-active fw-bold">
+                                        <td colspan="2">Total</td>
+                                        <td class="text-end" th:text="${#numbers.formatDecimal(totalGastado, 1, 2, 'POINT') + ' €'}"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <h4 class="border-bottom pb-2 mb-3 d-flex align-items-center">
+                            <i class="bi bi-award me-2"></i>Beneficios
+                        </h4>
+                        
+                        <div th:if="${usuario.expediciones.size() >= 3}" class="alert alert-success d-flex align-items-center">
+                            <i class="bi bi-award-fill me-3 fs-4"></i>
                             <div>
-                                <button class="btn btn-primary me-2" data-bs-toggle="modal"
-                                    th:attr="data-bs-target='#editUserModal'+${usuario.id}">
-                                    <i class="bi bi-pencil me-1"></i> Editar
-                                </button>
-                                <form th:action="@{/usuario/eliminar}" method="post" class="d-inline">
-                                    <input type="hidden" name="id" th:value="${usuario.id}">
-                                    <button type="submit" class="btn btn-danger">
-                                        <i class="bi bi-trash me-1"></i> Eliminar
-                                    </button>
-                                </form>
+                                <h5 class="mb-1">Descuento por cliente frecuente</h5>
+                                <p class="mb-0">Tiene un 10% de descuento en su próxima expedición.</p>
                             </div>
                         </div>
+                        
+                        <div th:if="${esCumpleanios}" class="alert alert-warning d-flex align-items-center">
+                            <i class="bi bi-gift-fill me-3 fs-4"></i>
+                            <div>
+                                <h5 class="mb-1">¡Feliz cumpleaños!</h5>
+                                <p class="mb-0">Descuento especial del 15% hoy.</p>
+                            </div>
+                        </div>
+                        
+                        <div th:if="${usuario.expediciones.size() < 3 and !esCumpleanios}" class="alert alert-info d-flex align-items-center">
+                            <i class="bi bi-info-circle-fill me-3 fs-4"></i>
+                            <div>
+                                <h5 class="mb-1">Sin beneficios activos</h5>
+                                <p class="mb-0" th:text="'Faltan ' + (3 - usuario.expediciones.size()) + ' expediciones para descuento.'"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="d-flex flex-column flex-sm-row justify-content-between gap-3 mb-5">
+                    <a th:href="@{/usuarios}" class="btn btn-outline-primary">
+                        <i class="bi bi-arrow-left me-1"></i> Volver a usuarios
+                    </a>
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-primary" data-bs-toggle="modal"
+                            th:attr="data-bs-target='#editUserModal'+${usuario.id}">
+                            <i class="bi bi-pencil me-1"></i> Editar
+                        </button>
+                        <form th:action="@{/usuario/eliminar}" method="post" class="d-inline">
+                            <input type="hidden" name="id" th:value="${usuario.id}">
+                            <button type="submit" class="btn btn-outline-danger">
+                                <i class="bi bi-trash me-1"></i> Eliminar
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>
            
             <div class="col-lg-4">
-                <div class="card shadow-sm">
+                <div class="card shadow-sm sticky-top" style="top: 20px;">
                     <div class="card-body">
-                        <h3 class="card-title mb-4">
+                        <h3 class="card-title mb-4 d-flex align-items-center">
                             <i class="bi bi-map-fill text-primary me-2"></i>
                             Expediciones
                             <span class="badge bg-secondary ms-2" th:text="${usuario.expediciones.size()}"></span>
                         </h3>
                        
                         <div th:if="${not usuario.expediciones.empty}">
-                            <div th:each="expedicion : ${usuario.expediciones}" class="card shadow-sm mb-3">
-                                <div class="card-body">
+                            <div th:each="expedicion : ${usuario.expediciones}" class="card card-expedicion shadow-sm mb-3 border-0">
+                                <div class="card-body p-3">
                                     <div class="d-flex align-items-center">
                                         <div class="flex-shrink-0">
-                                            <img th:src="${expedicion.imagenUrl}" class="rounded" width="60" height="60" alt="Expedición">
+                                            <img th:src="${expedicion.imagenUrl}" class="rounded" width="60" height="60" alt="Expedición" style="object-fit: cover;">
                                         </div>
                                         <div class="flex-grow-1 ms-3">
                                             <h5 class="mb-1" th:text="${expedicion.nombre}"></h5>
-                                            <p class="mb-1 small text-muted" th:text="${#temporals.format(expedicion.fechaExpedicion, 'dd/MM/yyyy')}"></p>
-                                            <p class="mb-1 small text-muted" th:text="${#numbers.formatDecimal(expedicion.precio, 1, 2, 'POINT') + ' €'}"></p>
-                                            <span class="badge" 
+                                            <p class="mb-1 small text-muted">
+                                                <i class="bi bi-calendar me-1"></i>
+                                                <span th:text="${#temporals.format(expedicion.fechaExpedicion, 'dd/MM/yyyy')}"></span>
+                                            </p>
+                                            <p class="mb-2 small text-muted">
+                                                <i class="bi bi-cash-coin me-1"></i>
+                                                <span th:text="${#numbers.formatDecimal(expedicion.precio, 1, 2, 'POINT') + ' €'}"></span>
+                                            </p>
+                                            <span class="badge badge-categoria" 
                                                   th:classappend="${expedicion.categoria == 0 ? 'bg-info' : ''} 
                                                                 + ${expedicion.categoria == 1 ? 'bg-success' : ''} 
                                                                 + ${expedicion.categoria == 2 ? 'bg-warning text-dark' : ''} 
@@ -216,75 +235,83 @@
         </div>
     </main>
 
-    <!-- Modal de edición -->
-    <div class="modal fade" th:id="'editUserModal'+${usuario.id}" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Editar Usuario</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <form th:action="@{/usuario/editar/submit}" method="post">
-                    <div class="modal-body">
-                        <input type="hidden" name="id" th:value="${usuario.id}">
-                       
-                        <div class="mb-3">
+<div class="modal fade" th:id="'editUserModal'+${usuario.id}" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title">Editar Usuario</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form th:action="@{/usuario/editar/submit}" method="post">
+                <div class="modal-body">
+                    <input type="hidden" name="id" th:value="${usuario.id}">
+                   
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
                             <label for="nombre" class="form-label">Nombre</label>
                             <input type="text" class="form-control" id="nombre" name="nombre"
                                    th:value="${usuario.nombre}" required>
                         </div>
                        
-                        <div class="mb-3">
+                        <div class="col-md-6 mb-3">
                             <label for="apellido" class="form-label">Apellido</label>
                             <input type="text" class="form-control" id="apellido" name="apellido"
                                    th:value="${usuario.apellido}" required>
                         </div>
-                       
-                        <div class="mb-3">
+                    </div>
+                   
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
                             <label for="fechaNacimiento" class="form-label">Fecha de Nacimiento</label>
                             <input type="date" class="form-control" id="fechaNacimiento" name="fechaNacimiento"
                                    th:value="${#temporals.format(usuario.fechaNacimiento, 'yyyy-MM-dd')}" required>
                         </div>
                        
-                        <div class="mb-3">
+                        <div class="col-md-6 mb-3">
                             <label for="dni" class="form-label">DNI</label>
                             <input type="text" class="form-control" id="dni" name="dni"
                                    th:value="${usuario.dni}" required>
                         </div>
-                       
-                        <div class="mb-3">
-                            <label for="nivel" class="form-label">Nivel</label>
-                            <select class="form-select" id="nivel" name="nivel" required>
-                                <option value="Principiante" th:selected="${usuario.nivel == 'Principiante'}">Principiante</option>
-                                <option value="Intermedio" th:selected="${usuario.nivel == 'Intermedio'}">Intermedio</option>
-                                <option value="Avanzado" th:selected="${usuario.nivel == 'Avanzado'}">Avanzado</option>
-                                <option value="Experto" th:selected="${usuario.nivel == 'Experto'}">Experto</option>
-                            </select>
-                        </div>
-                       
-                        <div class="mb-3">
-                            <label class="form-label">Expediciones</label>
-                            <div th:each="expedicion : ${todasExpediciones}" class="mb-2">
+                    </div>
+                   
+                    <div class="mb-3">
+                        <label for="nivel" class="form-label">Nivel</label>
+                        <select class="form-select" id="nivel" name="nivel" required>
+                            <option value="Principiante" th:selected="${usuario.nivel == 'Principiante'}">Principiante</option>
+                            <option value="Intermedio" th:selected="${usuario.nivel == 'Intermedio'}">Intermedio</option>
+                            <option value="Avanzado" th:selected="${usuario.nivel == 'Avanzado'}">Avanzado</option>
+                            <option value="Experto" th:selected="${usuario.nivel == 'Experto'}">Experto</option>
+                        </select>
+                    </div>
+                   
+                    <div class="mb-3">
+                        <label class="form-label">Expediciones</label>
+                        <div class="row">
+                            <div th:each="expedicion : ${todasExpediciones}" class="col-md-6 mb-2">
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" 
-                                           th:id="'expedicion_' + ${expedicion.id} + '_' + ${usuario.id}"
-                                           th:name="expedicionesSeleccionadas" th:value="${expedicion.id}"
-                                           th:checked="${usuario.expediciones.contains(expedicion)}">
-                                    <label class="form-check-label" 
-                                           th:for="'expedicion_' + ${expedicion.id} + '_' + ${usuario.id}"
-                                           th:text="${expedicion.nombre + ' (' + #numbers.formatDecimal(expedicion.precio, 1, 2, 'POINT') + ' €)'}"></label>
+                                        th:id="'expedicion_' + ${expedicion.id} + '_' + ${usuario.id}"
+                                        th:name="expedicionesSeleccionadas" 
+                                        th:value="${expedicion.id}"
+                                        th:checked="${#lists.contains(usuario.expediciones.![id], expedicion.id)}">
+                                    <label class="form-check-label d-flex justify-content-between" 
+                                        th:for="'expedicion_' + ${expedicion.id} + '_' + ${usuario.id}">
+                                        <span th:text="${expedicion.nombre}"></span>
+                                        <span class="text-muted" th:text="${#numbers.formatDecimal(expedicion.precio, 1, 2, 'POINT') + ' €'}"></span>
+                                    </label>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-                    </div>
-                </form>
-            </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                </div>
+            </form>
         </div>
     </div>
+</div>
 
     <div th:replace="~{footer :: footer}"></div>
 

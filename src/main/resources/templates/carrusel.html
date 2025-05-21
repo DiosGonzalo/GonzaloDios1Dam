@@ -6,9 +6,9 @@
     <title>Galería - Easy Summits</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="/css/cssCarrusel.css"> <!-- Ruta a tu hoja de estilos -->
 </head>
 <body>
-    <!-- Navbar Fragment -->
     <div th:replace="~{Navbar :: navbar}"></div>
 
     <header class="bg-dark text-white py-5 mb-4" style="background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80'); background-size: cover; background-position: center;">
@@ -29,35 +29,35 @@
             </div>
             <div class="carousel-inner rounded-3">
                 <div class="carousel-item active">
-                <img src="../imagenes/everest.jpg" class="img-fluid rounded shadow" alt="Expedición">
+                    <img src="../imagenes/everest.jpg" class="d-block w-100" alt="Expedición">
                     <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-75 rounded">
                         <h5>Monte Everest - 2023</h5>
                         <p>Nuestro equipo alcanzando la cima del techo del mundo.</p>
                     </div>
                 </div>
                 <div class="carousel-item">
-                <img src="../imagenes/k2.webp" class="img-fluid rounded shadow" alt="Expedición">
+                    <img src="../imagenes/k2.webp" class="d-block w-100" alt="Expedición">
                     <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-75 rounded">
                         <h5>Alpes Suizos - 2022</h5>
                         <p>Formación en técnicas de escalada en hielo.</p>
                     </div>
                 </div>
                 <div class="carousel-item">
-                <img src="../imagenes/matterhorn.jpg" class="img-fluid rounded shadow" alt="Expedición">
+                    <img src="../imagenes/matterhorn.jpg" class="d-block w-100" alt="Expedición">
                     <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-75 rounded">
                         <h5>Kilimanjaro - 2021</h5>
                         <p>Celebrando en la cima del continente africano.</p>
                     </div>
                 </div>
                 <div class="carousel-item">
-                <img src="../imagenes/mulhacen.webp" class="img-fluid rounded shadow" alt="Expedición">
+                    <img src="../imagenes/mulhacen.webp" class="d-block w-100" alt="Expedición">
                     <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-75 rounded">
                         <h5>Pirineos - 2020</h5>
                         <p>Primera expedición después del confinamiento.</p>
                     </div>
                 </div>
                 <div class="carousel-item">
-                <img src="../imagenes/mont-blanc-mountain.jpg" class="img-fluid rounded shadow" alt="Expedición">
+                    <img src="../imagenes/mont-blanc-mountain.jpg" class="d-block w-100" alt="Expedición">
                     <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-75 rounded">
                         <h5>Montañas Rocosas - 2019</h5>
                         <p>Expedición de iniciación a la alta montaña.</p>
@@ -74,8 +74,6 @@
             </button>
         </div>
 
-       
-
         <section class="mb-5">
             <h2 class="text-center mb-4 pb-2 border-bottom">
                 <i class="bi bi-images text-primary me-2"></i>Nuestras Expediciones en Imágenes
@@ -84,37 +82,35 @@
             
             <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 g-3">
                 <div class="col">
-                    <img src="../imagenes/expedicion 1.jpg" class="img-fluid rounded shadow" alt="Expedición">
+                    <img src="../imagenes/expedicion 1.jpg" class="gallery-img rounded shadow" alt="Expedición">
                 </div>
                 <div class="col">
-                    <img src="../imagenes/expedicion 2.jpg" class="img-fluid rounded shadow" alt="Expedición">
-                </div> 675666    65655656566666666666666666666666666666666666666666666666666666666666666666666666666
+                    <img src="../imagenes/expedicion 2.jpeg" class="gallery-img rounded shadow" alt="Expedición">
+                </div> 
                 <div class="col">
-                    <img src="../imagenes/expedicion 3.jpg" class="img-fluid rounded shadow" alt="Expedición">
+                    <img src="../imagenes/expedicion 3.jpg" class="gallery-img rounded shadow" alt="Expedición">
                 </div>
                 <div class="col">
-                    <img src="../imagenes/expedicion 4.jpg" class="img-fluid rounded shadow" alt="Expedición">
+                    <img src="../imagenes/expedicion 4.jpg" class="gallery-img rounded shadow" alt="Expedición">
                 </div>
                 <div class="col">
-                    <img src="../imagenes/expedicion 5.jpg" class="img-fluid rounded shadow" alt="Expedición">
+                    <img src="../imagenes/expedicion 5.jpg" class="gallery-img rounded shadow" alt="Expedición">
                 </div>
                 <div class="col">
-                    <img src="../imagenes/expedicion 6.jpg" class="img-fluid rounded shadow" alt="Expedición">
+                    <img src="../imagenes/expedicion 6.jpg" class="gallery-img rounded shadow" alt="Expedición">
                 </div>
                 <div class="col">
-                    <img src="../imagenes/expedicion 7.jpg" class="img-fluid rounded shadow" alt="Expedición">
+                    <img src="../imagenes/expedicion 7.jpg" class="gallery-img rounded shadow" alt="Expedición">
                 </div>
                 <div class="col">
-                    <img src="../imagenes/expedicion 8.jpg" class="img-fluid rounded shadow" alt="Expedición">
+                    <img src="../imagenes/expedicion 8.jpg" class="gallery-img rounded shadow" alt="Expedición">
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- Footer Fragment -->
     <div th:replace="~{footer :: footer}"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    
 </body>
 </html>

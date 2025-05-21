@@ -6,241 +6,327 @@
     <title>Expediciones - Easy Summits</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <style>
+        .sidebar {
+            width: 280px;
+            position: sticky;
+            top: 80px;
+            height: calc(100vh - 80px);
+            overflow-y: auto;
+        }
+        .main-content {
+            margin-left: 280px;
+            flex: 1;
+        }
+        @media (max-width: 992px) {
+            .sidebar {
+                width: 100%;
+                position: static;
+                height: auto;
+            }
+            .main-content {
+                margin-left: 0;
+            }
+        }
+    </style>
 </head>
 <body class="pt-5 background-light">
-        <div th:replace="~{Navbar :: navbar}"></div>
+    <div th:replace="~{Navbar :: navbar}"></div>
 
-
-    <main class="container mt-5 pt-3">
-        <div class="d-flex justify-content-between align-items-center mb-5">
-            <div class="text-center text-md-start">
-                <h1 class="position-relative">
-                    <i class="bi bi-map me-2"></i>Nuestras Expediciones
-                </h1>
-                <p class="text-muted">Descubre las mejores rutas a cumbres emblemáticas</p>
-            </div>
-            <a th:href="@{/nueva}" class="btn btn-primary btn-lg d-none d-md-block">
-                <i class="bi bi-plus-circle"></i> Agregar Expedición
-            </a>
-        </div>
-
-        <div class="bg-white p-3 rounded shadow-sm mb-4">
-            <div class="row g-3">
-                <div class="col-md-4">
-                    <form th:action="@{/expedicion/buscar}" method="post" class="input-group">
-                        <span class="input-group-text"><i class="bi bi-search"></i></span>
-                        <input type="text" class="form-control" name="nombre" placeholder="Buscar..." th:value="${nombreBusqueda}">
-                    </form>
-                </div>
-                
-                <div class="col-md-4">
-                    <form th:action="@{/expediciones/filtrar}" method="get" class="input-group">
-                        <span class="input-group-text"><i class="bi bi-filter"></i></span>
-                        <select class="form-select" name="categoria" onchange="this.form.submit()">
-                            <option value="4" th:selected="${categoriaFiltro == null || categoriaFiltro == 4}">Todas las categorías</option>
-                            <option value="0" th:selected="${categoriaFiltro == 0}">Básico</option>
-                            <option value="1" th:selected="${categoriaFiltro == 1}">4000m (Fácil)</option>
-                            <option value="2" th:selected="${categoriaFiltro == 2}">6000m (Moderado)</option>
-                            <option value="3" th:selected="${categoriaFiltro == 3}">8000m (Difícil)</option>
-                        </select>
-                    </form>
-                </div>
-                
-                <div class="col-md-4">
-                    <div class="btn-group w-100" role="group">
-                        <form th:action="@{/expedicion/mayorPrecio}" method="post" class="flex-grow-1">
-                            <button type="submit" class="btn btn-outline-secondary" 
-                                    th:classappend="${orden == 'precio-desc'} ? 'active' : ''">
-                                <i class="bi bi-arrow-up"></i> Precio
-                            </button>
-                        </form>
-                        <form th:action="@{/expedicion/menorPrecio}" method="post" class="flex-grow-1">
-                            <button type="submit" class="btn btn-outline-secondary" 
-                                    th:classappend="${orden == 'precio-asc'} ? 'active' : ''">
-                                <i class="bi bi-arrow-down"></i> Precio
-                            </button>
-                        </form>
-                        <form th:action="@{/expedicion/fechaMayor}" method="post" class="flex-grow-1">
-                            <button type="submit" class="btn btn-outline-secondary" 
-                                    th:classappend="${orden == 'fechaMayor'} ? 'active' : ''">
-                                <i class="bi bi-arrow-up"></i> Fecha
-                            </button>
-                        </form>
-                        <form th:action="@{/expedicion/fechaMenor}" method="post" class="flex-grow-1">
-                            <button type="submit" class="btn btn-outline-secondary" 
-                                    th:classappend="${orden == 'fechaMenor'} ? 'active' : ''">
-                                <i class="bi bi-arrow-down"></i> Fecha
-                            </button>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-3 p-0 bg-light sidebar d-none d-lg-block">
+                <div class="p-4">
+                    <h4 class="mb-4"><i class="bi bi-funnel"></i> Filtros</h4>
+                    
+                    <div class="mb-4">
+                        <h6 class="mb-3">Buscar expedición</h6>
+                        <form th:action="@{/expedicion/buscar}" method="post" class="input-group">
+                            <span class="input-group-text"><i class="bi bi-search"></i></span>
+                            <input type="text" class="form-control" name="nombre" placeholder="Nombre..." th:value="${nombreBusqueda}">
                         </form>
                     </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Botón flotante para móviles -->
-        <div class="d-block d-md-none fixed-bottom mb-3 me-3" style="z-index: 1030;">
-            <a th:href="@{/nueva}" class="btn btn-primary rounded-circle p-3 shadow-lg float-end">
-                <i class="bi bi-plus fs-4"></i>
-            </a>
-        </div>
-
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-            <div class="col" th:each="expedicion : ${expediciones}">
-                <div class="card h-100 shadow-sm">
-                    <!-- Badge de oferta - SOLO se muestra si hay descuento -->
-                    <div th:if="${expedicion.precioOriginal != null && expedicion.precio < expedicion.precioOriginal}" 
-                         class="position-absolute top-0 end-0 m-2">
-                        <span class="badge bg-danger">
-                            ¡Oferta! 
-                            <span th:text="${#numbers.formatInteger(100 - (expedicion.precio / expedicion.precioOriginal * 100), 0)}"></span>%
-                        </span>
+                    
+                    <div class="mb-4">
+                        <h6 class="mb-3">Filtrar por categoría</h6>
+                        <form th:action="@{/expediciones/filtrar}" method="get">
+                            <select class="form-select" name="categoria" onchange="this.form.submit()">
+                                <option value="4" th:selected="${categoriaFiltro == null || categoriaFiltro == 4}">Todas las categorías</option>
+                                <option value="0" th:selected="${categoriaFiltro == 0}">Básico</option>
+                                <option value="1" th:selected="${categoriaFiltro == 1}">4000m (Fácil)</option>
+                                <option value="2" th:selected="${categoriaFiltro == 2}">6000m (Moderado)</option>
+                                <option value="3" th:selected="${categoriaFiltro == 3}">8000m (Difícil)</option>
+                            </select>
+                        </form>
                     </div>
                     
-                    <img th:src="${expedicion.imagenUrl}" class="card-img-top" style="height: 200px; object-fit: cover;" alt="Expedición">
-                    
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between align-items-start mb-3">
-                            <h5 class="card-title" th:text="${expedicion.nombre}"></h5>
-                            <div class="text-end">
-                                <span class="fw-bold text-primary" th:text="${'€' + #numbers.formatDecimal(expedicion.precio, 1, 2, 'COMMA')}"></span>
-                                <!-- Precio original tachado SOLO si hay descuento -->
-                                <span th:if="${expedicion.precioOriginal != null && expedicion.precio < expedicion.precioOriginal}" 
-                                      class="text-muted text-decoration-line-through small d-block" 
-                                      th:text="${'€' + #numbers.formatDecimal(expedicion.precioOriginal, 1, 2, 'COMMA')}"></span>
-                            </div>
-                        </div>
-                        
-                        <div class="mb-3">
-                            <span class="badge" 
-                                  th:classappend="${expedicion.categoria == 0 ? 'bg-info' : ''} 
-                                                + ${expedicion.categoria == 1 ? 'bg-success' : ''} 
-                                                + ${expedicion.categoria == 2 ? 'bg-warning text-dark' : ''} 
-                                                + ${expedicion.categoria == 3 ? 'bg-danger' : ''}"
-                                  th:text="${expedicion.categoria == 0 ? 'Básico' : ''} 
-                                           + ${expedicion.categoria == 1 ? '4000m (Fácil)' : ''} 
-                                           + ${expedicion.categoria == 2 ? '6000m (Moderado)' : ''} 
-                                           + ${expedicion.categoria == 3 ? '8000m (Difícil)' : ''}">
-                            </span>
-                        </div>
-                        
-                        <div class="d-flex justify-content-between text-muted small mb-3">
-                            <div>
-                                <i class="bi bi-calendar me-1"></i>
-                                <span th:text="${#temporals.format(expedicion.fechaExpedicion, 'dd/MM/yyyy')}"></span>
-                            </div>
-                            <div>
-                                <i class="bi bi-people me-1"></i>
-                                <span th:text="${expedicion.usuarios.size() + '/' + expedicion.capacidad + ' plazas'}"></span>
-                            </div>
-                        </div>
-                        
-                        <!-- Motivo del descuento - SOLO si hay descuento y motivo -->
-                        <div th:if="${expedicion.precioOriginal != null && expedicion.precio < expedicion.precioOriginal && expedicion.motivoDescuento != null}" 
-                             class="alert alert-info p-2 mb-3">
-                            <i class="bi bi-tag"></i>
-                            <span th:text="${expedicion.motivoDescuento}"></span>
-                        </div>
-                        
-                        <div class="d-flex justify-content-between align-items-center">
-                            <small class="text-muted">
-                                <i class="bi bi-clock me-1"></i>
-                                <span th:text="${'Hasta ' + #temporals.format(expedicion.fechaLimite, 'dd/MM')}"></span>
-                            </small>
-                            <div>
-                                <a th:href="@{'/expedicion/' + ${expedicion.id}}" class="btn btn-sm btn-primary me-1">
-                                    <i class="bi bi-eye"></i>
-                                </a>
-                                <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" 
-                                    th:attr="data-bs-target='#editModal'+${expedicion.id}">
-                                    <i class="bi bi-pencil"></i>
+                    <div class="mb-4">
+                        <h6 class="mb-3">Ordenar por</h6>
+                        <div class="list-group">
+                            <form th:action="@{/expedicion/mayorPrecio}" method="post">
+                                <button type="submit" class="list-group-item list-group-item-action" 
+                                        th:classappend="${orden == 'precio-desc'} ? 'active' : ''">
+                                    <i class="bi bi-arrow-up"></i> Precio (mayor a menor)
                                 </button>
-                                <form th:action="@{/expedicion/eliminar}" method="post" class="d-inline ms-1">
-                                    <input type="hidden" name="id" th:value="${expedicion.id}">
-                                    <button type="submit" class="btn btn-sm btn-outline-danger">
-                                        <i class="bi bi-trash"></i>
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Modal de edición -->
-                <div class="modal fade" th:id="'editModal'+${expedicion.id}" tabindex="-1" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">Editar Expedición</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <form th:action="@{/expedicion/editar}" method="post">
-                                <div class="modal-body">
-                                    <input type="hidden" name="id" th:value="${expedicion.id}">
-                                    
-                                    <div class="mb-3">
-                                        <label for="nombre" class="form-label">Nombre</label>
-                                        <input type="text" class="form-control" id="nombre" name="nombre" 
-                                               th:value="${expedicion.nombre}" required>
-                                    </div>
-                                    
-                                    <div class="mb-3">
-                                        <label for="precio" class="form-label">Precio Actual (€)</label>
-                                        <input type="number" step="0.01" class="form-control" id="precio" 
-                                               name="precio" th:value="${expedicion.precio}" required>
-                                    </div>
-                                    
-                                    <div class="mb-3">
-                                        <label for="precioOriginal" class="form-label">Precio Base (€)</label>
-                                        <input type="number" step="0.01" class="form-control" id="precioOriginal" 
-                                               name="precioOriginal" th:value="${expedicion.precioOriginal}">
-                                        <small class="text-muted">Dejar vacío si no hay precio base diferente</small>
-                                    </div>
-                                    
-                                    <div class="mb-3">
-                                        <label for="capacidad" class="form-label">Capacidad</label>
-                                        <input type="number" class="form-control" id="capacidad" 
-                                               name="capacidad" th:value="${expedicion.capacidad}" required>
-                                    </div>
-                                    
-                                    <div class="mb-3">
-                                        <label for="categoria" class="form-label">Categoría</label>
-                                        <select class="form-select" id="categoria" name="categoria" required>
-                                            <option value="0" th:selected="${expedicion.categoria == 0}">Básico</option>
-                                            <option value="1" th:selected="${expedicion.categoria == 1}">4000m (Fácil)</option>
-                                            <option value="2" th:selected="${expedicion.categoria == 2}">6000m (Moderado)</option>
-                                            <option value="3" th:selected="${expedicion.categoria == 3}">8000m (Difícil)</option>
-                                        </select>
-                                    </div>
-                                    
-                                    <div class="mb-3">
-                                        <label for="fechaExpedicion" class="form-label">Fecha de Expedición</label>
-                                        <input type="date" class="form-control" id="fechaExpedicion" 
-                                               name="fechaExpedicion" th:value="${#temporals.format(expedicion.fechaExpedicion, 'yyyy-MM-dd')}" required>
-                                    </div>
-                                    
-                                    <div class="mb-3">
-                                        <label for="fechaLimite" class="form-label">Fecha Límite de Inscripción</label>
-                                        <input type="date" class="form-control" id="fechaLimite" 
-                                               name="fechaLimite" th:value="${#temporals.format(expedicion.fechaLimite, 'yyyy-MM-dd')}" required>
-                                    </div>
-                                    
-                                    <div class="mb-3">
-                                        <label for="imagenUrl" class="form-label">URL de la Imagen</label>
-                                        <input type="url" class="form-control" id="imagenUrl" 
-                                               name="imagenUrl" th:value="${expedicion.imagenUrl}" required>
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
-                                </div>
+                            </form>
+                            <form th:action="@{/expedicion/menorPrecio}" method="post">
+                                <button type="submit" class="list-group-item list-group-item-action" 
+                                        th:classappend="${orden == 'precio-asc'} ? 'active' : ''">
+                                    <i class="bi bi-arrow-down"></i> Precio (menor a mayor)
+                                </button>
+                            </form>
+                            <form th:action="@{/expedicion/fechaMayor}" method="post">
+                                <button type="submit" class="list-group-item list-group-item-action" 
+                                        th:classappend="${orden == 'fechaMayor'} ? 'active' : ''">
+                                    <i class="bi bi-arrow-up"></i> Fecha (más reciente)
+                                </button>
+                            </form>
+                            <form th:action="@{/expedicion/fechaMenor}" method="post">
+                                <button type="submit" class="list-group-item list-group-item-action" 
+                                        th:classappend="${orden == 'fechaMenor'} ? 'active' : ''">
+                                    <i class="bi bi-arrow-down"></i> Fecha (más antigua)
+                                </button>
                             </form>
                         </div>
                     </div>
+                    
+                    <div class="d-block d-lg-none">
+                        <a th:href="@{/nueva}" class="btn btn-primary w-100">
+                            <i class="bi bi-plus-circle"></i> Agregar Expedición
+                        </a>
+                    </div>
                 </div>
             </div>
+            
+            <div class="col-lg-9 main-content">
+                <main class="container mt-5 pt-3">
+                    <div class="d-flex justify-content-between align-items-center mb-5">
+                        <div class="text-center text-md-start">
+                            <h1 class="position-relative">
+                                <i class="bi bi-map me-2"></i>Nuestras Expediciones
+                            </h1>
+                            <p class="text-muted">Descubre las mejores rutas a cumbres emblemáticas</p>
+                        </div>
+                        <a th:href="@{/nueva}" class="btn btn-primary btn-lg d-none d-lg-block">
+                            <i class="bi bi-plus-circle"></i> Agregar Expedición
+                        </a>
+                    </div>
+
+                    <div class="bg-white p-3 rounded shadow-sm mb-4 d-lg-none">
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <form th:action="@{/expedicion/buscar}" method="post" class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-search"></i></span>
+                                    <input type="text" class="form-control" name="nombre" placeholder="Buscar..." th:value="${nombreBusqueda}">
+                                </form>
+                            </div>
+                            
+                            <div class="col-12">
+                                <form th:action="@{/expediciones/filtrar}" method="get" class="input-group">
+                                    <span class="input-group-text"><i class="bi bi-filter"></i></span>
+                                    <select class="form-select" name="categoria" onchange="this.form.submit()">
+                                        <option value="4" th:selected="${categoriaFiltro == null || categoriaFiltro == 4}">Todas las categorías</option>
+                                        <option value="0" th:selected="${categoriaFiltro == 0}">Básico</option>
+                                        <option value="1" th:selected="${categoriaFiltro == 1}">4000m (Fácil)</option>
+                                        <option value="2" th:selected="${categoriaFiltro == 2}">6000m (Moderado)</option>
+                                        <option value="3" th:selected="${categoriaFiltro == 3}">8000m (Difícil)</option>
+                                    </select>
+                                </form>
+                            </div>
+                            
+                            <div class="col-12">
+                                <div class="btn-group w-100" role="group">
+                                    <form th:action="@{/expedicion/mayorPrecio}" method="post" class="flex-grow-1">
+                                        <button type="submit" class="btn btn-outline-secondary" 
+                                                th:classappend="${orden == 'precio-desc'} ? 'active' : ''">
+                                            <i class="bi bi-arrow-up"></i> Precio
+                                        </button>
+                                    </form>
+                                    <form th:action="@{/expedicion/menorPrecio}" method="post" class="flex-grow-1">
+                                        <button type="submit" class="btn btn-outline-secondary" 
+                                                th:classappend="${orden == 'precio-asc'} ? 'active' : ''">
+                                            <i class="bi bi-arrow-down"></i> Precio
+                                        </button>
+                                    </form>
+                                    <form th:action="@{/expedicion/fechaMayor}" method="post" class="flex-grow-1">
+                                        <button type="submit" class="btn btn-outline-secondary" 
+                                                th:classappend="${orden == 'fechaMayor'} ? 'active' : ''">
+                                            <i class="bi bi-arrow-up"></i> Fecha
+                                        </button>
+                                    </form>
+                                    <form th:action="@{/expedicion/fechaMenor}" method="post" class="flex-grow-1">
+                                        <button type="submit" class="btn btn-outline-secondary" 
+                                                th:classappend="${orden == 'fechaMenor'} ? 'active' : ''">
+                                            <i class="bi bi-arrow-down"></i> Fecha
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-block d-lg-none fixed-bottom mb-3 me-3" style="z-index: 1030;">
+                        <a th:href="@{/nueva}" class="btn btn-primary rounded-circle p-3 shadow-lg float-end">
+                            <i class="bi bi-plus fs-4"></i>
+                        </a>
+                    </div>
+
+                    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                        <div class="col" th:each="expedicion : ${expediciones}">
+                            <div class="card h-100 shadow-sm">
+                                <div th:if="${expedicion.precioOriginal != null && expedicion.precio < expedicion.precioOriginal}" 
+                                     class="position-absolute top-0 end-0 m-2">
+                                    <span class="badge bg-danger">
+                                        ¡Oferta! 
+                                        <span th:text="${#numbers.formatInteger(100 - (expedicion.precio / expedicion.precioOriginal * 100), 0)}"></span>%
+                                    </span>
+                                </div>
+                                
+                                <img th:src="${expedicion.imagenUrl}" class="card-img-top" style="height: 200px; object-fit: cover;" alt="Expedición">
+                                
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between align-items-start mb-3">
+                                        <h5 class="card-title" th:text="${expedicion.nombre}"></h5>
+                                        <div class="text-end">
+                                            <span class="fw-bold text-primary" th:text="${'€' + #numbers.formatDecimal(expedicion.precio, 1, 2, 'COMMA')}"></span>
+                                            <span th:if="${expedicion.precioOriginal != null && expedicion.precio < expedicion.precioOriginal}" 
+                                                  class="text-muted text-decoration-line-through small d-block" 
+                                                  th:text="${'€' + #numbers.formatDecimal(expedicion.precioOriginal, 1, 2, 'COMMA')}"></span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="mb-3">
+                                        <span class="badge" 
+                                              th:classappend="${expedicion.categoria == 0 ? 'bg-info' : ''} 
+                                                            + ${expedicion.categoria == 1 ? 'bg-success' : ''} 
+                                                            + ${expedicion.categoria == 2 ? 'bg-warning text-dark' : ''} 
+                                                            + ${expedicion.categoria == 3 ? 'bg-danger' : ''}"
+                                              th:text="${expedicion.categoria == 0 ? 'Básico' : ''} 
+                                                       + ${expedicion.categoria == 1 ? '4000m (Fácil)' : ''} 
+                                                       + ${expedicion.categoria == 2 ? '6000m (Moderado)' : ''} 
+                                                       + ${expedicion.categoria == 3 ? '8000m (Difícil)' : ''}">
+                                        </span>
+                                    </div>
+                                    
+                                    <div class="d-flex justify-content-between text-muted small mb-3">
+                                        <div>
+                                            <i class="bi bi-calendar me-1"></i>
+                                            <span th:text="${#temporals.format(expedicion.fechaExpedicion, 'dd/MM/yyyy')}"></span>
+                                        </div>
+                                        <div>
+                                            <i class="bi bi-people me-1"></i>
+                                            <span th:text="${expedicion.usuarios.size() + '/' + expedicion.capacidad + ' plazas'}"></span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div th:if="${expedicion.precioOriginal != null && expedicion.precio < expedicion.precioOriginal && expedicion.motivoDescuento != null}" 
+                                         class="alert alert-info p-2 mb-3">
+                                        <i class="bi bi-tag"></i>
+                                        <span th:text="${expedicion.motivoDescuento}"></span>
+                                    </div>
+                                    
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <small class="text-muted">
+                                            <i class="bi bi-clock me-1"></i>
+                                            <span th:text="${'Hasta ' + #temporals.format(expedicion.fechaLimite, 'dd/MM')}"></span>
+                                        </small>
+                                        <div>
+                                            <a th:href="@{'/expedicion/' + ${expedicion.id}}" class="btn btn-sm btn-primary me-1">
+                                                <i class="bi bi-eye"></i>
+                                            </a>
+                                            <button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" 
+                                                th:attr="data-bs-target='#editModal'+${expedicion.id}">
+                                                <i class="bi bi-pencil"></i>
+                                            </button>
+                                            <form th:action="@{/expedicion/eliminar}" method="post" class="d-inline ms-1">
+                                                <input type="hidden" name="id" th:value="${expedicion.id}">
+                                                <button type="submit" class="btn btn-sm btn-outline-danger">
+                                                    <i class="bi bi-trash"></i>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="modal fade" th:id="'editModal'+${expedicion.id}" tabindex="-1" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Editar Expedición</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <form th:action="@{/expedicion/editar}" method="post">
+                                            <div class="modal-body">
+                                                <input type="hidden" name="id" th:value="${expedicion.id}">
+                                                
+                                                <div class="mb-3">
+                                                    <label for="nombre" class="form-label">Nombre</label>
+                                                    <input type="text" class="form-control" id="nombre" name="nombre" 
+                                                           th:value="${expedicion.nombre}" required>
+                                                </div>
+                                                
+                                                <div class="mb-3">
+                                                    <label for="precio" class="form-label">Precio Actual (€)</label>
+                                                    <input type="number" step="0.01" class="form-control" id="precio" 
+                                                           name="precio" th:value="${expedicion.precio}" required>
+                                                </div>
+                                                
+                                                <div class="mb-3">
+                                                    <label for="precioOriginal" class="form-label">Precio Base (€)</label>
+                                                    <input type="number" step="0.01" class="form-control" id="precioOriginal" 
+                                                           name="precioOriginal" th:value="${expedicion.precioOriginal}">
+                                                    <small class="text-muted">Dejar vacío si no hay precio base diferente</small>
+                                                </div>
+                                                
+                                                <div class="mb-3">
+                                                    <label for="capacidad" class="form-label">Capacidad</label>
+                                                    <input type="number" class="form-control" id="capacidad" 
+                                                           name="capacidad" th:value="${expedicion.capacidad}" required>
+                                                </div>
+                                                
+                                                <div class="mb-3">
+                                                    <label for="categoria" class="form-label">Categoría</label>
+                                                    <select class="form-select" id="categoria" name="categoria" required>
+                                                        <option value="0" th:selected="${expedicion.categoria == 0}">Básico</option>
+                                                        <option value="1" th:selected="${expedicion.categoria == 1}">4000m (Fácil)</option>
+                                                        <option value="2" th:selected="${expedicion.categoria == 2}">6000m (Moderado)</option>
+                                                        <option value="3" th:selected="${expedicion.categoria == 3}">8000m (Difícil)</option>
+                                                    </select>
+                                                </div>
+                                                
+                                                <div class="mb-3">
+                                                    <label for="fechaExpedicion" class="form-label">Fecha de Expedición</label>
+                                                    <input type="date" class="form-control" id="fechaExpedicion" 
+                                                           name="fechaExpedicion" th:value="${#temporals.format(expedicion.fechaExpedicion, 'yyyy-MM-dd')}" required>
+                                                </div>
+                                                
+                                                <div class="mb-3">
+                                                    <label for="fechaLimite" class="form-label">Fecha Límite de Inscripción</label>
+                                                    <input type="date" class="form-control" id="fechaLimite" 
+                                                           name="fechaLimite" th:value="${#temporals.format(expedicion.fechaLimite, 'yyyy-MM-dd')}" required>
+                                                </div>
+                                                
+                                                <div class="mb-3">
+                                                    <label for="imagenUrl" class="form-label">URL de la Imagen</label>
+                                                    <input type="url" class="form-control" id="imagenUrl" 
+                                                           name="imagenUrl" th:value="${expedicion.imagenUrl}" required>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                                <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
         </div>
-    </main>
+    </div>
 
     <div th:replace="~{footer :: footer}"></div>
 
