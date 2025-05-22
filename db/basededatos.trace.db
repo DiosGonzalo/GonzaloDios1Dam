@@ -2846,3 +2846,411 @@ Syntax error in SQL statement "((SELECT id FROM usuario WHERE dni = '98765432E')
 org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "((SELECT id FROM usuario WHERE dni = '98765432E')[*], (SELECT id FROM expedicion WHERE nombre = 'Denali'))"; se esperaba "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"
 Syntax error in SQL statement "((SELECT id FROM usuario WHERE dni = '98765432E')[*], (SELECT id FROM expedicion WHERE nombre = 'Denali'))"; expected "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"; SQL statement:
 ((SELECT id FROM usuario WHERE dni = '98765432E'), (SELECT id FROM expedicion WHERE nombre = 'Denali')) [42001-232]
+2025-05-22 08:05:27.654753+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "INSERT INTO expedicion (nombre, precio, precio_original, capacidad, categoria, imagen_url, fecha_expedicion, fecha_limite) VALUES[*]"; se esperaba "ROW (, (, DEFAULT, INTERSECTS (, NOT, EXISTS, UNIQUE, INTERSECTS"
+Syntax error in SQL statement "INSERT INTO expedicion (nombre, precio, precio_original, capacidad, categoria, imagen_url, fecha_expedicion, fecha_limite) VALUES[*]"; expected "ROW (, (, DEFAULT, INTERSECTS (, NOT, EXISTS, UNIQUE, INTERSECTS"; SQL statement:
+INSERT INTO expedicion (nombre, precio, precio_original, capacidad, categoria, imagen_url, fecha_expedicion, fecha_limite) VALUES [42001-232]
+2025-05-22 08:05:27.697638+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "([*]'Everest', 25000.00, 25000.00, 10, 3, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1KP-tQScEk9gBDTSdZ3snRi0WbG7-Y2VpWQ&s', '2024-05-15', '2024-03-15'),"; se esperaba "(, SELECT, TABLE, VALUES"
+Syntax error in SQL statement "([*]'Everest', 25000.00, 25000.00, 10, 3, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1KP-tQScEk9gBDTSdZ3snRi0WbG7-Y2VpWQ&s', '2024-05-15', '2024-03-15'),"; expected "(, SELECT, TABLE, VALUES"; SQL statement:
+('Everest', 25000.00, 25000.00, 10, 3, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1KP-tQScEk9gBDTSdZ3snRi0WbG7-Y2VpWQ&s', '2024-05-15', '2024-03-15'), [42001-232]
+2025-05-22 08:05:27.716587+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "([*]'K2', 22000.00, 22000.00, 8, 3, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlNxfJ7U3RY7vMNE4IU4L8fa0xaL5yv2o5YA&s', '2024-07-10', '2024-05-10'),"; se esperaba "(, SELECT, TABLE, VALUES"
+Syntax error in SQL statement "([*]'K2', 22000.00, 22000.00, 8, 3, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlNxfJ7U3RY7vMNE4IU4L8fa0xaL5yv2o5YA&s', '2024-07-10', '2024-05-10'),"; expected "(, SELECT, TABLE, VALUES"; SQL statement:
+('K2', 22000.00, 22000.00, 8, 3, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlNxfJ7U3RY7vMNE4IU4L8fa0xaL5yv2o5YA&s', '2024-07-10', '2024-05-10'), [42001-232]
+2025-05-22 08:05:27.734539+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "([*]'Kilimanjaro', 3500.00, 3500.00, 15, 1, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7VLSc0ttcpANX8nYf_GRVXmVHyZnO8TwPqA&s', '2024-06-20', '2024-04-20'),"; se esperaba "(, SELECT, TABLE, VALUES"
+Syntax error in SQL statement "([*]'Kilimanjaro', 3500.00, 3500.00, 15, 1, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7VLSc0ttcpANX8nYf_GRVXmVHyZnO8TwPqA&s', '2024-06-20', '2024-04-20'),"; expected "(, SELECT, TABLE, VALUES"; SQL statement:
+('Kilimanjaro', 3500.00, 3500.00, 15, 1, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7VLSc0ttcpANX8nYf_GRVXmVHyZnO8TwPqA&s', '2024-06-20', '2024-04-20'), [42001-232]
+2025-05-22 08:05:27.750496+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "([*]'Mont Blanc', 1800.00, 2000.00, 12, 1, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiTWDShAJvTVWkK_esdX4Ej3A56m0qC5XRAQ&s', '2024-08-05', '2024-06-05'),"; se esperaba "(, SELECT, TABLE, VALUES"
+Syntax error in SQL statement "([*]'Mont Blanc', 1800.00, 2000.00, 12, 1, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiTWDShAJvTVWkK_esdX4Ej3A56m0qC5XRAQ&s', '2024-08-05', '2024-06-05'),"; expected "(, SELECT, TABLE, VALUES"; SQL statement:
+('Mont Blanc', 1800.00, 2000.00, 12, 1, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiTWDShAJvTVWkK_esdX4Ej3A56m0qC5XRAQ&s', '2024-08-05', '2024-06-05'), [42001-232]
+2025-05-22 08:05:27.766454+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "([*]'Matterhorn', 2800.00, 3000.00, 10, 2, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRk1EMFjLr9uW3ddEL5a4dlnjUkCRBqC8fpRw&s', '2024-09-12', '2024-07-12'),"; se esperaba "(, SELECT, TABLE, VALUES"
+Syntax error in SQL statement "([*]'Matterhorn', 2800.00, 3000.00, 10, 2, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRk1EMFjLr9uW3ddEL5a4dlnjUkCRBqC8fpRw&s', '2024-09-12', '2024-07-12'),"; expected "(, SELECT, TABLE, VALUES"; SQL statement:
+('Matterhorn', 2800.00, 3000.00, 10, 2, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRk1EMFjLr9uW3ddEL5a4dlnjUkCRBqC8fpRw&s', '2024-09-12', '2024-07-12'), [42001-232]
+2025-05-22 08:05:27.781414+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "([*]'Annapurna', 20000.00, 20000.00, 6, 3, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9iJf4rm___yvLagzXtEIkJsMaAoLNb509pQ&s', '2024-10-01', '2024-08-01'),"; se esperaba "(, SELECT, TABLE, VALUES"
+Syntax error in SQL statement "([*]'Annapurna', 20000.00, 20000.00, 6, 3, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9iJf4rm___yvLagzXtEIkJsMaAoLNb509pQ&s', '2024-10-01', '2024-08-01'),"; expected "(, SELECT, TABLE, VALUES"; SQL statement:
+('Annapurna', 20000.00, 20000.00, 6, 3, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9iJf4rm___yvLagzXtEIkJsMaAoLNb509pQ&s', '2024-10-01', '2024-08-01'), [42001-232]
+2025-05-22 08:05:27.793382+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "([*]'Pirineos Traverse', 1200.00, 1200.00, 20, 0, 'https://media.iatiseguros.com/wp-content/uploads/2020/01/04012814/que-ver-dolomitas-8.jpg', '2024-07-15', '2024-05-15'),"; se esperaba "(, SELECT, TABLE, VALUES"
+Syntax error in SQL statement "([*]'Pirineos Traverse', 1200.00, 1200.00, 20, 0, 'https://media.iatiseguros.com/wp-content/uploads/2020/01/04012814/que-ver-dolomitas-8.jpg', '2024-07-15', '2024-05-15'),"; expected "(, SELECT, TABLE, VALUES"; SQL statement:
+('Pirineos Traverse', 1200.00, 1200.00, 20, 0, 'https://media.iatiseguros.com/wp-content/uploads/2020/01/04012814/que-ver-dolomitas-8.jpg', '2024-07-15', '2024-05-15'), [42001-232]
+2025-05-22 08:05:27.806347+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "([*]'Alpes Austriacos', 1500.00, 1500.00, 15, 1, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfMp_uZzfj41J4ZfpGFiPl6qsYPI7mRcQoEg&s', '2024-08-20', '2024-06-20'),"; se esperaba "(, SELECT, TABLE, VALUES"
+Syntax error in SQL statement "([*]'Alpes Austriacos', 1500.00, 1500.00, 15, 1, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfMp_uZzfj41J4ZfpGFiPl6qsYPI7mRcQoEg&s', '2024-08-20', '2024-06-20'),"; expected "(, SELECT, TABLE, VALUES"; SQL statement:
+('Alpes Austriacos', 1500.00, 1500.00, 15, 1, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfMp_uZzfj41J4ZfpGFiPl6qsYPI7mRcQoEg&s', '2024-08-20', '2024-06-20'), [42001-232]
+2025-05-22 08:05:27.814325+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "([*]'Aconcagua', 4500.00, 5000.00, 8, 2, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnYUyLbjWAisP7UyDW3qVEDou7eiazutwexg&s', '2024-12-10', '2024-10-10'),"; se esperaba "(, SELECT, TABLE, VALUES"
+Syntax error in SQL statement "([*]'Aconcagua', 4500.00, 5000.00, 8, 2, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnYUyLbjWAisP7UyDW3qVEDou7eiazutwexg&s', '2024-12-10', '2024-10-10'),"; expected "(, SELECT, TABLE, VALUES"; SQL statement:
+('Aconcagua', 4500.00, 5000.00, 8, 2, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnYUyLbjWAisP7UyDW3qVEDou7eiazutwexg&s', '2024-12-10', '2024-10-10'), [42001-232]
+2025-05-22 08:05:27.828289+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "([*]'Denali', 6000.00, 6000.00, 6, 2, 'https://www.globalnationalparks.com/es/wp-content/uploads/national-park-denali.jpg', '2024-06-05', '2024-04-05')"; se esperaba "(, SELECT, TABLE, VALUES"
+Syntax error in SQL statement "([*]'Denali', 6000.00, 6000.00, 6, 2, 'https://www.globalnationalparks.com/es/wp-content/uploads/national-park-denali.jpg', '2024-06-05', '2024-04-05')"; expected "(, SELECT, TABLE, VALUES"; SQL statement:
+('Denali', 6000.00, 6000.00, 6, 2, 'https://www.globalnationalparks.com/es/wp-content/uploads/national-park-denali.jpg', '2024-06-05', '2024-04-05') [42001-232]
+2025-05-22 08:05:27.894112+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "INSERT INTO usuario (nombre, apellido, fecha_nacimiento, dni, nivel) VALUES[*]"; se esperaba "ROW (, (, DEFAULT, INTERSECTS (, NOT, EXISTS, UNIQUE, INTERSECTS"
+Syntax error in SQL statement "INSERT INTO usuario (nombre, apellido, fecha_nacimiento, dni, nivel) VALUES[*]"; expected "ROW (, (, DEFAULT, INTERSECTS (, NOT, EXISTS, UNIQUE, INTERSECTS"; SQL statement:
+INSERT INTO usuario (nombre, apellido, fecha_nacimiento, dni, nivel) VALUES [42001-232]
+2025-05-22 08:05:27.921040+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "([*]'Juan', 'García', '1989-05-15', '12345678A', 'INTERMEDIO'),"; se esperaba "(, SELECT, TABLE, VALUES"
+Syntax error in SQL statement "([*]'Juan', 'García', '1989-05-15', '12345678A', 'INTERMEDIO'),"; expected "(, SELECT, TABLE, VALUES"; SQL statement:
+('Juan', 'García', '1989-05-15', '12345678A', 'INTERMEDIO'), [42001-232]
+2025-05-22 08:05:27.930018+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "([*]'María', 'López', '1996-02-20', '87654321B', 'PRINCIPIANTE'),"; se esperaba "(, SELECT, TABLE, VALUES"
+Syntax error in SQL statement "([*]'María', 'López', '1996-02-20', '87654321B', 'PRINCIPIANTE'),"; expected "(, SELECT, TABLE, VALUES"; SQL statement:
+('María', 'López', '1996-02-20', '87654321B', 'PRINCIPIANTE'), [42001-232]
+2025-05-22 08:05:27.951962+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "([*]'Carlos', 'Martínez', '1982-11-30', '56781234C', 'AVANZADO'),"; se esperaba "(, SELECT, TABLE, VALUES"
+Syntax error in SQL statement "([*]'Carlos', 'Martínez', '1982-11-30', '56781234C', 'AVANZADO'),"; expected "(, SELECT, TABLE, VALUES"; SQL statement:
+('Carlos', 'Martínez', '1982-11-30', '56781234C', 'AVANZADO'), [42001-232]
+2025-05-22 08:05:27.964923+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "([*]'Ana', 'Rodríguez', '1993-07-22', '43218765D', 'INTERMEDIO'),"; se esperaba "(, SELECT, TABLE, VALUES"
+Syntax error in SQL statement "([*]'Ana', 'Rodríguez', '1993-07-22', '43218765D', 'INTERMEDIO'),"; expected "(, SELECT, TABLE, VALUES"; SQL statement:
+('Ana', 'Rodríguez', '1993-07-22', '43218765D', 'INTERMEDIO'), [42001-232]
+2025-05-22 08:05:27.974896+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "([*]'David', 'Sánchez', '1979-04-18', '98765432E', 'EXPERTO')"; se esperaba "(, SELECT, TABLE, VALUES"
+Syntax error in SQL statement "([*]'David', 'Sánchez', '1979-04-18', '98765432E', 'EXPERTO')"; expected "(, SELECT, TABLE, VALUES"; SQL statement:
+('David', 'Sánchez', '1979-04-18', '98765432E', 'EXPERTO') [42001-232]
+2025-05-22 08:05:27.983872+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "INSERT INTO usuario_expedicion (usuario_id, expedicion_id) VALUES[*]"; se esperaba "ROW (, (, DEFAULT, INTERSECTS (, NOT, EXISTS, UNIQUE, INTERSECTS"
+Syntax error in SQL statement "INSERT INTO usuario_expedicion (usuario_id, expedicion_id) VALUES[*]"; expected "ROW (, (, DEFAULT, INTERSECTS (, NOT, EXISTS, UNIQUE, INTERSECTS"; SQL statement:
+INSERT INTO usuario_expedicion (usuario_id, expedicion_id) VALUES [42001-232]
+2025-05-22 08:05:27.997834+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "((SELECT id FROM usuario WHERE dni = '12345678A')[*], (SELECT id FROM expedicion WHERE nombre = 'Kilimanjaro')),"; se esperaba "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"
+Syntax error in SQL statement "((SELECT id FROM usuario WHERE dni = '12345678A')[*], (SELECT id FROM expedicion WHERE nombre = 'Kilimanjaro')),"; expected "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"; SQL statement:
+((SELECT id FROM usuario WHERE dni = '12345678A'), (SELECT id FROM expedicion WHERE nombre = 'Kilimanjaro')), [42001-232]
+2025-05-22 08:05:28.010801+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "((SELECT id FROM usuario WHERE dni = '12345678A')[*], (SELECT id FROM expedicion WHERE nombre = 'Matterhorn')),"; se esperaba "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"
+Syntax error in SQL statement "((SELECT id FROM usuario WHERE dni = '12345678A')[*], (SELECT id FROM expedicion WHERE nombre = 'Matterhorn')),"; expected "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"; SQL statement:
+((SELECT id FROM usuario WHERE dni = '12345678A'), (SELECT id FROM expedicion WHERE nombre = 'Matterhorn')), [42001-232]
+2025-05-22 08:05:28.021771+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "((SELECT id FROM usuario WHERE dni = '12345678A')[*], (SELECT id FROM expedicion WHERE nombre = 'Pirineos Traverse')),"; se esperaba "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"
+Syntax error in SQL statement "((SELECT id FROM usuario WHERE dni = '12345678A')[*], (SELECT id FROM expedicion WHERE nombre = 'Pirineos Traverse')),"; expected "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"; SQL statement:
+((SELECT id FROM usuario WHERE dni = '12345678A'), (SELECT id FROM expedicion WHERE nombre = 'Pirineos Traverse')), [42001-232]
+2025-05-22 08:05:28.032742+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "((SELECT id FROM usuario WHERE dni = '87654321B')[*], (SELECT id FROM expedicion WHERE nombre = 'Mont Blanc')),"; se esperaba "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"
+Syntax error in SQL statement "((SELECT id FROM usuario WHERE dni = '87654321B')[*], (SELECT id FROM expedicion WHERE nombre = 'Mont Blanc')),"; expected "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"; SQL statement:
+((SELECT id FROM usuario WHERE dni = '87654321B'), (SELECT id FROM expedicion WHERE nombre = 'Mont Blanc')), [42001-232]
+2025-05-22 08:05:28.043713+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "((SELECT id FROM usuario WHERE dni = '87654321B')[*], (SELECT id FROM expedicion WHERE nombre = 'Pirineos Traverse')),"; se esperaba "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"
+Syntax error in SQL statement "((SELECT id FROM usuario WHERE dni = '87654321B')[*], (SELECT id FROM expedicion WHERE nombre = 'Pirineos Traverse')),"; expected "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"; SQL statement:
+((SELECT id FROM usuario WHERE dni = '87654321B'), (SELECT id FROM expedicion WHERE nombre = 'Pirineos Traverse')), [42001-232]
+2025-05-22 08:05:28.050693+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "((SELECT id FROM usuario WHERE dni = '56781234C')[*], (SELECT id FROM expedicion WHERE nombre = 'Everest')),"; se esperaba "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"
+Syntax error in SQL statement "((SELECT id FROM usuario WHERE dni = '56781234C')[*], (SELECT id FROM expedicion WHERE nombre = 'Everest')),"; expected "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"; SQL statement:
+((SELECT id FROM usuario WHERE dni = '56781234C'), (SELECT id FROM expedicion WHERE nombre = 'Everest')), [42001-232]
+2025-05-22 08:05:28.059669+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "((SELECT id FROM usuario WHERE dni = '56781234C')[*], (SELECT id FROM expedicion WHERE nombre = 'K2')),"; se esperaba "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"
+Syntax error in SQL statement "((SELECT id FROM usuario WHERE dni = '56781234C')[*], (SELECT id FROM expedicion WHERE nombre = 'K2')),"; expected "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"; SQL statement:
+((SELECT id FROM usuario WHERE dni = '56781234C'), (SELECT id FROM expedicion WHERE nombre = 'K2')), [42001-232]
+2025-05-22 08:05:28.067649+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "((SELECT id FROM usuario WHERE dni = '56781234C')[*], (SELECT id FROM expedicion WHERE nombre = 'Annapurna')),"; se esperaba "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"
+Syntax error in SQL statement "((SELECT id FROM usuario WHERE dni = '56781234C')[*], (SELECT id FROM expedicion WHERE nombre = 'Annapurna')),"; expected "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"; SQL statement:
+((SELECT id FROM usuario WHERE dni = '56781234C'), (SELECT id FROM expedicion WHERE nombre = 'Annapurna')), [42001-232]
+2025-05-22 08:05:28.079617+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "((SELECT id FROM usuario WHERE dni = '43218765D')[*], (SELECT id FROM expedicion WHERE nombre = 'Mont Blanc')),"; se esperaba "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"
+Syntax error in SQL statement "((SELECT id FROM usuario WHERE dni = '43218765D')[*], (SELECT id FROM expedicion WHERE nombre = 'Mont Blanc')),"; expected "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"; SQL statement:
+((SELECT id FROM usuario WHERE dni = '43218765D'), (SELECT id FROM expedicion WHERE nombre = 'Mont Blanc')), [42001-232]
+2025-05-22 08:05:28.089589+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "((SELECT id FROM usuario WHERE dni = '43218765D')[*], (SELECT id FROM expedicion WHERE nombre = 'Matterhorn')),"; se esperaba "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"
+Syntax error in SQL statement "((SELECT id FROM usuario WHERE dni = '43218765D')[*], (SELECT id FROM expedicion WHERE nombre = 'Matterhorn')),"; expected "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"; SQL statement:
+((SELECT id FROM usuario WHERE dni = '43218765D'), (SELECT id FROM expedicion WHERE nombre = 'Matterhorn')), [42001-232]
+2025-05-22 08:05:28.096570+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "((SELECT id FROM usuario WHERE dni = '43218765D')[*], (SELECT id FROM expedicion WHERE nombre = 'Alpes Austriacos')),"; se esperaba "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"
+Syntax error in SQL statement "((SELECT id FROM usuario WHERE dni = '43218765D')[*], (SELECT id FROM expedicion WHERE nombre = 'Alpes Austriacos')),"; expected "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"; SQL statement:
+((SELECT id FROM usuario WHERE dni = '43218765D'), (SELECT id FROM expedicion WHERE nombre = 'Alpes Austriacos')), [42001-232]
+2025-05-22 08:05:28.106544+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "((SELECT id FROM usuario WHERE dni = '98765432E')[*], (SELECT id FROM expedicion WHERE nombre = 'Everest')),"; se esperaba "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"
+Syntax error in SQL statement "((SELECT id FROM usuario WHERE dni = '98765432E')[*], (SELECT id FROM expedicion WHERE nombre = 'Everest')),"; expected "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"; SQL statement:
+((SELECT id FROM usuario WHERE dni = '98765432E'), (SELECT id FROM expedicion WHERE nombre = 'Everest')), [42001-232]
+2025-05-22 08:05:28.113525+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "((SELECT id FROM usuario WHERE dni = '98765432E')[*], (SELECT id FROM expedicion WHERE nombre = 'K2')),"; se esperaba "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"
+Syntax error in SQL statement "((SELECT id FROM usuario WHERE dni = '98765432E')[*], (SELECT id FROM expedicion WHERE nombre = 'K2')),"; expected "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"; SQL statement:
+((SELECT id FROM usuario WHERE dni = '98765432E'), (SELECT id FROM expedicion WHERE nombre = 'K2')), [42001-232]
+2025-05-22 08:05:28.122502+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "((SELECT id FROM usuario WHERE dni = '98765432E')[*], (SELECT id FROM expedicion WHERE nombre = 'Annapurna')),"; se esperaba "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"
+Syntax error in SQL statement "((SELECT id FROM usuario WHERE dni = '98765432E')[*], (SELECT id FROM expedicion WHERE nombre = 'Annapurna')),"; expected "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"; SQL statement:
+((SELECT id FROM usuario WHERE dni = '98765432E'), (SELECT id FROM expedicion WHERE nombre = 'Annapurna')), [42001-232]
+2025-05-22 08:05:28.134469+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "((SELECT id FROM usuario WHERE dni = '98765432E')[*], (SELECT id FROM expedicion WHERE nombre = 'Aconcagua')),"; se esperaba "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"
+Syntax error in SQL statement "((SELECT id FROM usuario WHERE dni = '98765432E')[*], (SELECT id FROM expedicion WHERE nombre = 'Aconcagua')),"; expected "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"; SQL statement:
+((SELECT id FROM usuario WHERE dni = '98765432E'), (SELECT id FROM expedicion WHERE nombre = 'Aconcagua')), [42001-232]
+2025-05-22 08:05:28.143446+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "((SELECT id FROM usuario WHERE dni = '98765432E')[*], (SELECT id FROM expedicion WHERE nombre = 'Denali'))"; se esperaba "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"
+Syntax error in SQL statement "((SELECT id FROM usuario WHERE dni = '98765432E')[*], (SELECT id FROM expedicion WHERE nombre = 'Denali'))"; expected "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"; SQL statement:
+((SELECT id FROM usuario WHERE dni = '98765432E'), (SELECT id FROM expedicion WHERE nombre = 'Denali')) [42001-232]
+2025-05-22 08:18:01.878332+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "INSERT INTO expedicion (nombre, precio, precio_original, capacidad, categoria, imagen_url, fecha_expedicion, fecha_limite) VALUES[*]"; se esperaba "ROW (, (, DEFAULT, INTERSECTS (, NOT, EXISTS, UNIQUE, INTERSECTS"
+Syntax error in SQL statement "INSERT INTO expedicion (nombre, precio, precio_original, capacidad, categoria, imagen_url, fecha_expedicion, fecha_limite) VALUES[*]"; expected "ROW (, (, DEFAULT, INTERSECTS (, NOT, EXISTS, UNIQUE, INTERSECTS"; SQL statement:
+INSERT INTO expedicion (nombre, precio, precio_original, capacidad, categoria, imagen_url, fecha_expedicion, fecha_limite) VALUES [42001-232]
+2025-05-22 08:18:01.898293+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "([*]'Everest', 25000.00, 25000.00, 10, 3, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1KP-tQScEk9gBDTSdZ3snRi0WbG7-Y2VpWQ&s', '2024-05-15', '2024-03-15'),"; se esperaba "(, SELECT, TABLE, VALUES"
+Syntax error in SQL statement "([*]'Everest', 25000.00, 25000.00, 10, 3, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1KP-tQScEk9gBDTSdZ3snRi0WbG7-Y2VpWQ&s', '2024-05-15', '2024-03-15'),"; expected "(, SELECT, TABLE, VALUES"; SQL statement:
+('Everest', 25000.00, 25000.00, 10, 3, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1KP-tQScEk9gBDTSdZ3snRi0WbG7-Y2VpWQ&s', '2024-05-15', '2024-03-15'), [42001-232]
+2025-05-22 08:18:01.911244+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "([*]'K2', 22000.00, 22000.00, 8, 3, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlNxfJ7U3RY7vMNE4IU4L8fa0xaL5yv2o5YA&s', '2024-07-10', '2024-05-10'),"; se esperaba "(, SELECT, TABLE, VALUES"
+Syntax error in SQL statement "([*]'K2', 22000.00, 22000.00, 8, 3, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlNxfJ7U3RY7vMNE4IU4L8fa0xaL5yv2o5YA&s', '2024-07-10', '2024-05-10'),"; expected "(, SELECT, TABLE, VALUES"; SQL statement:
+('K2', 22000.00, 22000.00, 8, 3, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlNxfJ7U3RY7vMNE4IU4L8fa0xaL5yv2o5YA&s', '2024-07-10', '2024-05-10'), [42001-232]
+2025-05-22 08:18:01.919223+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "([*]'Kilimanjaro', 3500.00, 3500.00, 15, 1, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7VLSc0ttcpANX8nYf_GRVXmVHyZnO8TwPqA&s', '2024-06-20', '2024-04-20'),"; se esperaba "(, SELECT, TABLE, VALUES"
+Syntax error in SQL statement "([*]'Kilimanjaro', 3500.00, 3500.00, 15, 1, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7VLSc0ttcpANX8nYf_GRVXmVHyZnO8TwPqA&s', '2024-06-20', '2024-04-20'),"; expected "(, SELECT, TABLE, VALUES"; SQL statement:
+('Kilimanjaro', 3500.00, 3500.00, 15, 1, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7VLSc0ttcpANX8nYf_GRVXmVHyZnO8TwPqA&s', '2024-06-20', '2024-04-20'), [42001-232]
+2025-05-22 08:18:01.928199+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "([*]'Mont Blanc', 1800.00, 2000.00, 12, 1, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiTWDShAJvTVWkK_esdX4Ej3A56m0qC5XRAQ&s', '2024-08-05', '2024-06-05'),"; se esperaba "(, SELECT, TABLE, VALUES"
+Syntax error in SQL statement "([*]'Mont Blanc', 1800.00, 2000.00, 12, 1, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiTWDShAJvTVWkK_esdX4Ej3A56m0qC5XRAQ&s', '2024-08-05', '2024-06-05'),"; expected "(, SELECT, TABLE, VALUES"; SQL statement:
+('Mont Blanc', 1800.00, 2000.00, 12, 1, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiTWDShAJvTVWkK_esdX4Ej3A56m0qC5XRAQ&s', '2024-08-05', '2024-06-05'), [42001-232]
+2025-05-22 08:18:01.936178+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "([*]'Matterhorn', 2800.00, 3000.00, 10, 2, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRk1EMFjLr9uW3ddEL5a4dlnjUkCRBqC8fpRw&s', '2024-09-12', '2024-07-12'),"; se esperaba "(, SELECT, TABLE, VALUES"
+Syntax error in SQL statement "([*]'Matterhorn', 2800.00, 3000.00, 10, 2, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRk1EMFjLr9uW3ddEL5a4dlnjUkCRBqC8fpRw&s', '2024-09-12', '2024-07-12'),"; expected "(, SELECT, TABLE, VALUES"; SQL statement:
+('Matterhorn', 2800.00, 3000.00, 10, 2, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRk1EMFjLr9uW3ddEL5a4dlnjUkCRBqC8fpRw&s', '2024-09-12', '2024-07-12'), [42001-232]
+2025-05-22 08:18:01.949144+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "([*]'Annapurna', 20000.00, 20000.00, 6, 3, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9iJf4rm___yvLagzXtEIkJsMaAoLNb509pQ&s', '2024-10-01', '2024-08-01'),"; se esperaba "(, SELECT, TABLE, VALUES"
+Syntax error in SQL statement "([*]'Annapurna', 20000.00, 20000.00, 6, 3, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9iJf4rm___yvLagzXtEIkJsMaAoLNb509pQ&s', '2024-10-01', '2024-08-01'),"; expected "(, SELECT, TABLE, VALUES"; SQL statement:
+('Annapurna', 20000.00, 20000.00, 6, 3, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9iJf4rm___yvLagzXtEIkJsMaAoLNb509pQ&s', '2024-10-01', '2024-08-01'), [42001-232]
+2025-05-22 08:18:01.959117+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "([*]'Pirineos Traverse', 1200.00, 1200.00, 20, 0, 'https://media.iatiseguros.com/wp-content/uploads/2020/01/04012814/que-ver-dolomitas-8.jpg', '2024-07-15', '2024-05-15'),"; se esperaba "(, SELECT, TABLE, VALUES"
+Syntax error in SQL statement "([*]'Pirineos Traverse', 1200.00, 1200.00, 20, 0, 'https://media.iatiseguros.com/wp-content/uploads/2020/01/04012814/que-ver-dolomitas-8.jpg', '2024-07-15', '2024-05-15'),"; expected "(, SELECT, TABLE, VALUES"; SQL statement:
+('Pirineos Traverse', 1200.00, 1200.00, 20, 0, 'https://media.iatiseguros.com/wp-content/uploads/2020/01/04012814/que-ver-dolomitas-8.jpg', '2024-07-15', '2024-05-15'), [42001-232]
+2025-05-22 08:18:01.967095+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "([*]'Alpes Austriacos', 1500.00, 1500.00, 15, 1, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfMp_uZzfj41J4ZfpGFiPl6qsYPI7mRcQoEg&s', '2024-08-20', '2024-06-20'),"; se esperaba "(, SELECT, TABLE, VALUES"
+Syntax error in SQL statement "([*]'Alpes Austriacos', 1500.00, 1500.00, 15, 1, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfMp_uZzfj41J4ZfpGFiPl6qsYPI7mRcQoEg&s', '2024-08-20', '2024-06-20'),"; expected "(, SELECT, TABLE, VALUES"; SQL statement:
+('Alpes Austriacos', 1500.00, 1500.00, 15, 1, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfMp_uZzfj41J4ZfpGFiPl6qsYPI7mRcQoEg&s', '2024-08-20', '2024-06-20'), [42001-232]
+2025-05-22 08:18:01.976072+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "([*]'Aconcagua', 4500.00, 5000.00, 8, 2, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnYUyLbjWAisP7UyDW3qVEDou7eiazutwexg&s', '2024-12-10', '2024-10-10'),"; se esperaba "(, SELECT, TABLE, VALUES"
+Syntax error in SQL statement "([*]'Aconcagua', 4500.00, 5000.00, 8, 2, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnYUyLbjWAisP7UyDW3qVEDou7eiazutwexg&s', '2024-12-10', '2024-10-10'),"; expected "(, SELECT, TABLE, VALUES"; SQL statement:
+('Aconcagua', 4500.00, 5000.00, 8, 2, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnYUyLbjWAisP7UyDW3qVEDou7eiazutwexg&s', '2024-12-10', '2024-10-10'), [42001-232]
+2025-05-22 08:18:01.986045+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "([*]'Denali', 6000.00, 6000.00, 6, 2, 'https://www.globalnationalparks.com/es/wp-content/uploads/national-park-denali.jpg', '2024-06-05', '2024-04-05')"; se esperaba "(, SELECT, TABLE, VALUES"
+Syntax error in SQL statement "([*]'Denali', 6000.00, 6000.00, 6, 2, 'https://www.globalnationalparks.com/es/wp-content/uploads/national-park-denali.jpg', '2024-06-05', '2024-04-05')"; expected "(, SELECT, TABLE, VALUES"; SQL statement:
+('Denali', 6000.00, 6000.00, 6, 2, 'https://www.globalnationalparks.com/es/wp-content/uploads/national-park-denali.jpg', '2024-06-05', '2024-04-05') [42001-232]
+2025-05-22 08:18:01.995020+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "INSERT INTO usuario (nombre, apellido, fecha_nacimiento, dni, nivel) VALUES[*]"; se esperaba "ROW (, (, DEFAULT, INTERSECTS (, NOT, EXISTS, UNIQUE, INTERSECTS"
+Syntax error in SQL statement "INSERT INTO usuario (nombre, apellido, fecha_nacimiento, dni, nivel) VALUES[*]"; expected "ROW (, (, DEFAULT, INTERSECTS (, NOT, EXISTS, UNIQUE, INTERSECTS"; SQL statement:
+INSERT INTO usuario (nombre, apellido, fecha_nacimiento, dni, nivel) VALUES [42001-232]
+2025-05-22 08:18:02.000007+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "([*]'Juan', 'García', '1989-05-15', '12345678A', 'INTERMEDIO'),"; se esperaba "(, SELECT, TABLE, VALUES"
+Syntax error in SQL statement "([*]'Juan', 'García', '1989-05-15', '12345678A', 'INTERMEDIO'),"; expected "(, SELECT, TABLE, VALUES"; SQL statement:
+('Juan', 'García', '1989-05-15', '12345678A', 'INTERMEDIO'), [42001-232]
+2025-05-22 08:18:02.010977+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "([*]'María', 'López', '1996-02-20', '87654321B', 'PRINCIPIANTE'),"; se esperaba "(, SELECT, TABLE, VALUES"
+Syntax error in SQL statement "([*]'María', 'López', '1996-02-20', '87654321B', 'PRINCIPIANTE'),"; expected "(, SELECT, TABLE, VALUES"; SQL statement:
+('María', 'López', '1996-02-20', '87654321B', 'PRINCIPIANTE'), [42001-232]
+2025-05-22 08:18:02.020951+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "([*]'Carlos', 'Martínez', '1982-11-30', '56781234C', 'AVANZADO'),"; se esperaba "(, SELECT, TABLE, VALUES"
+Syntax error in SQL statement "([*]'Carlos', 'Martínez', '1982-11-30', '56781234C', 'AVANZADO'),"; expected "(, SELECT, TABLE, VALUES"; SQL statement:
+('Carlos', 'Martínez', '1982-11-30', '56781234C', 'AVANZADO'), [42001-232]
+2025-05-22 08:18:02.029927+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "([*]'Ana', 'Rodríguez', '1993-07-22', '43218765D', 'INTERMEDIO'),"; se esperaba "(, SELECT, TABLE, VALUES"
+Syntax error in SQL statement "([*]'Ana', 'Rodríguez', '1993-07-22', '43218765D', 'INTERMEDIO'),"; expected "(, SELECT, TABLE, VALUES"; SQL statement:
+('Ana', 'Rodríguez', '1993-07-22', '43218765D', 'INTERMEDIO'), [42001-232]
+2025-05-22 08:18:02.037906+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "([*]'David', 'Sánchez', '1979-04-18', '98765432E', 'EXPERTO')"; se esperaba "(, SELECT, TABLE, VALUES"
+Syntax error in SQL statement "([*]'David', 'Sánchez', '1979-04-18', '98765432E', 'EXPERTO')"; expected "(, SELECT, TABLE, VALUES"; SQL statement:
+('David', 'Sánchez', '1979-04-18', '98765432E', 'EXPERTO') [42001-232]
+2025-05-22 08:18:02.044887+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "INSERT INTO usuario_expedicion (usuario_id, expedicion_id) VALUES[*]"; se esperaba "ROW (, (, DEFAULT, INTERSECTS (, NOT, EXISTS, UNIQUE, INTERSECTS"
+Syntax error in SQL statement "INSERT INTO usuario_expedicion (usuario_id, expedicion_id) VALUES[*]"; expected "ROW (, (, DEFAULT, INTERSECTS (, NOT, EXISTS, UNIQUE, INTERSECTS"; SQL statement:
+INSERT INTO usuario_expedicion (usuario_id, expedicion_id) VALUES [42001-232]
+2025-05-22 08:18:02.051868+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "((SELECT id FROM usuario WHERE dni = '12345678A')[*], (SELECT id FROM expedicion WHERE nombre = 'Kilimanjaro')),"; se esperaba "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"
+Syntax error in SQL statement "((SELECT id FROM usuario WHERE dni = '12345678A')[*], (SELECT id FROM expedicion WHERE nombre = 'Kilimanjaro')),"; expected "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"; SQL statement:
+((SELECT id FROM usuario WHERE dni = '12345678A'), (SELECT id FROM expedicion WHERE nombre = 'Kilimanjaro')), [42001-232]
+2025-05-22 08:18:02.059847+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "((SELECT id FROM usuario WHERE dni = '12345678A')[*], (SELECT id FROM expedicion WHERE nombre = 'Matterhorn')),"; se esperaba "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"
+Syntax error in SQL statement "((SELECT id FROM usuario WHERE dni = '12345678A')[*], (SELECT id FROM expedicion WHERE nombre = 'Matterhorn')),"; expected "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"; SQL statement:
+((SELECT id FROM usuario WHERE dni = '12345678A'), (SELECT id FROM expedicion WHERE nombre = 'Matterhorn')), [42001-232]
+2025-05-22 08:18:02.066828+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "((SELECT id FROM usuario WHERE dni = '12345678A')[*], (SELECT id FROM expedicion WHERE nombre = 'Pirineos Traverse')),"; se esperaba "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"
+Syntax error in SQL statement "((SELECT id FROM usuario WHERE dni = '12345678A')[*], (SELECT id FROM expedicion WHERE nombre = 'Pirineos Traverse')),"; expected "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"; SQL statement:
+((SELECT id FROM usuario WHERE dni = '12345678A'), (SELECT id FROM expedicion WHERE nombre = 'Pirineos Traverse')), [42001-232]
+2025-05-22 08:18:02.079794+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "((SELECT id FROM usuario WHERE dni = '87654321B')[*], (SELECT id FROM expedicion WHERE nombre = 'Mont Blanc')),"; se esperaba "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"
+Syntax error in SQL statement "((SELECT id FROM usuario WHERE dni = '87654321B')[*], (SELECT id FROM expedicion WHERE nombre = 'Mont Blanc')),"; expected "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"; SQL statement:
+((SELECT id FROM usuario WHERE dni = '87654321B'), (SELECT id FROM expedicion WHERE nombre = 'Mont Blanc')), [42001-232]
+2025-05-22 08:18:02.089767+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "((SELECT id FROM usuario WHERE dni = '87654321B')[*], (SELECT id FROM expedicion WHERE nombre = 'Pirineos Traverse')),"; se esperaba "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"
+Syntax error in SQL statement "((SELECT id FROM usuario WHERE dni = '87654321B')[*], (SELECT id FROM expedicion WHERE nombre = 'Pirineos Traverse')),"; expected "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"; SQL statement:
+((SELECT id FROM usuario WHERE dni = '87654321B'), (SELECT id FROM expedicion WHERE nombre = 'Pirineos Traverse')), [42001-232]
+2025-05-22 08:18:02.098743+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "((SELECT id FROM usuario WHERE dni = '56781234C')[*], (SELECT id FROM expedicion WHERE nombre = 'Everest')),"; se esperaba "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"
+Syntax error in SQL statement "((SELECT id FROM usuario WHERE dni = '56781234C')[*], (SELECT id FROM expedicion WHERE nombre = 'Everest')),"; expected "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"; SQL statement:
+((SELECT id FROM usuario WHERE dni = '56781234C'), (SELECT id FROM expedicion WHERE nombre = 'Everest')), [42001-232]
+2025-05-22 08:18:02.160578+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "((SELECT id FROM usuario WHERE dni = '56781234C')[*], (SELECT id FROM expedicion WHERE nombre = 'K2')),"; se esperaba "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"
+Syntax error in SQL statement "((SELECT id FROM usuario WHERE dni = '56781234C')[*], (SELECT id FROM expedicion WHERE nombre = 'K2')),"; expected "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"; SQL statement:
+((SELECT id FROM usuario WHERE dni = '56781234C'), (SELECT id FROM expedicion WHERE nombre = 'K2')), [42001-232]
+2025-05-22 08:18:02.185512+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "((SELECT id FROM usuario WHERE dni = '56781234C')[*], (SELECT id FROM expedicion WHERE nombre = 'Annapurna')),"; se esperaba "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"
+Syntax error in SQL statement "((SELECT id FROM usuario WHERE dni = '56781234C')[*], (SELECT id FROM expedicion WHERE nombre = 'Annapurna')),"; expected "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"; SQL statement:
+((SELECT id FROM usuario WHERE dni = '56781234C'), (SELECT id FROM expedicion WHERE nombre = 'Annapurna')), [42001-232]
+2025-05-22 08:18:02.192492+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "((SELECT id FROM usuario WHERE dni = '43218765D')[*], (SELECT id FROM expedicion WHERE nombre = 'Mont Blanc')),"; se esperaba "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"
+Syntax error in SQL statement "((SELECT id FROM usuario WHERE dni = '43218765D')[*], (SELECT id FROM expedicion WHERE nombre = 'Mont Blanc')),"; expected "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"; SQL statement:
+((SELECT id FROM usuario WHERE dni = '43218765D'), (SELECT id FROM expedicion WHERE nombre = 'Mont Blanc')), [42001-232]
+2025-05-22 08:18:02.200472+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "((SELECT id FROM usuario WHERE dni = '43218765D')[*], (SELECT id FROM expedicion WHERE nombre = 'Matterhorn')),"; se esperaba "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"
+Syntax error in SQL statement "((SELECT id FROM usuario WHERE dni = '43218765D')[*], (SELECT id FROM expedicion WHERE nombre = 'Matterhorn')),"; expected "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"; SQL statement:
+((SELECT id FROM usuario WHERE dni = '43218765D'), (SELECT id FROM expedicion WHERE nombre = 'Matterhorn')), [42001-232]
+2025-05-22 08:18:02.210445+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "((SELECT id FROM usuario WHERE dni = '43218765D')[*], (SELECT id FROM expedicion WHERE nombre = 'Alpes Austriacos')),"; se esperaba "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"
+Syntax error in SQL statement "((SELECT id FROM usuario WHERE dni = '43218765D')[*], (SELECT id FROM expedicion WHERE nombre = 'Alpes Austriacos')),"; expected "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"; SQL statement:
+((SELECT id FROM usuario WHERE dni = '43218765D'), (SELECT id FROM expedicion WHERE nombre = 'Alpes Austriacos')), [42001-232]
+2025-05-22 08:18:02.217427+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "((SELECT id FROM usuario WHERE dni = '98765432E')[*], (SELECT id FROM expedicion WHERE nombre = 'Everest')),"; se esperaba "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"
+Syntax error in SQL statement "((SELECT id FROM usuario WHERE dni = '98765432E')[*], (SELECT id FROM expedicion WHERE nombre = 'Everest')),"; expected "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"; SQL statement:
+((SELECT id FROM usuario WHERE dni = '98765432E'), (SELECT id FROM expedicion WHERE nombre = 'Everest')), [42001-232]
+2025-05-22 08:18:02.227399+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "((SELECT id FROM usuario WHERE dni = '98765432E')[*], (SELECT id FROM expedicion WHERE nombre = 'K2')),"; se esperaba "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"
+Syntax error in SQL statement "((SELECT id FROM usuario WHERE dni = '98765432E')[*], (SELECT id FROM expedicion WHERE nombre = 'K2')),"; expected "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"; SQL statement:
+((SELECT id FROM usuario WHERE dni = '98765432E'), (SELECT id FROM expedicion WHERE nombre = 'K2')), [42001-232]
+2025-05-22 08:18:02.239367+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "((SELECT id FROM usuario WHERE dni = '98765432E')[*], (SELECT id FROM expedicion WHERE nombre = 'Annapurna')),"; se esperaba "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"
+Syntax error in SQL statement "((SELECT id FROM usuario WHERE dni = '98765432E')[*], (SELECT id FROM expedicion WHERE nombre = 'Annapurna')),"; expected "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"; SQL statement:
+((SELECT id FROM usuario WHERE dni = '98765432E'), (SELECT id FROM expedicion WHERE nombre = 'Annapurna')), [42001-232]
+2025-05-22 08:18:02.259315+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "((SELECT id FROM usuario WHERE dni = '98765432E')[*], (SELECT id FROM expedicion WHERE nombre = 'Aconcagua')),"; se esperaba "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"
+Syntax error in SQL statement "((SELECT id FROM usuario WHERE dni = '98765432E')[*], (SELECT id FROM expedicion WHERE nombre = 'Aconcagua')),"; expected "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"; SQL statement:
+((SELECT id FROM usuario WHERE dni = '98765432E'), (SELECT id FROM expedicion WHERE nombre = 'Aconcagua')), [42001-232]
+2025-05-22 08:18:02.266295+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "((SELECT id FROM usuario WHERE dni = '98765432E')[*], (SELECT id FROM expedicion WHERE nombre = 'Denali'))"; se esperaba "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"
+Syntax error in SQL statement "((SELECT id FROM usuario WHERE dni = '98765432E')[*], (SELECT id FROM expedicion WHERE nombre = 'Denali'))"; expected "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"; SQL statement:
+((SELECT id FROM usuario WHERE dni = '98765432E'), (SELECT id FROM expedicion WHERE nombre = 'Denali')) [42001-232]
+2025-05-22 08:25:07.436924+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "INSERT INTO expedicion (nombre, precio, precio_original, capacidad, categoria, imagen_url, fecha_expedicion, fecha_limite) VALUES[*]"; se esperaba "ROW (, (, DEFAULT, INTERSECTS (, NOT, EXISTS, UNIQUE, INTERSECTS"
+Syntax error in SQL statement "INSERT INTO expedicion (nombre, precio, precio_original, capacidad, categoria, imagen_url, fecha_expedicion, fecha_limite) VALUES[*]"; expected "ROW (, (, DEFAULT, INTERSECTS (, NOT, EXISTS, UNIQUE, INTERSECTS"; SQL statement:
+INSERT INTO expedicion (nombre, precio, precio_original, capacidad, categoria, imagen_url, fecha_expedicion, fecha_limite) VALUES [42001-232]
+2025-05-22 08:25:07.600456+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "([*]'Everest', 25000.00, 25000.00, 10, 3, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1KP-tQScEk9gBDTSdZ3snRi0WbG7-Y2VpWQ&s', '2028-05-15', '2025-03-15'),"; se esperaba "(, SELECT, TABLE, VALUES"
+Syntax error in SQL statement "([*]'Everest', 25000.00, 25000.00, 10, 3, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1KP-tQScEk9gBDTSdZ3snRi0WbG7-Y2VpWQ&s', '2028-05-15', '2025-03-15'),"; expected "(, SELECT, TABLE, VALUES"; SQL statement:
+('Everest', 25000.00, 25000.00, 10, 3, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1KP-tQScEk9gBDTSdZ3snRi0WbG7-Y2VpWQ&s', '2028-05-15', '2025-03-15'), [42001-232]
+2025-05-22 08:25:07.661281+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "([*]'K2', 22000.00, 22000.00, 8, 3, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlNxfJ7U3RY7vMNE4IU4L8fa0xaL5yv2o5YA&s', '2027-07-10', '2025-05-10'),"; se esperaba "(, SELECT, TABLE, VALUES"
+Syntax error in SQL statement "([*]'K2', 22000.00, 22000.00, 8, 3, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlNxfJ7U3RY7vMNE4IU4L8fa0xaL5yv2o5YA&s', '2027-07-10', '2025-05-10'),"; expected "(, SELECT, TABLE, VALUES"; SQL statement:
+('K2', 22000.00, 22000.00, 8, 3, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlNxfJ7U3RY7vMNE4IU4L8fa0xaL5yv2o5YA&s', '2027-07-10', '2025-05-10'), [42001-232]
+2025-05-22 08:25:07.682220+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "([*]'Kilimanjaro', 3500.00, 3500.00, 15, 1, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7VLSc0ttcpANX8nYf_GRVXmVHyZnO8TwPqA&s', '2027-06-20', '2025-05-20'),"; se esperaba "(, SELECT, TABLE, VALUES"
+Syntax error in SQL statement "([*]'Kilimanjaro', 3500.00, 3500.00, 15, 1, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7VLSc0ttcpANX8nYf_GRVXmVHyZnO8TwPqA&s', '2027-06-20', '2025-05-20'),"; expected "(, SELECT, TABLE, VALUES"; SQL statement:
+('Kilimanjaro', 3500.00, 3500.00, 15, 1, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7VLSc0ttcpANX8nYf_GRVXmVHyZnO8TwPqA&s', '2027-06-20', '2025-05-20'), [42001-232]
+2025-05-22 08:25:07.714130+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "([*]'Mont Blanc', 1800.00, 2000.00, 12, 1, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiTWDShAJvTVWkK_esdX4Ej3A56m0qC5XRAQ&s', '2026-08-05', '2025-06-05'),"; se esperaba "(, SELECT, TABLE, VALUES"
+Syntax error in SQL statement "([*]'Mont Blanc', 1800.00, 2000.00, 12, 1, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiTWDShAJvTVWkK_esdX4Ej3A56m0qC5XRAQ&s', '2026-08-05', '2025-06-05'),"; expected "(, SELECT, TABLE, VALUES"; SQL statement:
+('Mont Blanc', 1800.00, 2000.00, 12, 1, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiTWDShAJvTVWkK_esdX4Ej3A56m0qC5XRAQ&s', '2026-08-05', '2025-06-05'), [42001-232]
+2025-05-22 08:25:07.797889+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "([*]'Matterhorn', 2800.00, 3000.00, 10, 2, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRk1EMFjLr9uW3ddEL5a4dlnjUkCRBqC8fpRw&s', '2026-09-12', '2025-07-12'),"; se esperaba "(, SELECT, TABLE, VALUES"
+Syntax error in SQL statement "([*]'Matterhorn', 2800.00, 3000.00, 10, 2, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRk1EMFjLr9uW3ddEL5a4dlnjUkCRBqC8fpRw&s', '2026-09-12', '2025-07-12'),"; expected "(, SELECT, TABLE, VALUES"; SQL statement:
+('Matterhorn', 2800.00, 3000.00, 10, 2, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRk1EMFjLr9uW3ddEL5a4dlnjUkCRBqC8fpRw&s', '2026-09-12', '2025-07-12'), [42001-232]
+2025-05-22 08:25:07.836778+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "([*]'Annapurna', 20000.00, 20000.00, 6, 3, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9iJf4rm___yvLagzXtEIkJsMaAoLNb509pQ&s', '2025-10-01', '2025-08-01'),"; se esperaba "(, SELECT, TABLE, VALUES"
+Syntax error in SQL statement "([*]'Annapurna', 20000.00, 20000.00, 6, 3, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9iJf4rm___yvLagzXtEIkJsMaAoLNb509pQ&s', '2025-10-01', '2025-08-01'),"; expected "(, SELECT, TABLE, VALUES"; SQL statement:
+('Annapurna', 20000.00, 20000.00, 6, 3, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9iJf4rm___yvLagzXtEIkJsMaAoLNb509pQ&s', '2025-10-01', '2025-08-01'), [42001-232]
+2025-05-22 08:25:07.885637+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "([*]'Pirineos Traverse', 1200.00, 1200.00, 20, 0, 'https://media.iatiseguros.com/wp-content/uploads/2020/01/04012814/que-ver-dolomitas-8.jpg', '2025-07-15', '2025-05-15'),"; se esperaba "(, SELECT, TABLE, VALUES"
+Syntax error in SQL statement "([*]'Pirineos Traverse', 1200.00, 1200.00, 20, 0, 'https://media.iatiseguros.com/wp-content/uploads/2020/01/04012814/que-ver-dolomitas-8.jpg', '2025-07-15', '2025-05-15'),"; expected "(, SELECT, TABLE, VALUES"; SQL statement:
+('Pirineos Traverse', 1200.00, 1200.00, 20, 0, 'https://media.iatiseguros.com/wp-content/uploads/2020/01/04012814/que-ver-dolomitas-8.jpg', '2025-07-15', '2025-05-15'), [42001-232]
+2025-05-22 08:25:07.942475+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "([*]'Alpes Austriacos', 1500.00, 1500.00, 15, 1, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfMp_uZzfj41J4ZfpGFiPl6qsYPI7mRcQoEg&s', '2026-08-20', '2025-07-20'),"; se esperaba "(, SELECT, TABLE, VALUES"
+Syntax error in SQL statement "([*]'Alpes Austriacos', 1500.00, 1500.00, 15, 1, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfMp_uZzfj41J4ZfpGFiPl6qsYPI7mRcQoEg&s', '2026-08-20', '2025-07-20'),"; expected "(, SELECT, TABLE, VALUES"; SQL statement:
+('Alpes Austriacos', 1500.00, 1500.00, 15, 1, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfMp_uZzfj41J4ZfpGFiPl6qsYPI7mRcQoEg&s', '2026-08-20', '2025-07-20'), [42001-232]
+2025-05-22 08:25:07.966406+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "([*]'Aconcagua', 4500.00, 5000.00, 8, 2, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnYUyLbjWAisP7UyDW3qVEDou7eiazutwexg&s', '2027-12-10', '2025-10-10'),"; se esperaba "(, SELECT, TABLE, VALUES"
+Syntax error in SQL statement "([*]'Aconcagua', 4500.00, 5000.00, 8, 2, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnYUyLbjWAisP7UyDW3qVEDou7eiazutwexg&s', '2027-12-10', '2025-10-10'),"; expected "(, SELECT, TABLE, VALUES"; SQL statement:
+('Aconcagua', 4500.00, 5000.00, 8, 2, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnYUyLbjWAisP7UyDW3qVEDou7eiazutwexg&s', '2027-12-10', '2025-10-10'), [42001-232]
+2025-05-22 08:25:08.000309+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "([*]'Denali', 6000.00, 6000.00, 6, 2, 'https://www.globalnationalparks.com/es/wp-content/uploads/national-park-denali.jpg', '2028-06-05', '2026-04-05')"; se esperaba "(, SELECT, TABLE, VALUES"
+Syntax error in SQL statement "([*]'Denali', 6000.00, 6000.00, 6, 2, 'https://www.globalnationalparks.com/es/wp-content/uploads/national-park-denali.jpg', '2028-06-05', '2026-04-05')"; expected "(, SELECT, TABLE, VALUES"; SQL statement:
+('Denali', 6000.00, 6000.00, 6, 2, 'https://www.globalnationalparks.com/es/wp-content/uploads/national-park-denali.jpg', '2028-06-05', '2026-04-05') [42001-232]
+2025-05-22 08:25:08.045180+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "INSERT INTO usuario (nombre, apellido, fecha_nacimiento, dni, nivel) VALUES[*]"; se esperaba "ROW (, (, DEFAULT, INTERSECTS (, NOT, EXISTS, UNIQUE, INTERSECTS"
+Syntax error in SQL statement "INSERT INTO usuario (nombre, apellido, fecha_nacimiento, dni, nivel) VALUES[*]"; expected "ROW (, (, DEFAULT, INTERSECTS (, NOT, EXISTS, UNIQUE, INTERSECTS"; SQL statement:
+INSERT INTO usuario (nombre, apellido, fecha_nacimiento, dni, nivel) VALUES [42001-232]
+2025-05-22 08:25:08.078086+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "([*]'Juan', 'García', '1989-05-15', '12345678A', 'INTERMEDIO'),"; se esperaba "(, SELECT, TABLE, VALUES"
+Syntax error in SQL statement "([*]'Juan', 'García', '1989-05-15', '12345678A', 'INTERMEDIO'),"; expected "(, SELECT, TABLE, VALUES"; SQL statement:
+('Juan', 'García', '1989-05-15', '12345678A', 'INTERMEDIO'), [42001-232]
+2025-05-22 08:25:08.124952+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "([*]'María', 'López', '1996-02-20', '87654321B', 'PRINCIPIANTE'),"; se esperaba "(, SELECT, TABLE, VALUES"
+Syntax error in SQL statement "([*]'María', 'López', '1996-02-20', '87654321B', 'PRINCIPIANTE'),"; expected "(, SELECT, TABLE, VALUES"; SQL statement:
+('María', 'López', '1996-02-20', '87654321B', 'PRINCIPIANTE'), [42001-232]
+2025-05-22 08:25:08.210706+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "([*]'Carlos', 'Martínez', '1982-11-30', '56781234C', 'AVANZADO'),"; se esperaba "(, SELECT, TABLE, VALUES"
+Syntax error in SQL statement "([*]'Carlos', 'Martínez', '1982-11-30', '56781234C', 'AVANZADO'),"; expected "(, SELECT, TABLE, VALUES"; SQL statement:
+('Carlos', 'Martínez', '1982-11-30', '56781234C', 'AVANZADO'), [42001-232]
+2025-05-22 08:25:08.279509+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "([*]'Ana', 'Rodríguez', '1993-07-22', '43218765D', 'INTERMEDIO'),"; se esperaba "(, SELECT, TABLE, VALUES"
+Syntax error in SQL statement "([*]'Ana', 'Rodríguez', '1993-07-22', '43218765D', 'INTERMEDIO'),"; expected "(, SELECT, TABLE, VALUES"; SQL statement:
+('Ana', 'Rodríguez', '1993-07-22', '43218765D', 'INTERMEDIO'), [42001-232]
+2025-05-22 08:25:08.365262+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "([*]'David', 'Sánchez', '1979-04-18', '98765432E', 'EXPERTO')"; se esperaba "(, SELECT, TABLE, VALUES"
+Syntax error in SQL statement "([*]'David', 'Sánchez', '1979-04-18', '98765432E', 'EXPERTO')"; expected "(, SELECT, TABLE, VALUES"; SQL statement:
+('David', 'Sánchez', '1979-04-18', '98765432E', 'EXPERTO') [42001-232]
+2025-05-22 08:25:08.421103+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "INSERT INTO usuario_expedicion (usuario_id, expedicion_id) VALUES[*]"; se esperaba "ROW (, (, DEFAULT, INTERSECTS (, NOT, EXISTS, UNIQUE, INTERSECTS"
+Syntax error in SQL statement "INSERT INTO usuario_expedicion (usuario_id, expedicion_id) VALUES[*]"; expected "ROW (, (, DEFAULT, INTERSECTS (, NOT, EXISTS, UNIQUE, INTERSECTS"; SQL statement:
+INSERT INTO usuario_expedicion (usuario_id, expedicion_id) VALUES [42001-232]
+2025-05-22 08:25:08.469963+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "((SELECT id FROM usuario WHERE dni = '12345678A')[*], (SELECT id FROM expedicion WHERE nombre = 'Kilimanjaro')),"; se esperaba "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"
+Syntax error in SQL statement "((SELECT id FROM usuario WHERE dni = '12345678A')[*], (SELECT id FROM expedicion WHERE nombre = 'Kilimanjaro')),"; expected "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"; SQL statement:
+((SELECT id FROM usuario WHERE dni = '12345678A'), (SELECT id FROM expedicion WHERE nombre = 'Kilimanjaro')), [42001-232]
+2025-05-22 08:25:08.595603+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "((SELECT id FROM usuario WHERE dni = '12345678A')[*], (SELECT id FROM expedicion WHERE nombre = 'Matterhorn')),"; se esperaba "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"
+Syntax error in SQL statement "((SELECT id FROM usuario WHERE dni = '12345678A')[*], (SELECT id FROM expedicion WHERE nombre = 'Matterhorn')),"; expected "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"; SQL statement:
+((SELECT id FROM usuario WHERE dni = '12345678A'), (SELECT id FROM expedicion WHERE nombre = 'Matterhorn')), [42001-232]
+2025-05-22 08:25:08.652440+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "((SELECT id FROM usuario WHERE dni = '12345678A')[*], (SELECT id FROM expedicion WHERE nombre = 'Pirineos Traverse')),"; se esperaba "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"
+Syntax error in SQL statement "((SELECT id FROM usuario WHERE dni = '12345678A')[*], (SELECT id FROM expedicion WHERE nombre = 'Pirineos Traverse')),"; expected "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"; SQL statement:
+((SELECT id FROM usuario WHERE dni = '12345678A'), (SELECT id FROM expedicion WHERE nombre = 'Pirineos Traverse')), [42001-232]
+2025-05-22 08:25:08.683351+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "((SELECT id FROM usuario WHERE dni = '87654321B')[*], (SELECT id FROM expedicion WHERE nombre = 'Mont Blanc')),"; se esperaba "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"
+Syntax error in SQL statement "((SELECT id FROM usuario WHERE dni = '87654321B')[*], (SELECT id FROM expedicion WHERE nombre = 'Mont Blanc')),"; expected "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"; SQL statement:
+((SELECT id FROM usuario WHERE dni = '87654321B'), (SELECT id FROM expedicion WHERE nombre = 'Mont Blanc')), [42001-232]
+2025-05-22 08:25:08.732211+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "((SELECT id FROM usuario WHERE dni = '87654321B')[*], (SELECT id FROM expedicion WHERE nombre = 'Pirineos Traverse')),"; se esperaba "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"
+Syntax error in SQL statement "((SELECT id FROM usuario WHERE dni = '87654321B')[*], (SELECT id FROM expedicion WHERE nombre = 'Pirineos Traverse')),"; expected "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"; SQL statement:
+((SELECT id FROM usuario WHERE dni = '87654321B'), (SELECT id FROM expedicion WHERE nombre = 'Pirineos Traverse')), [42001-232]
+2025-05-22 08:25:08.779077+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "((SELECT id FROM usuario WHERE dni = '56781234C')[*], (SELECT id FROM expedicion WHERE nombre = 'Everest')),"; se esperaba "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"
+Syntax error in SQL statement "((SELECT id FROM usuario WHERE dni = '56781234C')[*], (SELECT id FROM expedicion WHERE nombre = 'Everest')),"; expected "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"; SQL statement:
+((SELECT id FROM usuario WHERE dni = '56781234C'), (SELECT id FROM expedicion WHERE nombre = 'Everest')), [42001-232]
+2025-05-22 08:25:08.818977+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "((SELECT id FROM usuario WHERE dni = '56781234C')[*], (SELECT id FROM expedicion WHERE nombre = 'K2')),"; se esperaba "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"
+Syntax error in SQL statement "((SELECT id FROM usuario WHERE dni = '56781234C')[*], (SELECT id FROM expedicion WHERE nombre = 'K2')),"; expected "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"; SQL statement:
+((SELECT id FROM usuario WHERE dni = '56781234C'), (SELECT id FROM expedicion WHERE nombre = 'K2')), [42001-232]
+2025-05-22 08:25:08.876797+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "((SELECT id FROM usuario WHERE dni = '56781234C')[*], (SELECT id FROM expedicion WHERE nombre = 'Annapurna')),"; se esperaba "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"
+Syntax error in SQL statement "((SELECT id FROM usuario WHERE dni = '56781234C')[*], (SELECT id FROM expedicion WHERE nombre = 'Annapurna')),"; expected "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"; SQL statement:
+((SELECT id FROM usuario WHERE dni = '56781234C'), (SELECT id FROM expedicion WHERE nombre = 'Annapurna')), [42001-232]
+2025-05-22 08:25:09.011411+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "((SELECT id FROM usuario WHERE dni = '43218765D')[*], (SELECT id FROM expedicion WHERE nombre = 'Mont Blanc')),"; se esperaba "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"
+Syntax error in SQL statement "((SELECT id FROM usuario WHERE dni = '43218765D')[*], (SELECT id FROM expedicion WHERE nombre = 'Mont Blanc')),"; expected "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"; SQL statement:
+((SELECT id FROM usuario WHERE dni = '43218765D'), (SELECT id FROM expedicion WHERE nombre = 'Mont Blanc')), [42001-232]
+2025-05-22 08:25:09.070242+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "((SELECT id FROM usuario WHERE dni = '43218765D')[*], (SELECT id FROM expedicion WHERE nombre = 'Matterhorn')),"; se esperaba "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"
+Syntax error in SQL statement "((SELECT id FROM usuario WHERE dni = '43218765D')[*], (SELECT id FROM expedicion WHERE nombre = 'Matterhorn')),"; expected "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"; SQL statement:
+((SELECT id FROM usuario WHERE dni = '43218765D'), (SELECT id FROM expedicion WHERE nombre = 'Matterhorn')), [42001-232]
+2025-05-22 08:25:09.189899+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "((SELECT id FROM usuario WHERE dni = '43218765D')[*], (SELECT id FROM expedicion WHERE nombre = 'Alpes Austriacos')),"; se esperaba "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"
+Syntax error in SQL statement "((SELECT id FROM usuario WHERE dni = '43218765D')[*], (SELECT id FROM expedicion WHERE nombre = 'Alpes Austriacos')),"; expected "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"; SQL statement:
+((SELECT id FROM usuario WHERE dni = '43218765D'), (SELECT id FROM expedicion WHERE nombre = 'Alpes Austriacos')), [42001-232]
+2025-05-22 08:25:09.256708+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "((SELECT id FROM usuario WHERE dni = '98765432E')[*], (SELECT id FROM expedicion WHERE nombre = 'Everest')),"; se esperaba "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"
+Syntax error in SQL statement "((SELECT id FROM usuario WHERE dni = '98765432E')[*], (SELECT id FROM expedicion WHERE nombre = 'Everest')),"; expected "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"; SQL statement:
+((SELECT id FROM usuario WHERE dni = '98765432E'), (SELECT id FROM expedicion WHERE nombre = 'Everest')), [42001-232]
+2025-05-22 08:25:09.279642+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "((SELECT id FROM usuario WHERE dni = '98765432E')[*], (SELECT id FROM expedicion WHERE nombre = 'K2')),"; se esperaba "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"
+Syntax error in SQL statement "((SELECT id FROM usuario WHERE dni = '98765432E')[*], (SELECT id FROM expedicion WHERE nombre = 'K2')),"; expected "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"; SQL statement:
+((SELECT id FROM usuario WHERE dni = '98765432E'), (SELECT id FROM expedicion WHERE nombre = 'K2')), [42001-232]
+2025-05-22 08:25:09.299585+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "((SELECT id FROM usuario WHERE dni = '98765432E')[*], (SELECT id FROM expedicion WHERE nombre = 'Annapurna')),"; se esperaba "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"
+Syntax error in SQL statement "((SELECT id FROM usuario WHERE dni = '98765432E')[*], (SELECT id FROM expedicion WHERE nombre = 'Annapurna')),"; expected "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"; SQL statement:
+((SELECT id FROM usuario WHERE dni = '98765432E'), (SELECT id FROM expedicion WHERE nombre = 'Annapurna')), [42001-232]
+2025-05-22 08:25:09.317534+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "((SELECT id FROM usuario WHERE dni = '98765432E')[*], (SELECT id FROM expedicion WHERE nombre = 'Aconcagua')),"; se esperaba "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"
+Syntax error in SQL statement "((SELECT id FROM usuario WHERE dni = '98765432E')[*], (SELECT id FROM expedicion WHERE nombre = 'Aconcagua')),"; expected "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"; SQL statement:
+((SELECT id FROM usuario WHERE dni = '98765432E'), (SELECT id FROM expedicion WHERE nombre = 'Aconcagua')), [42001-232]
+2025-05-22 08:25:09.336480+02:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Error de Sintaxis en sentencia SQL "((SELECT id FROM usuario WHERE dni = '98765432E')[*], (SELECT id FROM expedicion WHERE nombre = 'Denali'))"; se esperaba "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"
+Syntax error in SQL statement "((SELECT id FROM usuario WHERE dni = '98765432E')[*], (SELECT id FROM expedicion WHERE nombre = 'Denali'))"; expected "INTERSECT, UNION, EXCEPT, ORDER BY, OFFSET, FETCH, FOR, )"; SQL statement:
+((SELECT id FROM usuario WHERE dni = '98765432E'), (SELECT id FROM expedicion WHERE nombre = 'Denali')) [42001-232]

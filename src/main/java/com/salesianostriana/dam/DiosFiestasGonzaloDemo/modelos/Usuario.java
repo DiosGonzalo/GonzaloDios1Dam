@@ -33,7 +33,6 @@ public class Usuario {
     )
     private List<Expedicion> expediciones = new ArrayList<>();
 
-    // Método para calcular la edad a partir de la fecha de nacimiento
     public int getEdad() {
         if (this.fechaNacimiento == null) {
             return 0;

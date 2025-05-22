@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
 </head>
 <body class="bg-light">
-    <!-- Navbar Fragment -->
     <div th:replace="~{Navbar :: navbar}"></div>
 
     <header class="py-5 mb-4 text-white" th:style="'background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(' + ${expedicion.imagenUrl} + '); background-size: cover; background-position: center;'">
@@ -33,7 +32,6 @@
 
     <main class="container mt-4">
         <div class="row">
-            <!-- Columna izquierda - Detalles de la expedición -->
             <div class="col-lg-8 mb-4">
                 <div class="card shadow-sm mb-4">
                     <div class="card-body">
@@ -84,7 +82,6 @@
                 </div>
             </div>
            
-            <!-- Columna derecha - Participantes -->
             <div class="col-lg-4">
                 <div class="card shadow-sm">
                     <div class="card-body">
@@ -124,7 +121,6 @@
         </div>
     </main>
 
-    <!-- Modal de edición -->
     <div class="modal fade" th:id="'editModal'+${expedicion.id}" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -191,7 +187,6 @@
         </div>
     </div>
 
-    <!-- Footer Fragment -->
     <div th:replace="~{footer :: footer}"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>

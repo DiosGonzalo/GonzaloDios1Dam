@@ -24,7 +24,14 @@ public class ExpedicionController {
         return "index";
     }
 
-     @GetMapping("/nueva")
+     
+    @GetMapping("/expediciones")
+    public String muestraExpediciones(Model model) {
+        List<Expedicion> expediciones = servicio.aplicarDescuentos(servicio.findAll());
+        model.addAttribute("expediciones", expediciones);
+        return "expediciones";
+    }
+    @GetMapping("/nueva")
     public String mostrarFormulario(Model model) {
         model.addAttribute("expedicion", new Expedicion());
         return "agregarExpedicion";
@@ -52,13 +59,6 @@ public class ExpedicionController {
             redirectAttributes.addFlashAttribute("error", "Error al crear la expedición: " + e.getMessage());
             return "redirect:/nueva";
         }
-    }
-
-    @GetMapping("/expediciones")
-    public String muestraExpediciones(Model model) {
-        List<Expedicion> expediciones = servicio.aplicarDescuentos(servicio.findAll());
-        model.addAttribute("expediciones", expediciones);
-        return "expediciones";
     }
 
     @GetMapping("/expedicion/editar/{id}")
@@ -155,11 +155,8 @@ public class ExpedicionController {
         }
     }
 
-    // Nuevo endpoint para manejo de errores
     @GetMapping("/error")
-    public String mostrarError(Model model, 
-                             @RequestParam(required = false) String error,
-                             @RequestParam(required = false) String mensaje) {
+    public String mostrarError(Model model, @RequestParam(required = false) String error,@RequestParam(required = false) String mensaje) {
         model.addAttribute("error", error != null ? error : "Error desconocido");
         model.addAttribute("mensaje", mensaje != null ? mensaje : "Ha ocurrido un error inesperado");
         return "error";

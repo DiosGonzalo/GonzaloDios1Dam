@@ -9,8 +9,7 @@ import com.salesianostriana.dam.DiosFiestasGonzaloDemo.servicios.base.ServiciosB
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.Collections;
-import java.util.Comparator;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -53,7 +52,6 @@ public class ExpedicionServicio extends ServiciosBase<Expedicion, Long, Expedici
         return repositorio.findAllOrderByFechaDesc();
     }
 
-    // Resto de métodos se mantienen igual...
     public void deleteById(Long id) {
         Expedicion expedicion = findById(id);
         if (expedicion != null) {
@@ -81,17 +79,14 @@ public class ExpedicionServicio extends ServiciosBase<Expedicion, Long, Expedici
                 return false;
             }
             
-            // Descuento por tercera expedición
             boolean terceraExpedicion = usuario.getExpediciones().size() >= 2;
             
-            // Descuento por cumpleaños
             boolean esCumpleanios = usuario.getFechaNacimiento() != null &&
                                   usuario.getFechaNacimiento().getMonth() == LocalDate.now().getMonth() &&
                                   usuario.getFechaNacimiento().getDayOfMonth() == LocalDate.now().getDayOfMonth();
             
             return terceraExpedicion || esCumpleanios;
         } catch (Exception e) {
-            // Loggear el error
             return false;
         }
     }
@@ -130,7 +125,6 @@ public class ExpedicionServicio extends ServiciosBase<Expedicion, Long, Expedici
             exp.setPrecio(precioFinal);
             exp.setMotivoDescuento(motivos.toString().trim());
         } else {
-            // Si no cumple ningún requisito, no hay descuento
             exp.setPrecio(exp.getPrecioOriginal());
             exp.setMotivoDescuento(null);
         }
